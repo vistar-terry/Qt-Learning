@@ -1,1 +1,4 @@
-code/**/*debug
+code/**/*Debug
+code/**/*Profile
+code/**/*Release
+code/**/*.pro.user
