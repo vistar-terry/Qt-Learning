@@ -343,7 +343,45 @@ TEMPLATE = lib
 
 ## 二、控件
 
-### 2.1 控件介绍
+### 2.1 控件组介绍
+
+<img src="img/2022-07-27_22-08.png" alt="2022-07-27_22-08" style="zoom:150%;" />
+
+控件分8个组，分别为：
+
+|           控件组            |              描述              |
+| :-------------------------: | :----------------------------: |
+|           Layouts           |   布局：控制控件在窗口的布局   |
+|           Spacers           | 间隔：辅助控制控件在窗口的布局 |
+|           Buttons           |       按钮：按钮相关控件       |
+|  Item Views（Model-Based）  |            项目视图            |
+| Item Widgets（Model-Based） |            项目组件            |
+|         Containers          |    容器：可以存放控件的控件    |
+|        Input Widgets        |     输入组件：输入相关控件     |
+|       Display Widgets       |     显示组件：显示相关控件     |
+
+
+
+### 2.2 按钮组件(Buttons)
+
+
+
+![Battons](img/Battons.png)
+
+
+
+|        控件         |     描述     |
+| :-----------------: | :----------: |
+|     Push Button     |   普通按钮   |
+|     Tool Button     |   工具按钮   |
+|    Radio Button     |    单选框    |
+|      Check Box      |    复选框    |
+| Command Link Button | 命令连接按钮 |
+|  Dialog Button Box  |  对话框按钮  |
+
+
+
+
 
 
 
