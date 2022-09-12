@@ -191,8 +191,6 @@ TEMPLATE = lib
 
 
 
-
-
 ##### 1.3.1.2 其他文件内容解释
 
 
@@ -291,7 +289,7 @@ TEMPLATE = lib
 2.   编辑区：用于设计ui界面，可以将1中的控件拖到此区域；
 3.   对象查看区：可以查看控件对象的父子关系及一些简单信息；
 4.   动作、信号、槽编译区：可以编辑指定动作及相应控件的信号与槽；
-5.   控件属性编译区：编辑指定控件的属性；
+5.   控件属性编译区：编辑指定控件的属性，会按继承关系展示所选控件的各属性；
 
 
 
@@ -335,9 +333,96 @@ TEMPLATE = lib
 
 
 
-##### 1.3.4.3 qmake生成makefile过程
+#### 1.3.3 qmake生成makefile过程
 
 
+
+
+
+### 1.4 Qt 模块简介
+
+Qt由许多模块组成，分别支持不同领域的功能，主要分为 `Essentials` 和 `Add-On`。
+
+`Qt Essential` 是基本模块，它们可以在所有受支持的开发平台和经过测试的目标平台上使用。基本模块是通用的，适用于大多数Qt应用程序。
+
+`Qt Add-On` 是附加模块/扩展模块，用于特殊目的开发。这些模块可能仅在某些开发平台上可用。许多附加模块要么功能完整，存在是为了向后兼容，要么仅适用于某些平台。每个附加模块分别指定其兼容性。
+
+#### 1.4.1 Qt基本模块
+
+Qt 基本模块如下表：
+
+|       模块        |                             描述                             |
+| :---------------: | :----------------------------------------------------------: |
+|      Qt Core      | 所有基于Qt的应用程序的基础，其他模块使用的核心非图形类。<br>提供信号与槽的对象通信机制、并发和多线程、容器/事件系统、插件和I/O设施。 |
+|     Qt D-Bus      | D总线协议上进程间通信的类。<br>是一种进程间通信(IPC)和远程过程调用(RPC)机制，一般用于用于多对多通信。 |
+|      Qt GUI       | 图形用户界面（GUI）组件的基类。<br>包括与窗⼝系统的集成、事件处理、OpenGL和OpenGL ES集成、2D图像、字体、拖放等。<br>这些类⼀般在Qt⽤户界⾯类内部使⽤，当然也可以⽤于访问底层的OpenGL ES 图像API。<br>Qt Gui模块提供的是所有图形⽤户界⾯程序都需要的通⽤功能。 |
+|    Qt Network     |      提供跨平台的⽹络功能，使网络编程更容易和更可移植。      |
+|      Qt QML       |                  用于QML和JavaScript语言。                   |
+|     Qt Quick      | ⼀种基于 Qt 的⾼度动画的⽤户界⾯，适合于移动平台开发，用于构建具有自定义用户界面的高度动态应用程序的声明性框架。 |
+| Qt Quick Controls | 提供轻量级QML类型，用于为桌面、嵌入式和移动设备创建高性能的用户界面。这些类型采用简单的样式体系结构，非常有效。 |
+| Qt Quick Dialogs  |     用于从Qt快速应用程序创建系统对话框并与之交互的类型。     |
+| Qt Quick Layouts  |             用于在 Qt Quick 2 中安排项目的布局。             |
+|   Qt Quick Test   | QML应用程序的单元测试框架，其中测试用例以JavaScript函数的形式编写。<br>注：二进制兼容性保证不适用于 Qt 快速测试。但是，它将保持源代码兼容。 |
+|      Qt Test      | 用于单元测试 Qt 应用程序和库的类。<br/>注意：二进制兼容性保证不适用于 Qt 测试。 但是，它将保持源兼容。 |
+|    Qt Widgets     |                 扩展Qt GUI模块的C++窗口类 。                 |
+
+
+
+#### 1.4.2 Qt扩展模块
+
+Qt扩展模块如下表：
+
+|       模块        | 开发平台 |                    目标支持平台                    |                             描述                             |
+| :---------------: | :------: | :------------------------------------------------: | :----------------------------------------------------------: |
+|     Active Qt     | Windows  |                      Windows                       |                 用于ActiveX和COM应用程序的类                 |
+|   Qt Bluetooth    |   All    | Android, iOS, Linux, Boot to Qt, macOS and Windows |                    提供对蓝牙硬件的访问。                    |
+|       Qt 3D       |   All    |                        All                         |            支持2D和3D渲染的近实时仿真系统的功能。            |
+|      Qt CoAP      |   All    |                        All                         |                实现RFC 7252定义的CoAP客户端。                |
+|   Qt Concurrent   |   All    |                        All                         |         用于编写多线程程序而不使用低级线程原语的类。         |
+|      Qt Help      |   All    |                        All                         |               用于将文档集成到应用程序中的类。               |
+| Qt Image Formats  |   All    |                        All                         |        用于其他图像格式的插件：TIFF、MNG、TGA、WBMP。        |
+|     Qt OpenGL     |   All    |                        All                         | 使OpenGL在Qt应用程序中易于使用的C++类。一个单独的Qt OpenGL Widgets C++类，提供了一个用于渲染OpenGL图形的窗口小部件。 |
+|   Qt Multimedia   |   All    |            All (except QNX, INTEGRITY)             | 一组丰富的QML类型和C++类，用于处理多媒体内容。还包括处理摄像头访问的API。 |
+| Qt Print Support  |   All    |                        All                         |                  使打印更容易和更便携的类。                  |
+| Qt Quick Widgets  |   All    |                        All                         |             提供用于显示Qt快速用户界面的C++类。              |
+| Qt Remote Objects |   All    |                        All                         | 提供了一种易于使用的机制，用于在进程或设备之间共享QObject的API（属性/信号/插槽）。 |
+|     Qt OPC UA     |   All    |           All (except QNX, WebAssembly)            |              工业应用中数据建模和数据交换协议。              |
+|     Qt SCXML      |   All    |                        All                         | 提供用于从SCXML文件创建状态机并将其嵌入应用程序的类和工具。  |
+|    Qt Sensors     |   All    |             Android, iOS, and Windows              |                   提供对传感器硬件的访问。                   |
+|   Qt Serial Bus   |   All    |        Linux, Boot to Qt, macOS and Windows        | 提供对串行工业总线接口的访问。目前，该模块仅支持CAN总线和Modbus协议。 |
+|  Qt Serial Port   |   All    |        Linux, Boot to Qt, macOS and Windows        |              提供与硬件和虚拟串行端口交互的类。              |
+|      Qt SQL       |   All    |                        All                         |                 使用SQL进行数据库集成的类。                  |
+| Qt State Machine  |   All    |                        All                         |                提供用于创建和执行状态图的类。                |
+|      Qt SVG       |   All    |                        All                         | 用于显示SVG文件内容的类。支持SVG1.2标准的一个子集。一个单独的Qt SVG Widgets C++类库，支持在Widgets UI中显示SVG文件。 |
+|    Qt UI Tools    |   All    |                        All                         | 用于在运行时动态加载QtDesigner中创建的基于QWidget的表单的类。 |
+|   Qt WebChannel   |   All    |                        All                         | 提供对来自HTML客户端的QObject或QML对象的访问，以实现Qt应用程序与HTML/JavaScript客户端的无缝集成。 |
+|   Qt WebEngine    |   All    |             Windows, Linux, and macOS              | 用于在使用Chromium浏览器项目的应用程序中嵌入web内容的类和函数。 |
+|   Qt WebSockets   |   All    |                        All                         |              提供符合RFC 6455的WebSocket通信。               |
+|    Qt WebView     |   All    |               具有本地web引擎的平台                | 通过使用平台原生的API在QML应用程序中显示web内容，而无需包含完整的web浏览器堆栈。 |
+|      Qt XML       |   All    |                        All                         |             在文档对象模型（DOM）API中处理XML。              |
+|  Qt Positioning   |   All    |       Android, iOS, macOS, Linux and Windows       |            提供位置、卫星信息和区域监测类的访问。            |
+|      Qt NFC       |   All    |                  Android and iOS                   |              提供对近场通信（NFC）硬件的访问。               |
+
+以下扩展模块需要在商业许可证或GNU通用公共许可证v3下使用。
+
+|           模块           | 开发平台 |                    目标支持平台                    |                             描述                             |
+| :----------------------: | :------: | :------------------------------------------------: | :----------------------------------------------------------: |
+|        Qt Charts         |   All    |                        All                         |       由静态或动态数据模型驱动的用于显示图表的UI组件。       |
+|  Qt Data Visualization   |   All    |                        All                         |               用于创建三维数据可视化的UI组件。               |
+|   Qt Lottie Animation    |   All    |                        All                         | 用于渲染由Adobe After Effects的Bodymovin插件以JSON格式导出的图形和动画。 |
+|         Qt MQTT          |   All    |                        All                         |                   提供MQTT协议规范的实现。                   |
+| Qt Network Authorization |   All    |                        All                         |             为在线服务提供基于OAuth的授权支持。              |
+|   Qt Virtual Keyboard    |   All    | Linux and Windows desktop, and Boot to Qt targets. | 用于实现不同输入方法以及QML虚拟键盘的框架。支持本地化键盘布局和自定义视觉主题。 |
+|       Qt Quick 3D        |   All    |                        All                         |          提供基于Qt Quick创建3D内容或UI的高级API。           |
+|    Qt Quick Timeline     |   All    |                        All                         |                启用基于关键帧的动画和参数化。                |
+|     Qt Shader Tools      |   All    |                        All                         | 为跨平台Qt着色器管道提供工具。这些支持处理图形和计算着色器，使其可用于Qt Quick和Qt生态系统中的其他组件。 |
+|  Qt Wayland Compositor   |   All    |           Linux and Boot to Qt targets.            |                提供开发Wayland合成器的框架。                 |
+
+以下扩展模块仍在开发中：
+
+|  模块  | 开发平台 |        目标支持平台        |            描述             |
+| :----: | :------: | :------------------------: | :-------------------------: |
+| Qt PDF |   All    | Windows, Linux, and macOS. | 用于显示PDF文档的类和函数。 |
 
 
 
@@ -381,19 +466,61 @@ TEMPLATE = lib
 
 
 
+按钮各控件类的继承关系如下：
+
+<img src="img/button.png" alt="button" style="zoom: 50%;" />
 
 
 
+#### 2.2.1 QPushButton
+
+QPushButton按钮，是Qt常用的控件之一，提供普通的按钮功能。
+
+通过信号槽机制接收触发信号并执行对应动作。
+
+##### 2.2.1.1 创建QPushButton
+
+它有三个构造函数：
+
+```c++
+// 空对象
+QPushButton(QWidget *parent = nullptr);
+// 指定QPushButton显示的文字
+QPushButton(const QString &text, QWidget *parent = nullptr);
+// 指定QPushButton背景图片和显示的文字
+QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
+```
+
+最常用的创建方法为：`QPushButton(QWidget *parent = nullptr);` 并且把它的父对象指定为它所在的窗口对象。
 
 
 
+##### 2.2.1.2 信号
+
+它通过信号来接收特定的操作，信号包括：
+
+| 信号                                | 操作           | 描述                                     |
+| ----------------------------------- | -------------- | ---------------------------------------- |
+| void pressed();                     | 按下按钮       | 按钮被按下会发出此信号                   |
+| void released();                    | 释放按钮       | 按钮被释放（松开）会发出此信号           |
+| void clicked(bool checked = false); | 点击按钮       | 按钮被点击（即按下后再释放）会发出此信号 |
+| void toggled(bool checked);         | 按钮状态被切换 | 按钮状态被切换时会发出此信号             |
+
+这些信号在`QAbstractButton`中定义，也就是说继承于`QAbstractButton`的按钮类都可以使用这些信号。
+
+由于`QPushButton`使用最多的操作是点击触发某个行为，所以它常用的信号为`pressed`和`released`， 当然也可以使用其他信号实现一些特殊功能。
 
 
 
+##### 2.2.1.3 使用
 
+最常用的点击触发某个行为：
 
+首先切换到ui设计界面，拖动添加一个`Push Button`按钮，
 
+![2022-09-12-21-58-16](img/2022-09-12-21-58-16.png)
 
+可以在右侧修改按钮对象的名称，也可以使用默认的`pushButton`
 
 
 
