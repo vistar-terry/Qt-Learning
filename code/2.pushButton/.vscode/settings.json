@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "qwidget": "cpp",
+        "qvariant": "cpp",
+        "qpushbutton": "cpp"
+    }
+}
