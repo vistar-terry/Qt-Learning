@@ -516,11 +516,134 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 最常用的点击触发某个行为：
 
-首先切换到ui设计界面，拖动添加一个`Push Button`按钮，
+创建一个widget空窗口项目，
+
+首先，切换到ui设计界面，拖动添加一个`Push Button`按钮，
 
 ![2022-09-12-21-58-16](img/2022-09-12-21-58-16.png)
 
-可以在右侧修改按钮对象的名称，也可以使用默认的`pushButton`
+可以在右侧修改按钮对象的名称，也可以使用默认的`pushButton`。
+
+然后，回到widget.cpp文件，连接信号与槽，并实现槽函数(点击按钮要实现的动作)。
+
+![2022-09-18-17-04-11](img/2022-09-18-17-04-11.png)
+
+其中，`connect(ui->pushButton, &QPushButton::clicked, this, &Widget::btnClicked);`用于连接按钮信号与其槽函数（关于connect见[Qt 学习(四) —— 信号和槽](https://blog.csdn.net/maizousidemao/article/details/104199773)）
+
+`void Widget::btnClicked()`是其槽函数，按键`clicked`信号触发的动作实现在这个函数里。
+
+这里点击按钮后会在`QtCreator`的`Application OutPut`窗口打印`button is clicked`，如下图：
+
+![2022-09-18-17-17-02](img/2022-09-18-17-17-02.png)
+
+以上是pushbutton按钮的使用方法，可以把信号换成`pressed`或`released`试一下。
+
+
+
+##### 2.2.1.4 按钮样式
+
+###### 1.按钮文字
+
+通常我们通过按钮上的文字说明按钮的功能，可以使用`setText()`函数设置按钮文字。
+
+```c++
+ui->pushButton->setText("按钮");
+```
+
+如果想获取一个按钮的文字，可以使用`text()`函数：
+
+```c++
+QString btnText = ui->pushButton->text();
+```
+
+###### 2.按钮大小
+
+使用`setGeometry`函数可以设置按钮的大小及位置，`setGeometry`接收一个`QRect`矩形对象，用以指定按钮大小及位置，如下：
+
+```c++
+pushButton->setGeometry(QRect(140, 140, 231, 71));
+```
+
+其中前两个参数指定位置（x, y），后两个参数指定大小（height, width）。
+
+![2022-09-21-22-34-13](img/2022-09-21-22-34-13.png)
+
+另外还可以使用`resize`函数单独设置按钮的大小：
+
+```c++
+ui->pushButton->resize(80, 80);
+```
+
+###### 3.其他样式
+
+###### 3.其他样式
+
+其他样式主要使用`void setStyleSheet(const QString& styleSheet);` 函数设置样式表。
+
+该函数传入`QString`类型的参数，是遵循 `qss` 语法的编码字符串。
+
+`qss` 语法和 `css` 语法基本相同。
+
+比如基本常用的设置按钮的背景色、按钮字体、矩形按钮圆角等。
+
+```c++
+ui->pushButton->setStyleSheet("QPushButton {"
+                              "background-color: green;" // 按钮背景色
+                              "font: bold 20px;"	// 按钮字体
+                              "border-width: 1px;"	// 按钮边框线宽
+                              "border-radius: 16px;" // 按钮边框圆角半径
+                              "color: white;" 	// 按钮文字颜色
+                              "}");
+```
+
+
+
+效果如下：
+
+![2022-09-21-21-21-03](img/2022-09-21-21-21-03.png)
+
+合理配合大小与圆角的设置，还可以画出圆形按钮：
+
+```c++
+ui->pushButton->resize(80, 80);
+ui->pushButton->setStyleSheet("QPushButton {"
+                              "background-color: green;" // 按钮背景色
+                              "font: bold 20px;"	// 按钮字体
+                              "border-width: 1px;"	// 按钮边框线宽
+                              "border-radius: 40px;" // 按钮边框圆角半径
+                              "color: white;"      // 按钮文字颜色
+                              "}");
+```
+
+效果如下：
+
+![2022-09-21-22-40-31](img/2022-09-21-22-40-31.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
