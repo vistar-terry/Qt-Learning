@@ -576,8 +576,6 @@ ui->pushButton->resize(80, 80);
 
 ###### 3.其他样式
 
-###### 3.其他样式
-
 其他样式主要使用`void setStyleSheet(const QString& styleSheet);` 函数设置样式表。
 
 该函数传入`QString`类型的参数，是遵循 `qss` 语法的编码字符串。
