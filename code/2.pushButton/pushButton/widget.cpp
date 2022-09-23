@@ -29,4 +29,3 @@ void Widget::btnClicked()
 {
     qDebug() << " button is clicked";
 }
-

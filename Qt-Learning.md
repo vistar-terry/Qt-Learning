@@ -594,8 +594,6 @@ ui->pushButton->setStyleSheet("QPushButton {"
                               "}");
 ```
 
-
-
 效果如下：
 
 ![2022-09-21-21-21-03](img/2022-09-21-21-21-03.png)
