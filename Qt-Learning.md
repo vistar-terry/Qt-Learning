@@ -197,6 +197,90 @@ TEMPLATE = lib
 
 
 
+##### 1.3.1.2 资源文件介绍与使用
+
+Qt工程分组中，除了`Headers`、`Sources`、`Forms`外，还有一个文件夹`Resources`，只有当工程中有图片、音频等资源文件时才会用到。
+
+首先将资源文件存放到工程目录下的文件夹中，然后添加`.qrc`文件，方法如下：
+
+在工程目录右键-->选择`Add New` 
+
+![2022-09-24-15-49-24](img/2022-09-24-15-49-24.png)
+
+选择Qt-->Qt Resource File，然后点击Choose...
+
+![2022-09-24-15-54-59](img/2022-09-24-15-54-59.png)
+
+然后可以自定义文件名和路径，点击Next>
+
+![2022-09-24-15-57-06](img/2022-09-24-15-57-06.png)
+
+然后可以选择要添加到的工程和使用的版本控制工具，这里默认，然后点击Finish
+
+![2022-09-24-15-59-18](img/2022-09-24-15-59-18.png)
+
+然后，工程目录中就会出现`Resources`目录和`res.qrc`文件，点击`Add Prefix`添加前缀
+
+![2022-09-24-16-08-03](img/2022-09-24-16-08-03.png)
+
+Qt通过前缀对资源文件分类，如有需要用户可以自定义前缀名称，如不需要分类可以修改前缀为`/`，然后点击`Add Files`添加资源文件
+
+![2022-09-24-16-14-03](img/2022-09-24-16-14-03.png)
+
+找到工程目录下的资源文件位置，全选导入，再构建一下（点右下角那个小锤子），就可以在`Resources`目录下看到这些文件了，如下图：
+
+![2022-09-24-17-04-32](img/2022-09-24-17-04-32.png)
+
+其中`.qrc`文件存储的是资源文件的相对路径，`.qrc`文件格式如下：
+
+```xml
+<RCC>
+    <qresource prefix="/">
+        <file>res/742c.png</file>
+        <file>res/20220918143827.png</file>
+        <file>res/Einstein.png</file>
+        <file>res/icon.png</file>
+    </qresource>
+</RCC>
+```
+
+使用资源文件时输入的路径格式为`“:/res/icon.png”`，其中`:`后面是前缀+文件相对路径，比如为按钮添加背景图片：
+
+```c++
+toolBtn->setIcon(QIcon(":/res/icon.png"));
+```
+
+如果需要对资源文件进行分类，上面点击`Add Prefix`添加前缀那一步，可以填写自定义的前缀名称，点击一次`Add Prefix`添加一个前缀（分类），然后把对应的文件添加进去，在构建一下就可以了。
+
+![2022-09-24-17-17-53](img/2022-09-24-17-17-53.png)
+
+其中`.qrc`文件内容如下：
+
+```xml
+<RCC>
+    <qresource prefix="/first">
+        <file>res/742c.png</file>
+        <file>res/20220918143827.png</file>
+    </qresource>
+    <qresource prefix="/second">
+        <file>res/Einstein.png</file>
+        <file>res/icon.png</file>
+    </qresource>
+</RCC>
+```
+
+这时`icon.png`文件的路径就变为`:/second/res/icon.png`了。
+
+
+
+**小建议**
+
+获取文件路径，建议在`Resources`目录下对应的资源文件上右键，选择`Copy Path`复制：
+
+![2022-09-24-17-23-28](img/2022-09-24-17-23-28.png)
+
+
+
 #### 1.3.2 认识Qt Creator
 
 打开Qt Creator默认界面如下
@@ -675,15 +759,57 @@ QToolButton(QWidget *parent = nullptr);
 
 ![2022-09-24-13-20-29](img/2022-09-24-13-20-29.png)
 
+其中，
+
+```c++
+#include <QtWidgets/QToolButton>
+```
+
+引用`QToolButton`头文件。
+
+```c++
+QToolButton *toolButton;
+```
+
+创建一个`QToolButton`对象指针。
+
+```c++
+toolButton = new QToolButton(Widget);
+toolButton->setObjectName(QString::fromUtf8("toolButton"));
+toolButton->setGeometry(QRect(230, 180, 26, 24));
+```
+
+实例化一个`QToolButton`对象，并设置对象名称、按钮位置和按钮大小。
+
+```c++
+toolButton->setText(QApplication::translate("Widget", "...", nullptr));
+```
+
+设置按钮文字，这里设置为`...`
+
+其中，必要的是“`QToolButton`头文件”和“实例化`QToolButton`对象”，其余均可以按照需求自定义。
+
+所以自己写代码使用`QToolButton`时，可以参考以下代码：
+
+```c++
+#include <QtWidgets/QToolButton>
+// this是QToolButton所在窗口的指针
+QToolButton* toolBtn = new QToolButton(this);
+```
 
 
 
+##### 2.2.2.2 为QToolButton添加图标
 
+这里涉及到Qt资源，软件使用的声音文件、图片文件等，都以资源的形式加载，使用前需要为工程添加资源文件，具体添加方法见
 
+以上述使用代码创建的`QToolButton`对象`toolBtn`为例，为了方便展示，首先给按钮设置一个合适的大小：
 
-##### 2.2.2.2 创建QToolButton
+```c++
+toolBtn->setGeometry(QRect(230, 170, 50, 50));
+```
 
-
+然后使用
 
 
 

@@ -10,8 +10,8 @@ Widget::Widget(QWidget *parent)
     QToolButton* toolBtn = new QToolButton(this);
     toolBtn->setGeometry(QRect(230, 170, 50, 50));
 
-    toolBtn->setIcon(QIcon(":/icon/res/icon.png"));
-    toolBtn->setIconSize(QSize(45, 45));
+    toolBtn->setIcon(QIcon(":/res/icon.png"));
+    toolBtn->setIconSize(QSize(30, 30));
 
 }
 
