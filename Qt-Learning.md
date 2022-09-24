@@ -28,13 +28,13 @@
 这里设置项目名称和路径，有两点需要注意：
 
 1. **项目名称不能有空格和中文**
-    	01 Qt第一天  ——>  错误的，有空格和中文
-    	01_Qt_the First Day  ——>  错误的，有空格
-    	01_HelloWorld  ——>  正确的
+   	01 Qt第一天  ——>  错误的，有空格和中文
+   	01_Qt_the First Day  ——>  错误的，有空格
+   	01_HelloWorld  ——>  正确的
 2. **路径不能有中文**
-    	/home/vistar/桌面/Qt ——> 错误的，有中文
-    	/home/vistar/desktop/Qt ——> 正确的
-    	/home/vistar/desktop/Qt/1. helloWorld ——> 正确的
+   	/home/vistar/桌面/Qt ——> 错误的，有中文
+   	/home/vistar/desktop/Qt ——> 正确的
+   	/home/vistar/desktop/Qt/1. helloWorld ——> 正确的
 
 然后下一步：
 
@@ -616,6 +616,72 @@ ui->pushButton->setStyleSheet("QPushButton {"
 ![2022-09-21-22-40-31](img/2022-09-21-22-40-31.png)
 
 
+
+#### 2.2.2 QToolButton
+
+QToolButton按钮常用作工具栏的快捷工具，
+
+比如Qt Creator右下角的构建套件选择器，就是QToolButton：
+
+![2022-09-24-09-15-02](img/2022-09-24-09-15-02.png)
+
+还有PhotoShop中工具栏的一些快捷工具，也是QToolButton：
+
+![2022-09-24-09-28-02](img/2022-09-24-09-28-02.png)
+
+更常见的office word中，也普遍使用QPushButton：
+
+![2022-09-24-09-43-02](img/2022-09-24-09-43-02.png)
+
+（注：以上例子不一定使用Qt开发，只是举例按钮符合QPushButton的特征。）
+
+
+
+可以发现QToolButton常用的是显示图片，而不是像QPushButton一样显示文字；
+
+另外有些QToolButton旁边有小箭头，点击会弹出一个子列表显示更多的功能；
+
+还有些QToolButton的文字在图标下方，不像QPushButton文字在图标右方；
+
+这些都是QToolButton特性，接下来逐一介绍。
+
+
+
+##### 2.2.2.1 创建QToolButton
+
+和QPushButton不同，QToolButton只有一个构造函数
+
+```cpp
+QToolButton(QWidget *parent = nullptr);
+```
+
+当然通常也是把它的父对象指定为它所在的窗口对象。
+
+可以使用代码创建，也可以拖拽控件创建，拖拽控件会自动生成代码。
+
+这里我们看一下究竟生成了哪些代码：
+
+创建一个widget空窗口项目，打开`ui_widget.h`文件（widget是你自定义的类名，总之就是打开前面带`ui_`的这个头文件，这里注意，打开之前要先编译一下工程，否则该文件没有生成，会报错），报错如下：
+
+![2022-09-24-13-03-34](img/2022-09-24-13-03-34.png)
+
+编译后，`ui_widget.h`文件打开如下：
+
+![2022-09-24-13-07-04](img/2022-09-24-13-07-04.png)
+
+然后切换到ui设计界面，拖动添加一个`Tool Button`按钮，这样就生成了一个`QToolButton`对象，到这里就可以使用这个对象了。
+
+但我们要看一下拖拽控件生成了哪些代码，保存刚刚编辑的ui界面，然后回到代码编辑界面，再次编译（是为了更新`ui_widget.h`文件，刚刚添加的控件只是保存在了`widget.ui`文件中，相关的对象还没有创建），打开`ui_widget.h`如下：
+
+![2022-09-24-13-20-29](img/2022-09-24-13-20-29.png)
+
+
+
+
+
+
+
+##### 2.2.2.2 创建QToolButton
 
 
 
