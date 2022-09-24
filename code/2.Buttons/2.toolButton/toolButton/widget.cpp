@@ -7,9 +7,12 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    QToolButton* tBtn = new QToolButton(this);
-//    tBtn->setGeometry(QRect(230, 170, 26, 24));
-    qDebug() << tBtn->objectName();
+    QToolButton* toolBtn = new QToolButton(this);
+    toolBtn->setGeometry(QRect(230, 170, 50, 50));
+
+    toolBtn->setIcon(QIcon(":/icon/res/icon.png"));
+    toolBtn->setIconSize(QSize(45, 45));
+
 }
 
 Widget::~Widget()
