@@ -809,31 +809,81 @@ QToolButton* toolBtn = new QToolButton(this);
 toolBtn->setGeometry(QRect(230, 170, 50, 50));
 ```
 
-然后使用
+然后使用`setIcon`函数为按钮添加背景图标：
+
+```c++
+toolBtn->setIcon(QIcon(":/res/icon.png"));
+// 调整背景图标大小
+toolBtn->setIconSize(QSize(30, 30));
+```
+
+![2022-09-25-18-40-34](img/2022-09-25-18-40-34.png)
 
 
 
+##### 2.2.2.3 为QToolButton添加文字
+
+函数`setText`可以设置QToolButton的文字：
+
+```c++
+toolBtn->setText("小飞机");
+```
+
+但会发现，文字并没有显示，这是因为QToolButton有一个`toolButtonStyle`属性，可以设置文本和图片的显示方式，该属性默认只显示图标，当同时设置文字和图标时，会只显示图标不显示文字。
 
 
 
+##### 2.2.2.4 设置按钮风格
+
+可以通过`setToolButtonStyle(Qt::ToolButtonStyle style)`函数设置按钮风格，入参为枚举值：
+
+```c++
+enum ToolButtonStyle {
+    ToolButtonIconOnly,
+    ToolButtonTextOnly,
+    ToolButtonTextBesideIcon,
+    ToolButtonTextUnderIcon,
+    ToolButtonFollowStyle
+};
+```
+
+枚举值描述如下：
+
+|           枚举常量           |  值  |               描述                |
+| :--------------------------: | :--: | :-------------------------------: |
+|    Qt::ToolButtonIconOnly    |  0   |            只显示图标             |
+|    Qt::ToolButtonTextOnly    |  1   |            只显示文本             |
+| Qt::ToolButtonTextBesideIcon |  2   |        文本显示在图标旁边         |
+| Qt::ToolButtonTextUnderIcon  |  3   |        文本显示在图标下方         |
+|  Qt::ToolButtonFollowStyle   |  4   | 按照QStyle::StyleHint所设置的显示 |
+
+设置`文本显示在图标下方`：
+
+```c++
+toolBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+```
+
+![2022-09-25-22-06-39](img/2022-09-25-22-06-39.png)
 
 
 
+##### 2.2.2.5 设置按钮扁平化
+
+`autoRaise`属性可以控制`toolButton`的扁平化，即按钮和界面齐平，不显示按钮的边框。
+
+可以使用`void setAutoRaise(bool enable);`函数设置`autoRaise`的值：
+
+```c++
+toolBtn->setAutoRaise(true);
+```
+
+设置后的效果如下：
+
+![2022-09-25-22-43-32](img/2022-09-25-22-43-32.png)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+##### 2.2.2.6 设置按钮菜单
 
 
 

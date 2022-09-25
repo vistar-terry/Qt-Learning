@@ -12,6 +12,14 @@ Widget::Widget(QWidget *parent)
 
     toolBtn->setIcon(QIcon(":/res/icon.png"));
     toolBtn->setIconSize(QSize(30, 30));
+    toolBtn->setText("小飞机");
+
+    toolBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    qDebug() << toolBtn->toolButtonStyle();
+
+    toolBtn->setAutoRaise(true);
+
+
 
 }
 
