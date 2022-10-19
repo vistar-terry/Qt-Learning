@@ -889,33 +889,42 @@ toolBtn->setAutoRaise(true);
 
 #### 2.2.3 QRadioButton
 
-`QRadioButton`既单选框，常用作表单互斥选择选项。
+`QRadioButton`既单选框，常用作表单互斥选择选项，在“多选一”的场景中使用。
 
-![20221015142747](img/20221015142747.png)
-
-
-
-
-
-
+office word和PhotoShop中都有使用单选框，如下：
 
 ![20221015143039](img/20221015143039.png)
 
 
 
+![20221015142747](img/20221015142747.png)
 
+`QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一父组件需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`。
 
+##### 2.2.3.1 创建QRadioButton
 
+`QRadioButton`有两个构造函数，都要指定父对象，其中一个可以设置单选框的文本。
 
+```c++
+QRadioButton(QWidget *parent = nullptr);
+QRadioButton(const QString &text, QWidget *parent = nullptr);
+```
 
+同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QRadioButton(QWidget *parent = nullptr);`。
 
+如下图创建了三个单选按钮，其中，`RadioButton`通过拖拽控件创建，`RadioButton1`和`RadioButton2`通过代码直接创建：
 
+![2022-10-19-21-43-06](img/2022-10-19-21-43-06.png)
 
+##### 2.2.3.2 修改QRadioButton文本
 
+不仅在构造时指定按钮的文本，构造后也可以修改，使用函数`void setText(const QString &text);`
 
+![2022-10-19-21-50-13](img/2022-10-19-21-50-13.png)
 
+##### 2.2.3.3 QRadioButton分组
 
-
+`QRadioButton`同样可以显示图片
 
 
 
