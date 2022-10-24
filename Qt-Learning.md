@@ -899,7 +899,7 @@ office word和PhotoShop中都有使用单选框，如下：
 
 ![20221015142747](img/20221015142747.png)
 
-`QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一父组件需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`。
+
 
 ##### 2.2.3.1 创建QRadioButton
 
@@ -916,15 +916,21 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 ![2022-10-19-21-43-06](img/2022-10-19-21-43-06.png)
 
+
+
 ##### 2.2.3.2 修改QRadioButton文本
 
 不仅在构造时指定按钮的文本，构造后也可以修改，使用函数`void setText(const QString &text);`
 
 ![2022-10-19-21-50-13](img/2022-10-19-21-50-13.png)
 
+
+
 ##### 2.2.3.3 QRadioButton分组
 
-`QRadioButton`同样可以显示图片
+`QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组。
+
+
 
 
 
