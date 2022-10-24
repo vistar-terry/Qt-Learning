@@ -713,11 +713,11 @@ QToolButton按钮常用作工具栏的快捷工具，
 
 ![2022-09-24-09-28-02](img/2022-09-24-09-28-02.png)
 
-更常见的office word中，也普遍使用QPushButton：
+更常见的office word中，也普遍使用QToolButton：
 
 ![2022-09-24-09-43-02](img/2022-09-24-09-43-02.png)
 
-（注：以上例子不一定使用Qt开发，只是举例按钮符合QPushButton的特征。）
+（注：以上例子不一定使用Qt开发，只是举例按钮符合QToolButton的特征。）
 
 
 
