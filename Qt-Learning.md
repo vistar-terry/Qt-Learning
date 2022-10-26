@@ -930,9 +930,15 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 `QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组。
 
+`QButtonGroup`的构造函数如下：
 
+```c++
+QButtonGroup(QObject *parent = nullptr);
+```
 
+接收一个对象指针作为其父对象。
 
+`QButtonGroup`常用成员函数有：
 
 
 
