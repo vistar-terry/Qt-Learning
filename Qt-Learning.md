@@ -928,7 +928,91 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 ##### 2.2.3.3 QRadioButton分组
 
-`QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组。
+`QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组，则每个分组内部的按钮都默认互斥。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 三、控件
+
+
+
+### 3.1 QButtonGroup
+
+
+
+
+
+
 
 `QButtonGroup`的构造函数如下：
 
@@ -939,6 +1023,54 @@ QButtonGroup(QObject *parent = nullptr);
 接收一个对象指针作为其父对象。
 
 `QButtonGroup`常用成员函数有：
+
+|                    函数原型                     |                             描述                             |
+| :---------------------------------------------: | :----------------------------------------------------------: |
+|            void setExclusive(bool);             |         设置组内按钮是否互斥，不设置默认互斥（true）         |
+|             bool exclusive() const;             |    获取组内按钮是否互斥的标志，true：互斥，false：不互斥     |
+| void addButton(QAbstractButton *, int id = -1); |                为按钮组添加按钮，为按钮设置id                |
+|      void removeButton(QAbstractButton *);      |                        从组内删除按钮                        |
+|    QList<QAbstractButton*> buttons() const;     |                       获取组内所有按钮                       |
+|    QAbstractButton * checkedButton() const;     | 获取按钮组中被选中按钮的指针，如果没有按钮被选中，则返回nullptr |
+|             int checkedId() const;              |   获取按钮组中被选中按钮的id，如果没有按钮被选中，则返回-1   |
+|     QAbstractButton *button(int id) const;      |                  通过按钮id索引按钮对象指针                  |
+|     int id(QAbstractButton *button) const;      |                  通过按钮对象指针索引按钮id                  |
+|  void setId(QAbstractButton *button, int id);   |                       为按钮对象设置id                       |
+
+
+
+信号
+
+一共8个信号，两两一组共4组：
+
+|                             信号                             |                             描述                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| void buttonClicked(QAbstractButton *);<br />void buttonClicked(int); | 按钮点击信号，按钮组中有按钮被点击发出此信号，并返回被点击的按钮对象指针或id |
+| void buttonPressed(QAbstractButton *);<br />void buttonPressed(int); | 按钮按下信号，按钮组中有按钮被按下发出此信号，并返回被按下的按钮对象指针或id |
+| void buttonReleased(QAbstractButton *);<br />void buttonReleased(int); | 按钮释放信号，按钮组中有按钮被释放发出此信号，并返回被释放的按钮对象指针或id |
+| void buttonToggled(QAbstractButton *, bool);<br /> void buttonToggled(int, bool); | 按钮状态改变信号，按钮组中有按钮状态改变发出此信号，并返回状态改变的按钮对象指针或id（点击按钮或程序设置改变按钮状态都会发出此信息号） |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
