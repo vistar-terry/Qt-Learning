@@ -1012,7 +1012,7 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-
+#### 1. 创建QButtonGroup
 
 `QButtonGroup`的构造函数如下：
 
@@ -1021,6 +1021,10 @@ QButtonGroup(QObject *parent = nullptr);
 ```
 
 接收一个对象指针作为其父对象。
+
+
+
+#### 2. 成员函数与信号
 
 `QButtonGroup`常用成员函数有：
 
@@ -1035,52 +1039,107 @@ QButtonGroup(QObject *parent = nullptr);
 |             int checkedId() const;              |   获取按钮组中被选中按钮的id，如果没有按钮被选中，则返回-1   |
 |     QAbstractButton *button(int id) const;      |                  通过按钮id索引按钮对象指针                  |
 |     int id(QAbstractButton *button) const;      |                  通过按钮对象指针索引按钮id                  |
-|  void setId(QAbstractButton *button, int id);   |                       为按钮对象设置id                       |
+|  void setId(QAbstractButton *button, int id);   |                         为按钮设置id                         |
 
 
 
-信号
-
-共有8个信号，两两一组共4组：
+`QButtonGroup`共有8个信号，两两一组共4组：
 
 |                             信号                             |                             描述                             |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| void buttonClicked(QAbstractButton *);<br />void buttonClicked(int); | 按钮点击信号，按钮组中有按钮被点击发出此信号，并返回被点击的按钮对象指针或id |
+| void buttonClicked(QAbstractButton *);<br />void buttonClicked(int);<br /> | 按钮点击信号，按钮组中有按钮被点击发出此信号，并返回被点击的按钮对象指针或id |
 | void buttonPressed(QAbstractButton *);<br />void buttonPressed(int); | 按钮按下信号，按钮组中有按钮被按下发出此信号，并返回被按下的按钮对象指针或id |
 | void buttonReleased(QAbstractButton *);<br />void buttonReleased(int); | 按钮释放信号，按钮组中有按钮被释放发出此信号，并返回被释放的按钮对象指针或id |
-| void buttonToggled(QAbstractButton *, bool);<br /> void buttonToggled(int, bool); | 按钮状态改变信号，按钮组中有按钮状态改变发出此信号，并返回状态改变的按钮对象指针或id（点击按钮或程序设置改变按钮状态都会发出此信息号） |
+| void buttonToggled(QAbstractButton *, bool);<br /> void buttonToggled(int, bool); | 按钮状态改变信号，按钮组中有按钮状态改变发出此信号，并返回状态改变的按钮对象指针/id以及按钮当前状态（点击按钮或程序设置改变按钮状态都会发出此信息号） |
+
+其中，返回按键id的信号，在Qt5.15之后，就使用以下信号替代了，Qt5.15是过渡版本，之后版本和之前不兼容：
+
+```c++
+void buttonClicked(int);   -->   void idClicked(int);
+void buttonPressed(int);   -->   void idPressed(int);
+void buttonReleased(int);  -->   void idReleased(int);
+void buttonToggled(int, bool);  -->  void idToggled(int, bool);
+```
 
 
 
+#### 3. 示例
+
+##### 1. 为按钮组添加按钮
+
+```c++
+// 创建按钮组对象
+QButtonGroup* btnGroup = new QButtonGroup(this);
+
+// 为按钮组添加三个按钮，并设置id（id可以不设置）
+btnGroup->addButton(ui->radioButton, 0);
+btnGroup->addButton(ui->radioButton_1, 1);
+btnGroup->addButton(ui->radioButton_2, 2);
+```
+
+如果不设置id，函数默认传入的值为`-1`，此时函数为自动为按钮设置id，自动设置的id为负数且从`-2`开始。
 
 
 
+##### 2. 为按钮设置id
+
+```c++
+btnGroup->setId(ui->radioButton, 0);
+```
+
+由于`addButton`函数的特性，这里设置id不能为`-1`（-1视为无效值），且建议使用正值。
 
 
 
+##### 3. 按钮组中按钮的互斥状态
+
+```c++
+// 获取按钮组中按钮的互斥状态
+btnGroup->exclusive();
+
+// 设置按钮组中按钮的互斥状态
+btnGroup->setExclusive(false);
+```
+
+如不设置，获取按钮组中按钮的互斥状态默认为`true`，即同组中所有按钮互斥。
 
 
 
+##### 4. 获取组内所有按钮
+
+```c++
+QList<QAbstractButton*> btnList = btnGroup->buttons();
+```
+
+返回所有按钮的对象列表。
 
 
 
+##### 5. 获取按钮点击信号，并作相应操作
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```c++
+// 连接信号和槽函数
+connect(m_btnGroup, SIGNAL(idClicked(int)), this, SLOT(btnClicked(int)));
+        
+// 槽函数
+void btnClicked(int btnId)
+{
+    switch (btnId)
+    {
+    case 0:
+        qDebug("This is button zreo");
+        break;
+    case 1:
+        qDebug("This is button one");
+        break;
+    case 2:
+        qDebug("This is button two");
+        break;
+    default:
+        break;
+    }
+}
+```
 
 
 

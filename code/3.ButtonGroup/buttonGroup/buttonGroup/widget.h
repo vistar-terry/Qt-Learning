@@ -16,6 +16,11 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+public slots:
+    void btnClicked(QAbstractButton* btn);
+    void btnClicked(int btnId);
+    void btnToggled(int, bool);
+
 private:
     Ui::Widget *ui;
 
