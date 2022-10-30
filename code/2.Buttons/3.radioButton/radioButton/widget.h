@@ -17,11 +17,11 @@ public:
     ~Widget();
 
 public slots:
-    void btnClicked(int btn);
-    void btnToggled(int btn, bool tog);
+    void btnToggled(bool checked);
+    void btnToggled(int btn, bool checked);
 
 private:
     Ui::Widget *ui;
-    QButtonGroup* btnGroup1 = new QButtonGroup(this);
+
 };
 #endif // WIDGET_H

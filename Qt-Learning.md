@@ -930,21 +930,74 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 `QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组，则每个分组内部的按钮都默认互斥。
 
+左右两个按钮组内的按钮分别互斥。
+
+![20221030113120](img/20221030113120.png)
 
 
 
+##### 2.2.3.4 QRadioButton的信号
+
+`QRadioButton` 没有自己独有的信号，它继承于 `QAbstractButton` ，可以使用`pressed`、`released`、`clicked`、`toggled`等信号。
+
+由于`QRadioButton`常用作选择按钮，需要判断选择状态，所以`toggled`信号比较常用，
+
+对于单个按钮，使用`void toggled(bool checked);`信号可以获得该按钮的选中状态：
+
+```c++
+// 连接信号与槽函数
+connect(radioButton, SIGNAL(toggled(bool)), this, SLOT(btnToggled(bool)));
+
+// 在槽函数中根据按钮选中与否进行相应操作
+void Widget::btnToggled(bool checked)
+{
+    if (checked)
+    {
+        qDebug("button is checked.");
+    }
+    else
+    {
+        qDebug("button is unchecked.");
+    }
+}
+```
 
 
 
+对于按钮组（一组QRadioButton按钮），每个按钮写一个槽函数不太现实（QRadioButton的信号不能返回按钮索引，不适用多个按钮的情况），需要使用按钮组`QRadioButton`的` void idToggled(int, bool);`信号，它不仅可以返回按钮id还可以返回按钮选中状态，
+
+```c++
+// 连接信号与槽函数
+connect(btnGroup1, SIGNAL(idToggled(int,bool)), this, SLOT(btnToggled(int,bool)));
+
+// 在槽函数中根据按钮选中与否进行相应操作
+void Widget::btnToggled(int btn, bool checked)
+{
+    if (!checked)
+    {
+        return;
+    }
+
+    switch (btn)
+    {
+    case 0:
+        qDebug("This is button zreo");
+        break;
+    case 1:
+        qDebug("This is button one");
+        break;
+    case 2:
+        qDebug("This is button two");
+        break;
+    default:
+        break;
+    }
+}
+```
 
 
 
-
-
-
-
-
-
+#### 2.2.4 QCheckBox
 
 
 
