@@ -999,13 +999,28 @@ void Widget::btnToggled(int btn, bool checked)
 
 #### 2.2.4 QCheckBox
 
+`QCheckBox`即复选框，常用作表单非互斥选择，，在“多选多”的场景中使用。
+
+office word和PhotoShop中都有使用复选框，如下：
+
+![20221030155203](img/20221030155203.png)
+
+![20221030155516](img/20221030155516.png)
 
 
 
+##### 2.2.4.1 创建QCheckBox
 
+`QCheckBox`有两个构造函数，都要指定父对象，其中一个可以设置复选框的文本。
 
+```c++
+QCheckBox(QWidget *parent = nullptr);
+QCheckBox(const QString &text, QWidget *parent = nullptr);
+```
 
+同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QCheckBox(QWidget *parent = nullptr);`。
 
+如下图创建了三个单选按钮，其中，`CheckBox`通过拖拽控件创建，`CheckBox1`和`CheckBox2`通过代码直接创建：
 
 
 
