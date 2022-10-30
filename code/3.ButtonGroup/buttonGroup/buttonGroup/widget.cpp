@@ -40,9 +40,11 @@ Widget::Widget(QWidget *parent)
 //    qDebug("number of btns: %lld", btnList.size());
 
     // 获取按钮点击信号，并返回被点击的按钮对象指针
-    connect(m_btnGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(btnClicked(QAbstractButton*)));
+    connect(m_btnGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(btnClicked(QAbstractButton*)));    
 
-    connect(m_btnGroup, SIGNAL(idClicked(int)), this, SLOT(btnClicked(int)));
+//    connect(m_btnGroup, SIGNAL(idClicked(int)), this, SLOT(btnClicked(int)));
+    connect(m_btnGroup, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked),
+            this, static_cast<void(Widget::*)(int)>(&Widget::btnClicked));// 用指针表示重载函数?????
 
     // 获取按钮状态改变信号
     connect(m_btnGroup, SIGNAL(idToggled(int,bool)), this, SLOT(btnToggled(int,bool)));
