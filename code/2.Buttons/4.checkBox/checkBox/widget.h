@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QAbstractButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -14,6 +15,10 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+
+public slots:
+    void checkBox2CallBack(int state);
+    void btnGroupCallBack(QAbstractButton* btn);
 
 private:
     Ui::Widget *ui;
