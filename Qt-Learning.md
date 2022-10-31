@@ -1022,39 +1022,123 @@ QCheckBox(const QString &text, QWidget *parent = nullptr);
 
 如下图创建了三个单选按钮，其中，`CheckBox`通过拖拽控件创建，`CheckBox1`和`CheckBox2`通过代码直接创建：
 
+![20221030162254](img/20221030162254.png)
 
 
 
+##### 2.2.4.2 成员函数与信号
+
+`QCheckBox`除了继承于`QAbstractButton`的信号外，还有一个自己的信号`void stateChanged(int);`，当复选框状态改变，会发出该信号，并返回复选框的状态，其中复选框的状态有三种：
+
+|       Constant       | Value |                 Description                  |
+| :------------------: | :---: | :------------------------------------------: |
+|    Qt::Unchecked     |   0   |                   未被选中                   |
+| Qt::PartiallyChecked |   1   | 部分被选中，即复选框有子项且子项未被全部选中 |
+|     Qt::Checked      |   2   |                    被选中                    |
 
 
 
+`QCheckBox`的成员函数除了继承于`QAbstractButton`外，还有两个比较常用，
+
+|                 函数原型                  |                             描述                             |
+| :---------------------------------------: | :----------------------------------------------------------: |
+|     void setTristate(bool y = true);      | 设置复选框是否可为三种状态，函数参数默认为true，但该属性默认为false |
+|         bool isTristate() const;          |                  获取复选框是否可为三种状态                  |
+| void setCheckState(Qt::CheckState state); |                        设置复选框状态                        |
+|    Qt::CheckState checkState() const;     |                        获取复选框状态                        |
 
 
 
+##### 2.2.4.3 示例
+
+###### 1.设置复选框是否可为三种状态
+
+```c++
+checkBox2->setTristate(true);
+```
+
+![20221031222027](img/20221031222027.png)
+
+如图，分别展示了CheckBox的三种状态。
 
 
 
+###### 2.设置复选框状态
+
+除了通过鼠标点击改变复选框状态，还可以通过代码设置：
+
+![20221031222630](img/20221031222630.png)
+
+其中复选框状态由枚举列出：
+
+```c++
+enum CheckState {
+    Unchecked,
+    PartiallyChecked,
+    Checked
+};
+```
 
 
 
+###### 3.通过复选框状态作相应操作
+
+```c++
+#include "widget.h"
+#include "ui_widget.h"
+#include <QDebug>
+
+Widget::Widget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+
+    QCheckBox* checkBox1 = new QCheckBox("CheckBox1", this);
+    checkBox1->setGeometry(QRect(130, 160, 111, 22));
+
+    QCheckBox* checkBox2 = new QCheckBox("CheckBox2", this);
+    checkBox2->setGeometry(QRect(130, 190, 111, 22));
+    checkBox2->setTristate(true);
+    checkBox2->setCheckState(Qt::CheckState::Checked);
+
+    connect(checkBox2, SIGNAL(stateChanged(int)),
+            this, SLOT(checkBox2CallBack(int)));
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+void Widget::checkBox2CallBack(int state)
+{
+    switch(state)
+    {
+    case Qt::CheckState::Checked:
+        qDebug("checkBox2 is checked.");
+        break;
+    case Qt::CheckState::PartiallyChecked:
+        qDebug("checkBox2 is partiallyChecked.");
+        break;
+    case Qt::CheckState::Unchecked:
+        qDebug("checkBox2 is unchecked.");
+        break;
+    default:
+        break;
+    }
+}
+```
+
+打印结果如下：
+
+![20221031224152](img/20221031224152.png)
 
 
 
+###### 4.通过多个复选框状态作相应操作
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+这里可以借助按钮组（QButtonGroup），代码如下：
 
 
 
