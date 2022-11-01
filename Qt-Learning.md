@@ -1200,6 +1200,80 @@ void Widget::btnGroupCallBack(int btn)
 
 
 
+#### 2.2.5 QCommandLinkButton
+
+##### 2.2.5.1 简介
+
+`QCommandLinkButton`是`Windows Vista`引入的一个新控件。它的预期用途类似于单选按钮，它用于在一组互斥选项之间进行选择。`QCommandLinkButton`不应单独使用，而应作为向导和对话框中单选按钮的替代。外观通常类似于平面按钮，但它允许在普通按钮文本之外添加描述性文本。默认情况下，它还将带有一个箭头图标，表示按下该控件将打开另一个窗口或页面。
+
+我们常用的`Visual Studio`的欢迎页面就是用了类似按钮作为向导，如下：
+
+![20221101155203](img/20221101155203.png)
+
+
+
+##### 2.2.5.2 创建QCommandLinkButton
+
+`QCommandLinkButton`有三个构造函数，都要指定父对象，可以选择设置按钮文本和描述文本。
+
+```c++
+QCommandLinkButton(QWidget *parent = nullptr);
+QCommandLinkButton(const QString &text, QWidget *parent = nullptr);
+QCommandLinkButton(const QString &text, const QString &description, QWidget *parent = nullptr);
+```
+
+同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QCommandLinkButton(QWidget *parent = nullptr);`。
+
+如下图创建了三个`QCommandLinkButton`，其中，`QCommandLinkButton`通过拖拽控件创建，`QCommandLinkButton1`和`QCommandLinkButton2`通过代码直接创建，依次使用了上面三个构造函数：
+
+![20221101234755](img/20221101234755.png)
+
+
+
+##### 2.2.5.3 成员函数与信号
+
+`QCommandLinkButton`继承了`QPushButton`类，所以`QPushButton`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 三、控件
