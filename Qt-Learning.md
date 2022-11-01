@@ -1140,15 +1140,63 @@ void Widget::checkBox2CallBack(int state)
 
 这里可以借助按钮组（QButtonGroup），代码如下：
 
+```c++
+#include "widget.h"
+#include "ui_widget.h"
+#include <QDebug>
+#include <QButtonGroup>
 
+Widget::Widget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Widget)
+{
+    ui->setupUi(this);
 
+    QCheckBox* checkBox1 = new QCheckBox("CheckBox1", this);
+    checkBox1->setGeometry(QRect(130, 160, 111, 22));
 
+    QCheckBox* checkBox2 = new QCheckBox("CheckBox2", this);
+    checkBox2->setGeometry(QRect(130, 190, 111, 22));
 
+    m_btnGroup = new QButtonGroup(this);
+    m_btnGroup->addButton(ui->checkBox, 0);
+    m_btnGroup->addButton(checkBox1, 1);
+    m_btnGroup->addButton(checkBox2, 2);
 
+    connect(m_btnGroup, SIGNAL(idClicked(int)),
+            this, SLOT(btnGroupCallBack(int)));
+}
 
+Widget::~Widget()
+{
+    delete ui;
+}
 
+void Widget::btnGroupCallBack(int btn)
+{
+    if (m_btnGroup->button(btn)->isChecked())
+    {
+        switch(btn)
+        {
+        case 0:
+            qDebug("checkBox0 is checked.");
+            break;
+        case 1:
+            qDebug("checkBox1 is checked.");
+            break;
+        case 2:
+            qDebug("checkBox2 is checked.");
+            break;
+        default:
+            break;
+        }
+    }
+}
+```
 
+打印结果如下：
 
+![20221101223056](img/20221101223056.png)
 
 
 
@@ -1160,7 +1208,15 @@ void Widget::checkBox2CallBack(int state)
 
 ### 3.1 QButtonGroup
 
+#### 0. QButtonGroup简介
 
+`QButtonGroup`提供了一个抽象容器，可以将按钮小部件放入其中。它不提供此容器的可视化表示（请参见`QGroupBox`中的容器小部件），而是管理组中每个按钮的状态。
+
+互斥按钮组，将关闭除已单击的按钮外的所有可选中（可切换）按钮。默认情况下，按钮组是互斥的。按钮组中的按钮通常是可检查的，如`QPushButtons`、`QCheckBoxes`（通常用于非互斥按钮组）或`QRadioButtons`。如果创建互斥按钮组，则应确保最初选中该组中的一个按钮；否则，该组最初将处于未选中按钮的状态。
+
+可以使用`addButton()`将按钮添加到组中，然后使用`removeButton()`将其删除。如果组是独占的，则当前选中的按钮可用于`checkedButton()`。如果单击按钮，则会发出`buttonClicked()`信号；对于独占组中的可检查按钮，这意味着该按钮已被选中。组中的按钮列表由`button()`返回。
+
+此外，`QButtonGroup`可以在整数和按钮之间进行映射。您可以使用`setId()`为按钮分配一个整数`id`，并使用`id()`检索它。当前选中的按钮的id可以通过`checkedId()`获得，并且有一个重载的信号`buttonClicked()`，它会发出按钮的`id`。`id`值`-1`为`QButtonGroup`保留值，表示“没有这样的按钮”。映射机制的目的是简化用户界面中枚举值的表示。
 
 
 
