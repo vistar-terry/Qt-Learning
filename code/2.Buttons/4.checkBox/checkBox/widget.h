@@ -17,10 +17,11 @@ public:
     ~Widget();
 
 public slots:
-    void checkBox2CallBack(int state);
-    void btnGroupCallBack(QAbstractButton* btn);
+//    void checkBox2CallBack(int state);
+    void btnGroupCallBack(int btn);
 
 private:
     Ui::Widget *ui;
+    QButtonGroup* m_btnGroup;
 };
 #endif // WIDGET_H
