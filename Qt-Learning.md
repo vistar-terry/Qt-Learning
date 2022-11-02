@@ -1210,6 +1210,10 @@ void Widget::btnGroupCallBack(int btn)
 
 ![20221101155203](img/20221101155203.png)
 
+还有Qt Creator的历史项目也用了类似`QCommandLinkButton`的按钮：
+
+![2022-11-02-20-27-29](img/2022-11-02-20-27-29.png)
+
 
 
 ##### 2.2.5.2 创建QCommandLinkButton
@@ -1232,15 +1236,24 @@ QCommandLinkButton(const QString &text, const QString &description, QWidget *par
 
 ##### 2.2.5.3 成员函数与信号
 
-`QCommandLinkButton`继承了`QPushButton`类，所以`QPushButton`
+`QCommandLinkButton`公有继承了`QPushButton`类，所以`QPushButton`的公有成员函数`QCommandLinkButton`都能使用。
+
+`QCommandLinkButton`只有一个自己的成员函数比较常用：
+
+```c++
+QString description() const;
+void setDescription(const QString &description);
+```
+
+对描述文本的获取与设置。
+
+![20221102202148](img/20221102202148.png)
 
 
 
+##### 2.2.5.4 示例
 
-
-
-
-
+这里模仿Qt Creator的历史项目写一个小例子。
 
 
 
