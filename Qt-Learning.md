@@ -1267,8 +1267,8 @@ void setDescription(const QString &description);
 
 ##### 2.2.6.1 简介
 
-QDialogButtongBox类是一个包含很多按钮的控件，在对话框中有多个按钮需要分组排列的按钮时，可以使用QDialogButtongBox类。
-  对话框或者消息框中的按钮布局，不同平台风格不同。开发人员可以向QDialogButtonBox添加按钮，在添加后QDialogButtonBox会为用户自动使用合适的布局。
+`QDialogButtongBox`是一个包含很多按钮的控件，对话框中有多个需要分组排列的按钮时，可以使用QDialogButtongBox类。
+开发人员可以向`QDialogButtonBox`添加按钮，`QDialogButtonBox`会根据平台自动使用合适的布局。
 
 
 
