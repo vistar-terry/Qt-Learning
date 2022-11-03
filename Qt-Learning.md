@@ -1255,7 +1255,9 @@ void setDescription(const QString &description);
 
 这里模仿Qt Creator的历史项目写一个小例子。
 
+![2022-11-03-22-39-30](img/2022-11-03-22-39-30.png)
 
+有些功能没实现，只是个UI显示，就不贴代码了。
 
 
 

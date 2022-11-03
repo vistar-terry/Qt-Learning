@@ -18,8 +18,7 @@ Widget::Widget(QWidget *parent)
 
 
     // 模仿Qt Creator历史项目的一个小例子
-//    this->setStyleSheet("background-color: #1C1C1C;"
-//                        "color: #7F7F7F");
+    this->setStyleSheet("QWidget{background-color: #1C1C1C; color: #7F7F7F}");
 
     ui->commandLinkButton->setStyleSheet("QCommandLinkButton{background-color: #242424;}"
                                          "QCommandLinkButton:hover{background-color: #2B2A2A;}");
@@ -29,20 +28,20 @@ Widget::Widget(QWidget *parent)
 
     commandLinkButton1->setStyleSheet("QCommandLinkButton{background-color: #242424;}"
                                       "QCommandLinkButton:hover{background-color: #2B2A2A;}");
-    commandLinkButton1->setStyleSheet("background-color: #242424;");
     commandLinkButton1->setIcon(QIcon(":/res/files.png"));
     commandLinkButton1->setText("checkBox");
     commandLinkButton1->setDescription("~/Desktop/Qt-Learning/code/2.Button/checkBox.pro");
 
-    commandLinkButton2->setStyleSheet("background-color: #242424;");
+    commandLinkButton2->setStyleSheet("QCommandLinkButton{background-color: #242424;}"
+                                         "QCommandLinkButton:hover{background-color: #2B2A2A;}");
     commandLinkButton2->setIcon(QIcon(":/res/files.png"));
     commandLinkButton2->setText("buttonGroup");
     commandLinkButton2->setDescription("~/Desktop/Qt-Learning/code/3.buttonGroup/buttonGroup.pro");
 
-    QPushButton*  btn = new QPushButton(this);
-    btn->setGeometry(QRect(70, 220, 631, 51));
-    btn->setStyleSheet("QPushButton{background-color: #242424;}"
-                       "QPushButton:hover{background-color: #2B2A2A;}");
+//    QPushButton*  btn = new QPushButton(this);
+//    btn->setGeometry(QRect(70, 220, 631, 51));
+//    btn->setStyleSheet("QPushButton{background-color: #242424;}"
+//                       "QPushButton:hover{background-color: #2B2A2A;}");
 
 
 }
