@@ -1257,11 +1257,7 @@ void setDescription(const QString &description);
 
 ![2022-11-03-22-39-30](img/2022-11-03-22-39-30.png)
 
-有些功能没实现，只是个UI显示，就不贴代码了。
-
-
-
-
+有些功能没实现，只是个UI显示，就不贴代码了，有需要自行下载 [链接](https://download.csdn.net/download/maizousidemao/86894584)。
 
 
 
