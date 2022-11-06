@@ -1325,7 +1325,7 @@ enum Orientation {
 
 ##### 2. QDialogButtonBox::ButtonRole
 
-描述按钮角色
+描述按钮角色，不同角色的按钮有不同的行为
 
 ```c++
 enum ButtonRole {
@@ -1398,25 +1398,26 @@ enum StandardButton {
 
 |         Constant         | Value | Description |
 | :----------------------: | :---: | :---------: |
-|QDialogButtonBox::Ok                       |    0x00000400 |"OK" button defined with the AcceptRole.
-|QDialogButtonBox::Open                     |  0x00002000 |"Open" button defined with the AcceptRole.
-|QDialogButtonBox::Save                     |    0x00000800| "Save" button defined with the AcceptRole.
-|QDialogButtonBox::Cancel                   |     0x00400000 |"Cancel" button defined with the RejectRole.
-|QDialogButtonBox::Close                    |       0x00200000 |"Close" button defined with the RejectRole.
-|QDialogButtonBox::Discard                  |     0x00800000| "Discard" or "Don't Save" button, depending on the platform, defined with the DestructiveRole.
-|QDialogButtonBox::Apply                    |       0x02000000 |"Apply" button defined with the ApplyRole.
-|QDialogButtonBox::Reset                    |      0x04000000 |"Reset" button defined with the ResetRole.
-|QDialogButtonBox::RestoreDefaults  | 0x08000000| "Restore Defaults" button defined with the ResetRole.
-|QDialogButtonBox::Help             |            0x01000000| "Help" button defined with the HelpRole.
-|QDialogButtonBox::SaveAll          |               0x00001000 |"Save All" button defined with the AcceptRole.
-|QDialogButtonBox::Yes              |           0x00004000| "Yes" button defined with the YesRole.
-|QDialogButtonBox::YesToAll         |                0x00008000 |"Yes to All" button defined with the YesRole.
-|QDialogButtonBox::No               |          0x00010000 |"No" button defined with the NoRole.
-|QDialogButtonBox::NoToAll          |               0x00020000 |"No to All" button defined with the NoRole.
-|QDialogButtonBox::Abort            |             0x00040000 |"Abort" button defined with the RejectRole.
-|QDialogButtonBox::Retry            |             0x00080000 |A "Retry" button defined with the AcceptRole.
-|QDialogButtonBox::Ignore           |              0x00100000| An "Ignore" button defined with the AcceptRole.
-|QDialogButtonBox::NoButton         |                0x00000000| An invalid button.
+|QDialogButtonBox::Ok                       |    0x00000400 |AcceptRole角色下定义的Ok按钮|
+|QDialogButtonBox::Open                     |  0x00002000 |AcceptRole角色下定义的Open按钮|
+|QDialogButtonBox::Save                     |    0x00000800| AcceptRole角色下定义的Save按钮 |
+|QDialogButtonBox::Cancel                   |     0x00400000 |RejectRole角色下定义的Cancel按钮|
+|QDialogButtonBox::Close                    |       0x00200000 |RejectRole角色下定义的Close按钮|
+|QDialogButtonBox::Discard                  |     0x00800000| DestructiveRole角色下定义的Discard或Don't Save按钮，具体取决于使用的平台 |
+|QDialogButtonBox::Apply                    |       0x02000000 |ApplyRole角色下定义的Apply按钮|
+|QDialogButtonBox::Reset                    |      0x04000000 |ResetRole角色下定义的Reset按钮|
+|QDialogButtonBox::RestoreDefaults  | 0x08000000| ResetRole角色下定义的RestoreDefaults按钮 |
+|QDialogButtonBox::Help             |            0x01000000| HelpRole角色下定义的Help按钮 |
+|QDialogButtonBox::SaveAll          |               0x00001000 |AcceptRole角色下定义的Save All按钮|
+|QDialogButtonBox::Yes              |           0x00004000| YesRole角色下定义的Yes按钮 |
+|QDialogButtonBox::YesToAll         |                0x00008000 |YesRole角色下定义的Yes to All按钮|
+|QDialogButtonBox::No               |          0x00010000 |NoRole角色下定义的No按钮|
+|QDialogButtonBox::NoToAll          |               0x00020000 |NoRole角色下定义的No to All按钮|
+|QDialogButtonBox::Abort            |             0x00040000 |RejectRole角色下定义的Abort按钮|
+|QDialogButtonBox::Retry            |             0x00080000 |AcceptRole角色下定义的Retry按钮|
+|QDialogButtonBox::Ignore           |              0x00100000| AcceptRole角色下定义的Ignore按钮 |
+|QDialogButtonBox::NoButton         |                0x00000000| 无效按钮 |
+
 
 
 #### 2.2.6.3 成员函数与信号
@@ -1430,7 +1431,7 @@ enum StandardButton {
 |                     函数原型                      |                  描述                   |
 | :-----------------------------------------------: | :-------------------------------------: |
 | void setOrientation(Qt::Orientation orientation); | 设置按钮排列方式，Qt::Orientation为枚举 |
-|       Qt::Orientation orientation() const;        |                                         |
+|       Qt::Orientation orientation() const;        |            获取按钮排列方式             |
 
 
 
