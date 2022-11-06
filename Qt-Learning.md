@@ -1,10 +1,10 @@
-## 一、开始的开始
+# 一、开始的开始
 
-### 1.1 安装软件
+## 1.1 安装软件
 
 
 
-### 1.2 新建工程-HelloWorld
+## 1.2 新建工程-HelloWorld
 
 万事开头 hello world，Qt 的 hello world 就是创建一个项目并运行显示窗口。
 
@@ -87,9 +87,9 @@ QDialog 是对话框窗口，没有最小化按钮，类似这样：
 
 
 
-### 1.3 认识工程与软件
+## 1.3 认识工程与软件
 
-#### 1.3.1 认识工程
+### 1.3.1 认识工程
 
 新建的工程目录有如下几个文件：
 
@@ -111,7 +111,7 @@ QtCreator软件将他们做了如下分组，包含三个文件夹和一个.pro�
 
 
 
-##### 1.3.1.1 .pro文件内容解释
+#### 1.3.1.1 .pro文件内容解释
 
 新建简单Qt工程，默认生成的 .pro文件内容如下，解释见注释：
 
@@ -191,13 +191,13 @@ TEMPLATE = lib
 
 
 
-##### 1.3.1.2 其他文件内容解释
+#### 1.3.1.2 其他文件内容解释
 
 
 
 
 
-##### 1.3.1.2 资源文件介绍与使用
+#### 1.3.1.2 资源文件介绍与使用
 
 Qt工程分组中，除了`Headers`、`Sources`、`Forms`外，还有一个文件夹`Resources`，只有当工程中有图片、音频等资源文件时才会用到。
 
@@ -281,7 +281,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-#### 1.3.2 认识Qt Creator
+### 1.3.2 认识Qt Creator
 
 打开Qt Creator默认界面如下
 
@@ -299,7 +299,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-##### 1.3.2.1 模式选择
+#### 1.3.2.1 模式选择
 
 ![qtcreator-mode-selector](img/qtcreator-mode-selector.png)
 
@@ -307,7 +307,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-###### 欢迎模式
+##### 欢迎模式
 
 ![2](img/2.png)
 
@@ -330,7 +330,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-###### 编辑模式
+##### 编辑模式
 
 ![3](img/3.png)
 
@@ -361,7 +361,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-###### 设计模式
+##### 设计模式
 
 如果没有打开ui文件，设计模式默认不能用，打开ui文件，界面会自动跳转到设计模式：
 
@@ -377,7 +377,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-###### 调试模式
+##### 调试模式
 
 ![Screenshot from 2022-07-24 16-45-36](img/Screenshot%20from%202022-07-24%2016-45-36-16586524434452.png)
 
@@ -385,7 +385,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-###### 项目模式
+##### 项目模式
 
 ![Screenshot from 2022-07-24 16-54-07](img/Screenshot%20from%202022-07-24%2016-54-07.png)
 
@@ -393,7 +393,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-###### 帮助模式
+##### 帮助模式
 
 ![Screenshot from 2022-07-24 16-59-38](img/Screenshot%20from%202022-07-24%2016-59-38.png)
 
@@ -403,7 +403,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-##### 1.3.2.2 构建套件选择
+#### 1.3.2.2 构建套件选择
 
 ![20220723222807](img/20220723222807.png)
 
@@ -417,13 +417,13 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-#### 1.3.3 qmake生成makefile过程
+### 1.3.3 qmake生成makefile过程
 
 
 
 
 
-### 1.4 Qt 模块简介
+## 1.4 Qt 模块简介
 
 Qt由许多模块组成，分别支持不同领域的功能，主要分为 `Essentials` 和 `Add-On`。
 
@@ -431,7 +431,7 @@ Qt由许多模块组成，分别支持不同领域的功能，主要分为 `Esse
 
 `Qt Add-On` 是附加模块/扩展模块，用于特殊目的开发。这些模块可能仅在某些开发平台上可用。许多附加模块要么功能完整，存在是为了向后兼容，要么仅适用于某些平台。每个附加模块分别指定其兼容性。
 
-#### 1.4.1 Qt基本模块
+### 1.4.1 Qt基本模块
 
 Qt 基本模块如下表：
 
@@ -452,7 +452,7 @@ Qt 基本模块如下表：
 
 
 
-#### 1.4.2 Qt扩展模块
+### 1.4.2 Qt扩展模块
 
 Qt扩展模块如下表：
 
@@ -510,9 +510,9 @@ Qt扩展模块如下表：
 
 
 
-## 二、控件
+# 二、控件
 
-### 2.1 控件组介绍
+## 2.1 控件组介绍
 
 <img src="img/2022-07-27_22-08.png" alt="2022-07-27_22-08" style="zoom:150%;" />
 
@@ -531,7 +531,7 @@ Qt扩展模块如下表：
 
 
 
-### 2.2 按钮组件(Buttons)
+## 2.2 按钮组件(Buttons)
 
 
 
@@ -556,21 +556,21 @@ Qt扩展模块如下表：
 
 
 
-#### 2.2.1 QPushButton
+### 2.2.1 QPushButton
 
 QPushButton按钮，是Qt常用的控件之一，提供普通的按钮功能。
 
 通过信号槽机制接收触发信号并执行对应动作。
 
-##### 2.2.1.1 创建QPushButton
+#### 2.2.1.1 创建QPushButton
 
 它有三个构造函数：
 
 ```c++
 // 空对象
-QPushButton(QWidget *parent = nullptr);
+explicit QPushButton(QWidget *parent = nullptr);
 // 指定QPushButton显示的文字
-QPushButton(const QString &text, QWidget *parent = nullptr);
+explicit QPushButton(const QString &text, QWidget *parent = nullptr);
 // 指定QPushButton背景图片和显示的文字
 QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 ```
@@ -579,7 +579,7 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.1.2 信号
+#### 2.2.1.2 信号
 
 它通过信号来接收特定的操作，信号包括：
 
@@ -596,7 +596,7 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.1.3 使用
+#### 2.2.1.3 使用
 
 最常用的点击触发某个行为：
 
@@ -624,9 +624,9 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.1.4 按钮样式
+#### 2.2.1.4 按钮样式
 
-###### 1.按钮文字
+##### 1.按钮文字
 
 通常我们通过按钮上的文字说明按钮的功能，可以使用`setText()`函数设置按钮文字。
 
@@ -640,7 +640,7 @@ ui->pushButton->setText("按钮");
 QString btnText = ui->pushButton->text();
 ```
 
-###### 2.按钮大小
+##### 2.按钮大小
 
 使用`setGeometry`函数可以设置按钮的大小及位置，`setGeometry`接收一个`QRect`矩形对象，用以指定按钮大小及位置，如下：
 
@@ -658,7 +658,7 @@ pushButton->setGeometry(QRect(140, 140, 231, 71));
 ui->pushButton->resize(80, 80);
 ```
 
-###### 3.其他样式
+##### 3.其他样式
 
 其他样式主要使用`void setStyleSheet(const QString& styleSheet);` 函数设置样式表。
 
@@ -701,7 +701,7 @@ ui->pushButton->setStyleSheet("QPushButton {"
 
 
 
-#### 2.2.2 QToolButton
+### 2.2.2 QToolButton
 
 QToolButton按钮常用作工具栏的快捷工具，
 
@@ -731,12 +731,12 @@ QToolButton按钮常用作工具栏的快捷工具，
 
 
 
-##### 2.2.2.1 创建QToolButton
+#### 2.2.2.1 创建QToolButton
 
 和QPushButton不同，QToolButton只有一个构造函数
 
 ```cpp
-QToolButton(QWidget *parent = nullptr);
+explicit QToolButton(QWidget *parent = nullptr);
 ```
 
 当然通常也是把它的父对象指定为它所在的窗口对象。
@@ -799,7 +799,7 @@ QToolButton* toolBtn = new QToolButton(this);
 
 
 
-##### 2.2.2.2 为QToolButton添加图标
+#### 2.2.2.2 为QToolButton添加图标
 
 这里涉及到Qt资源，软件使用的声音文件、图片文件等，都以资源的形式加载，使用前需要为工程添加资源文件，具体添加方法见[qrc资源文件介绍与使用](https://blog.csdn.net/maizousidemao/article/details/127033800?spm=1001.2014.3001.5502)
 
@@ -821,7 +821,7 @@ toolBtn->setIconSize(QSize(30, 30));
 
 
 
-##### 2.2.2.3 为QToolButton添加文字
+#### 2.2.2.3 为QToolButton添加文字
 
 函数`setText`可以设置QToolButton的文字：
 
@@ -833,7 +833,7 @@ toolBtn->setText("小飞机");
 
 
 
-##### 2.2.2.4 设置按钮风格
+#### 2.2.2.4 设置按钮风格
 
 可以通过`setToolButtonStyle(Qt::ToolButtonStyle style)`函数设置按钮风格，入参为枚举值：
 
@@ -867,7 +867,7 @@ toolBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
 
 
-##### 2.2.2.5 设置按钮扁平化
+#### 2.2.2.5 设置按钮扁平化
 
 `autoRaise`属性可以控制`toolButton`的扁平化，即按钮和界面齐平，不显示按钮的边框。
 
@@ -883,11 +883,11 @@ toolBtn->setAutoRaise(true);
 
 
 
-##### 2.2.2.6 设置按钮菜单
+#### 2.2.2.6 设置按钮菜单
 
 
 
-#### 2.2.3 QRadioButton
+### 2.2.3 QRadioButton
 
 `QRadioButton`既单选框，常用作表单互斥选择选项，在“多选一”的场景中使用。
 
@@ -901,13 +901,13 @@ office word和PhotoShop中都有使用单选框，如下：
 
 
 
-##### 2.2.3.1 创建QRadioButton
+#### 2.2.3.1 创建QRadioButton
 
 `QRadioButton`有两个构造函数，都要指定父对象，其中一个可以设置单选框的文本。
 
 ```c++
-QRadioButton(QWidget *parent = nullptr);
-QRadioButton(const QString &text, QWidget *parent = nullptr);
+explicit QRadioButton(QWidget *parent = nullptr);
+explicit QRadioButton(const QString &text, QWidget *parent = nullptr);
 ```
 
 同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QRadioButton(QWidget *parent = nullptr);`。
@@ -918,7 +918,7 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.3.2 修改QRadioButton文本
+#### 2.2.3.2 修改QRadioButton文本
 
 不仅在构造时指定按钮的文本，构造后也可以修改，使用函数`void setText(const QString &text);`
 
@@ -926,7 +926,7 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.3.3 QRadioButton分组
+#### 2.2.3.3 QRadioButton分组
 
 `QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组，则每个分组内部的按钮都默认互斥。
 
@@ -936,7 +936,7 @@ QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.3.4 QRadioButton的信号
+#### 2.2.3.4 QRadioButton的信号
 
 `QRadioButton` 没有自己独有的信号，它继承于 `QAbstractButton` ，可以使用`pressed`、`released`、`clicked`、`toggled`等信号。
 
@@ -997,7 +997,7 @@ void Widget::btnToggled(int btn, bool checked)
 
 
 
-#### 2.2.4 QCheckBox
+### 2.2.4 QCheckBox
 
 `QCheckBox`即复选框，常用作表单非互斥选择，，在“多选多”的场景中使用。
 
@@ -1009,13 +1009,13 @@ office word和PhotoShop中都有使用复选框，如下：
 
 
 
-##### 2.2.4.1 创建QCheckBox
+#### 2.2.4.1 创建QCheckBox
 
 `QCheckBox`有两个构造函数，都要指定父对象，其中一个可以设置复选框的文本。
 
 ```c++
-QCheckBox(QWidget *parent = nullptr);
-QCheckBox(const QString &text, QWidget *parent = nullptr);
+explicit QCheckBox(QWidget *parent = nullptr);
+explicit QCheckBox(const QString &text, QWidget *parent = nullptr);
 ```
 
 同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QCheckBox(QWidget *parent = nullptr);`。
@@ -1026,7 +1026,7 @@ QCheckBox(const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.4.2 成员函数与信号
+#### 2.2.4.2 成员函数与信号
 
 `QCheckBox`除了继承于`QAbstractButton`的信号外，还有一个自己的信号`void stateChanged(int);`，当复选框状态改变，会发出该信号，并返回复选框的状态，其中复选框的状态有三种：
 
@@ -1049,9 +1049,9 @@ QCheckBox(const QString &text, QWidget *parent = nullptr);
 
 
 
-##### 2.2.4.3 示例
+#### 2.2.4.3 示例
 
-###### 1.设置复选框是否可为三种状态
+##### 1.设置复选框是否可为三种状态
 
 ```c++
 checkBox2->setTristate(true);
@@ -1063,7 +1063,7 @@ checkBox2->setTristate(true);
 
 
 
-###### 2.设置复选框状态
+##### 2.设置复选框状态
 
 除了通过鼠标点击改变复选框状态，还可以通过代码设置：
 
@@ -1081,7 +1081,7 @@ enum CheckState {
 
 
 
-###### 3.通过复选框状态作相应操作
+##### 3.通过复选框状态作相应操作
 
 ```c++
 #include "widget.h"
@@ -1136,7 +1136,7 @@ void Widget::checkBox2CallBack(int state)
 
 
 
-###### 4.通过多个复选框状态作相应操作
+##### 4.通过多个复选框状态作相应操作
 
 这里可以借助按钮组（QButtonGroup），代码如下：
 
@@ -1200,9 +1200,9 @@ void Widget::btnGroupCallBack(int btn)
 
 
 
-#### 2.2.5 QCommandLinkButton
+### 2.2.5 QCommandLinkButton
 
-##### 2.2.5.1 简介
+#### 2.2.5.1 简介
 
 `QCommandLinkButton`是`Windows Vista`引入的一个新控件。它的预期用途类似于单选按钮，它用于在一组互斥选项之间进行选择。`QCommandLinkButton`不应单独使用，而应作为向导和对话框中单选按钮的替代。外观通常类似于平面按钮，但它允许在普通按钮文本之外添加描述性文本。默认情况下，它还将带有一个箭头图标，表示按下该控件将打开另一个窗口或页面。
 
@@ -1216,14 +1216,14 @@ void Widget::btnGroupCallBack(int btn)
 
 
 
-##### 2.2.5.2 创建QCommandLinkButton
+#### 2.2.5.2 创建QCommandLinkButton
 
 `QCommandLinkButton`有三个构造函数，都要指定父对象，可以选择设置按钮文本和描述文本。
 
 ```c++
-QCommandLinkButton(QWidget *parent = nullptr);
-QCommandLinkButton(const QString &text, QWidget *parent = nullptr);
-QCommandLinkButton(const QString &text, const QString &description, QWidget *parent = nullptr);
+explicit QCommandLinkButton(QWidget *parent = nullptr);
+explicit QCommandLinkButton(const QString &text, QWidget *parent = nullptr);
+explicit QCommandLinkButton(const QString &text, const QString &description, QWidget *parent = nullptr);
 ```
 
 同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QCommandLinkButton(QWidget *parent = nullptr);`。
@@ -1234,7 +1234,7 @@ QCommandLinkButton(const QString &text, const QString &description, QWidget *par
 
 
 
-##### 2.2.5.3 成员函数与信号
+#### 2.2.5.3 成员函数与信号
 
 `QCommandLinkButton`公有继承了`QPushButton`类，所以`QPushButton`的公有成员函数`QCommandLinkButton`都能使用。
 
@@ -1251,7 +1251,7 @@ void setDescription(const QString &description);
 
 
 
-##### 2.2.5.4 示例
+#### 2.2.5.4 示例
 
 这里模仿Qt Creator的历史项目写一个小例子。
 
@@ -1261,13 +1261,176 @@ void setDescription(const QString &description);
 
 
 
-#### 2.2.6 QDialogButtonBox
+### 2.2.6 QDialogButtonBox
 
-##### 2.2.6.1 简介
+#### 2.2.6.1 简介
 
 `QDialogButtongBox`是一个包含很多按钮的控件，对话框中有多个需要分组排列的按钮时，可以使用QDialogButtongBox类。
 开发人员可以向`QDialogButtonBox`添加按钮，`QDialogButtonBox`会根据平台自动使用合适的布局。
 
+Qt Creator 添加新文件的对话框和Photoshop调整曲线的对话框都可以使用`QDialogButtonBox`来处理：
+
+![20221106163542](img/20221106163542.png)
+
+
+
+![20221106155516](img/20221106155516.png)
+
+
+
+#### 2.2.6.2 创建QDialogButtongBox
+
+`QDialogButtongBox`有4个构造函数，
+
+```c++
+QDialogButtonBox(QWidget *parent = nullptr);
+QDialogButtonBox(Qt::Orientation orientation, QWidget *parent = nullptr);
+explicit QDialogButtonBox(StandardButtons buttons, QWidget *parent = nullptr);
+QDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget *parent = nullptr);
+```
+
+同样可以通过拖动控件创建，也可以使用代码直接创建，控件创建默认使用构造函数`QDialogButtonBox(QWidget *parent = nullptr);`，控件创建会默认添加`cancel`和`ok`两个标准按钮。
+
+对于其他三个构造函数的参数，其中，`Qt::Orientation`是枚举，可以指定按钮纵向或横向排列（如上图两个例子）；`StandardButtons`也是枚举，用于指定标准按钮。
+
+如下图创建了四个`QDialogButtonBox`，其中，第一行通过拖拽控件创建，其余通过代码直接创建，依次使用了上面四个构造函数：
+
+![20221106173535](img/20221106173535.png)
+
+
+
+#### 2.2.6.2 枚举
+
+`QDialogButtonBox`有用到一些枚举变量，详见下方：
+
+##### 1. Qt::Orientation
+
+按钮排列方式
+
+```c++
+enum Orientation {
+    Horizontal = 0x1,
+    Vertical = 0x2
+};
+```
+
+说明：
+
+|    Constant    | Value | Description |
+| :------------: | :---: | :---------: |
+| Qt::Horizontal |  0x1  |  水平排列   |
+|  Qt::Vertical  |  0x2  |  垂直排列   |
+
+
+
+##### 2. QDialogButtonBox::ButtonRole
+
+描述按钮角色
+
+```c++
+enum ButtonRole {
+    InvalidRole = -1,
+    AcceptRole,
+    RejectRole,
+    DestructiveRole,
+    ActionRole,
+    HelpRole,
+    YesRole,
+    NoRole,
+    ResetRole,
+    ApplyRole,
+
+    NRoles
+};
+```
+
+说明：
+
+| Constant | Value | Description |
+| :------: | :---: | :---------: |
+|QDialogButtonBox::InvalidRole     |     -1   | 无效按钮 |
+|QDialogButtonBox::AcceptRole      |     0    | 单击按钮可接受对话框（如OK按钮） |
+|QDialogButtonBox::RejectRole      |      1   | 单击按钮可接受对话框（如Cancel按钮） |
+|QDialogButtonBox::DestructiveRole |     2    | 单击该按钮会导致破坏性更改（例如“放弃更改”）并关闭对话框 |
+|QDialogButtonBox::ActionRole      |      3   | 单击该按钮将更改对话框中的元素 |
+|QDialogButtonBox::HelpRole        |    4     | 单击按钮可请求帮助 |
+|QDialogButtonBox::YesRole         |         5| 类似于“是”的按钮 |
+|QDialogButtonBox::NoRole          |        6 | 类似于“否”的按钮 |
+|QDialogButtonBox::ResetRole       |      7   | 该按钮将对话框的字段重置为默认值 |
+|QDialogButtonBox::ApplyRole       |      8   | 按钮应用当前更改 |
+
+
+
+##### 3. QDialogButtonBox::StandardButton
+
+标准按钮
+
+```c++
+enum StandardButton {
+    NoButton           = 0x00000000,
+    Ok                 = 0x00000400,
+    Save               = 0x00000800,
+    SaveAll            = 0x00001000,
+    Open               = 0x00002000,
+    Yes                = 0x00004000,
+    YesToAll           = 0x00008000,
+    No                 = 0x00010000,
+    NoToAll            = 0x00020000,
+    Abort              = 0x00040000,
+    Retry              = 0x00080000,
+    Ignore             = 0x00100000,
+    Close              = 0x00200000,
+    Cancel             = 0x00400000,
+    Discard            = 0x00800000,
+    Help               = 0x01000000,
+    Apply              = 0x02000000,
+    Reset              = 0x04000000,
+    RestoreDefaults    = 0x08000000,
+
+#ifndef Q_MOC_RUN
+    FirstButton        = Ok,
+    LastButton         = RestoreDefaults
+#endif
+};
+```
+
+说明：
+
+|         Constant         | Value | Description |
+| :----------------------: | :---: | :---------: |
+|QDialogButtonBox::Ok                       |    0x00000400 |"OK" button defined with the AcceptRole.
+|QDialogButtonBox::Open                     |  0x00002000 |"Open" button defined with the AcceptRole.
+|QDialogButtonBox::Save                     |    0x00000800| "Save" button defined with the AcceptRole.
+|QDialogButtonBox::Cancel                   |     0x00400000 |"Cancel" button defined with the RejectRole.
+|QDialogButtonBox::Close                    |       0x00200000 |"Close" button defined with the RejectRole.
+|QDialogButtonBox::Discard                  |     0x00800000| "Discard" or "Don't Save" button, depending on the platform, defined with the DestructiveRole.
+|QDialogButtonBox::Apply                    |       0x02000000 |"Apply" button defined with the ApplyRole.
+|QDialogButtonBox::Reset                    |      0x04000000 |"Reset" button defined with the ResetRole.
+|QDialogButtonBox::RestoreDefaults  | 0x08000000| "Restore Defaults" button defined with the ResetRole.
+|QDialogButtonBox::Help             |            0x01000000| "Help" button defined with the HelpRole.
+|QDialogButtonBox::SaveAll          |               0x00001000 |"Save All" button defined with the AcceptRole.
+|QDialogButtonBox::Yes              |           0x00004000| "Yes" button defined with the YesRole.
+|QDialogButtonBox::YesToAll         |                0x00008000 |"Yes to All" button defined with the YesRole.
+|QDialogButtonBox::No               |          0x00010000 |"No" button defined with the NoRole.
+|QDialogButtonBox::NoToAll          |               0x00020000 |"No to All" button defined with the NoRole.
+|QDialogButtonBox::Abort            |             0x00040000 |"Abort" button defined with the RejectRole.
+|QDialogButtonBox::Retry            |             0x00080000 |A "Retry" button defined with the AcceptRole.
+|QDialogButtonBox::Ignore           |              0x00100000| An "Ignore" button defined with the AcceptRole.
+|QDialogButtonBox::NoButton         |                0x00000000| An invalid button.
+
+
+#### 2.2.6.3 成员函数与信号
+
+`QDialogButtonBox` 公有继承与`QWidget`，所以`QWidget`的公有成员函数`QDialogButtonBox`都能使用。
+
+`QDialogButtonBox`的成员函数如下：
+
+##### 1. 按钮排列方式
+
+|                     函数原型                      |                  描述                   |
+| :-----------------------------------------------: | :-------------------------------------: |
+| void setOrientation(Qt::Orientation orientation); | 设置按钮排列方式，Qt::Orientation为枚举 |
+|       Qt::Orientation orientation() const;        |                                         |
 
 
 
@@ -1284,13 +1447,30 @@ void setDescription(const QString &description);
 
 
 
-## 三、其他
 
 
 
-### 3.1 QButtonGroup
 
-#### 0. QButtonGroup简介
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 三、其他
+
+
+
+## 3.1 QButtonGroup
+
+### 0. QButtonGroup简介
 
 `QButtonGroup`提供了一个抽象容器，可以将按钮小部件放入其中。它不提供此容器的可视化表示（请参见`QGroupBox`中的容器小部件），而是管理组中每个按钮的状态。
 
@@ -1302,7 +1482,7 @@ void setDescription(const QString &description);
 
 
 
-#### 1. 创建QButtonGroup
+### 1. 创建QButtonGroup
 
 `QButtonGroup`的构造函数如下：
 
@@ -1314,7 +1494,7 @@ QButtonGroup(QObject *parent = nullptr);
 
 
 
-#### 2. 成员函数与信号
+### 2. 成员函数与信号
 
 `QButtonGroup`常用成员函数有：
 
@@ -1353,9 +1533,9 @@ void buttonToggled(int, bool);  -->  void idToggled(int, bool);
 
 
 
-#### 3. 示例
+### 3. 示例
 
-##### 1. 为按钮组添加按钮
+#### 1. 为按钮组添加按钮
 
 ```c++
 // 创建按钮组对象
@@ -1371,7 +1551,7 @@ btnGroup->addButton(ui->radioButton_2, 2);
 
 
 
-##### 2. 为按钮设置id
+#### 2. 为按钮设置id
 
 ```c++
 btnGroup->setId(ui->radioButton, 0);
@@ -1381,7 +1561,7 @@ btnGroup->setId(ui->radioButton, 0);
 
 
 
-##### 3. 按钮组中按钮的互斥状态
+#### 3. 按钮组中按钮的互斥状态
 
 ```c++
 // 获取按钮组中按钮的互斥状态
@@ -1395,7 +1575,7 @@ btnGroup->setExclusive(false);
 
 
 
-##### 4. 获取组内所有按钮
+#### 4. 获取组内所有按钮
 
 ```c++
 QList<QAbstractButton*> btnList = btnGroup->buttons();
@@ -1405,7 +1585,7 @@ QList<QAbstractButton*> btnList = btnGroup->buttons();
 
 
 
-##### 5. 获取按钮点击信号，并作相应操作
+#### 5. 获取按钮点击信号，并作相应操作
 
 ```c++
 // 连接信号和槽函数
