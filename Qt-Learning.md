@@ -1424,7 +1424,7 @@ enum StandardButton {
 
 `QDialogButtonBox` 公有继承与`QWidget`，所以`QWidget`的公有成员函数`QDialogButtonBox`都能使用。
 
-`QDialogButtonBox`的成员函数如下：
+`QDialogButtonBox`的成员函数如下： 
 
 ##### 1. 按钮排列方式
 
@@ -1435,21 +1435,44 @@ enum StandardButton {
 
 
 
+##### 2. 添加与删除按钮
+
+|                           函数原型                           |                             描述                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|  void addButton(QAbstractButton *button, ButtonRole role);   | 将给定按钮添加到具有指定角色的按钮框中。如果角色无效，则不添加按钮。<br>如果已添加按钮，则将其删除并使用新角色再次添加<br />按钮框拥有按钮的所有权。 |
+| QPushButton *addButton(const QString &text, ButtonRole role); | 使用给定文本创建一个按钮，将其添加到指定角色的按钮框，并返回相应的按钮。如果角色无效，则不创建按钮，并返回 nullptr。 |
+|        QPushButton *addButton(StandardButton button);        | 如果 button 有效，则将标准按钮添加到按钮框，并返回一个按钮。<br />如果 button 无效，则不添加到按钮框中，返回nullptr。 |
+|         void removeButton(QAbstractButton *button);          |    从按钮框中移除按钮而不删除它并将其父级设置为nullptr。     |
+|                        void clear();                         |               清除按钮框，删除其中的所有按钮。               |
 
 
 
+##### 3. 按钮与角色
+
+|                       函数原型                        |                             描述                             |
+| :---------------------------------------------------: | :----------------------------------------------------------: |
+|       QList<QAbstractButton *> buttons() const;       |          返回已添加到按钮框中的所有按钮的对象列表。          |
+| ButtonRole buttonRole(QAbstractButton *button) const; | 返回指定按钮的按钮角色。<br />如果按钮为 nullptr 或尚未添加到按钮框，则返回 InvalidRole。按钮角色具体见枚举QDialogButtonBox::ButtonRole |
 
 
 
+##### 4. 标准按钮
+
+|                           函数原型                           |                             描述                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|      void setStandardButtons(StandardButtons buttons);       | 为按钮框添加标准按钮，入参为StandardButton枚举，可多个（使用\|拼接） |
+|           StandardButtons standardButtons() const;           |                 返回该按钮框已添加的标准按钮                 |
+| StandardButton standardButton(QAbstractButton *button) const; | 返回与给定按钮对应的标准按钮枚举值，如果给定按钮不是标准按钮，则返回 NoButton。 |
+|       QPushButton *button(StandardButton which) const;       |        返回一个标准按钮类型的QPushButton按钮对象指针         |
 
 
 
+##### 5. 按钮居中
 
-
-
-
-
-
+|              函数原型               |              描述              |
+| :---------------------------------: | :----------------------------: |
+| void setCenterButtons(bool center); |     设置按钮框中的按钮居中     |
+|     bool centerButtons() const;     | 返回钮框中的按钮是否设置了居中 |
 
 
 
