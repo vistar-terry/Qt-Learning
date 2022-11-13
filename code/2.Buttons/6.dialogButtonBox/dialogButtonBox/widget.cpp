@@ -18,6 +18,8 @@ Widget::Widget(QWidget *parent)
                                                         Qt::Orientation::Horizontal, this);
     buttonBox3->setGeometry(QRect(100, 210, 166, 25));
 
+    qDebug() << buttonBox3->standardButtons();
+
 }
 
 Widget::~Widget()
