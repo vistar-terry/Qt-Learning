@@ -1476,29 +1476,6 @@ enum StandardButton {
 
 
 
-## 2.3 布局组件(Layouts)
-
-
-
-![Layouts](img/Layouts.png)
-
-
-
-|       控件        |   描述   |
-| :---------------: | :------: |
-|  Vertical Layout  | 垂直布局 |
-| Horizontal Layout | 水平布局 |
-|    Grid Layout    | 网格布局 |
-|    Form Layout    | 表单布局 |
-
-
-
-各控件类的继承关系如下：
-
-![20221113221456](img/20221113221456.png)
-
-### 2.3.1 QBoxLayout
-
 
 
 
