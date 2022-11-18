@@ -1476,13 +1476,97 @@ enum StandardButton {
 
 
 
+## 2.3 布局组件(Layouts)
 
 
 
+![Layouts](img/Layouts.png)
 
 
 
+|       控件        |   描述   |
+| :---------------: | :------: |
+|  Vertical Layout  | 垂直布局 |
+| Horizontal Layout | 水平布局 |
+|    Grid Layout    | 网格布局 |
+|    Form Layout    | 表单布局 |
 
+
+
+各控件类的继承关系如下：
+
+![20221113221456](img/20221113221456.png)
+
+### 2.3.1 QBoxLayout
+
+`QBoxLayout`可以在水平方向或垂直方向上排列控件，由`QHBoxLayout`和`QVBoxLayout`继承。
+
+QHBoxLayout：水平布局，在水平方向上排列控件，即：左右排列。
+QVBoxLayout：垂直布局，在垂直方向上排列控件，即：上下排列。
+
+如下图：
+
+![20221118223526](img/20221118223526.png)
+
+`QHBoxLayout`和`QVBoxLayout`都公有继承于`QBoxLayout`，没有自己的成员函数。
+
+
+
+#### 2.3.1.1. 创建QBoxLayout
+
+QBoxLayout只有一个构造函数如下：
+
+```c++
+explicit QBoxLayout(Direction, QWidget *parent = nullptr);
+```
+
+其中`Direction`是一个枚举，表示控件布局的方向：
+
+```c++
+enum Direction 
+{ 	
+	LeftToRight, 
+	RightToLeft, 
+	TopToBottom, 
+	BottomToTop,
+    Down = TopToBottom, 
+    Up = BottomToTop 
+};
+```
+
+枚举描述如下：
+
+|          枚举           |  值  |       描述       |
+| :---------------------: | :--: | :--------------: |
+| QBoxLayout::LeftToRight |  0   | 水平方向从左到右 |
+| QBoxLayout::RightToLeft |  1   | 水平方向从右到左 |
+| QBoxLayout::TopToBottom |  2   | 垂直方向从上到下 |
+| QBoxLayout::BottomToTop |  3   | 垂直方向从下到上 |
+
+`QHBoxLayout`和`QVBoxLayout`的继承如下：
+
+```c++
+QHBoxLayout::QHBoxLayout(QWidget *parent) : QBoxLayout(LeftToRight, parent){}
+QHBoxLayout::QHBoxLayout() : QBoxLayout(LeftToRight){}
+
+QVBoxLayout::QVBoxLayout(QWidget *parent) : QBoxLayout(TopToBottom, parent){}
+QVBoxLayout::QVBoxLayout() : QBoxLayout(TopToBottom){}
+```
+
+他们构造的初始方向分别为：水平方向从左到右（QHBoxLayout）与垂直方向从上到下（QVBoxLayout）。
+
+
+
+#### 2.3.1.2. 成员函数
+
+`QBoxLayout`的常用函数如下：
+
+##### 1. 布局排列方向
+
+```c++
+Direction direction() const;
+void setDirection(Direction);
+```
 
 
 
