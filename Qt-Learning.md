@@ -191,7 +191,102 @@ TEMPLATE = lib
 
 
 
-#### 1.3.1.2 其他文件内容解释
+#### 1.3.1.2 main文件内容解释
+
+以`Widget`窗口部件项目为例，解释一下main函数内容：
+
+```c++
+#include "widget.h"
+
+#include <QApplication>
+
+// Qt应用程序入口
+// main()函数主要执行一些初始化工作，然后将控制转交给Qt库
+// 然后Qt库通过事件向程序告知用户行为
+int main(int argc, char *argv[])
+{
+    // Qt应用程序类，实例化Qt应用程序对象a
+    QApplication a(argc, argv);
+    // 创建一个窗口对象，这里调到widget.cpp中
+    Widget w;
+    // 窗口部件默认不可见，要调用show()方法使它可见
+    w.show();
+    // 程序进入消息循环，即main()函数将控制权转交给Qt
+    // 当应用程序退出的时候，exec()函数就会返回
+    // 在exec()函数中，Qt接收处理用户和系统的事件并将它们传递给适当的窗口部件
+    return a.exec();
+}
+```
+
+
+
+#### 1.3.1.3 widget.cpp/widget.h文件内容解释
+
+在main函数中实例化了`Widget`窗口对象，这里介绍一下`widget.cpp`和`widget.h`中的代码：
+
+widget.cpp
+
+```c++
+#include "widget.h"
+#include "ui_widget.h" // 窗口ui头文件，用于初始化ui及拖拽控件对象
+
+// Widget构造函数
+// 其中将ui初始化为Ui::Widget，该类位于ui_widget.h中
+Widget::Widget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Widget)
+{
+    // 为Ui对象传入当前窗口对象指针
+    // 即将当前窗口对象与其Ui绑定
+    ui->setupUi(this);
+}
+
+// Widget析构函数
+Widget::~Widget()
+{
+    delete ui;
+}
+```
+
+
+
+widget.h
+
+```c++
+// 条件编译，防止头文件被重复引用
+#ifndef WIDGET_H
+#define WIDGET_H
+
+#include <QWidget>
+
+// QT的命名空间，其实就是C++的命名空间封装了一层，如下是该宏定义：
+// # define QT_BEGIN_NAMESPACE namespace QT_NAMESPACE {
+// # define QT_END_NAMESPACE }
+QT_BEGIN_NAMESPACE
+namespace Ui { class Widget; } // 声明Ui命名空间下的Widget类
+QT_END_NAMESPACE
+
+// 定义Widget类
+class Widget : public QWidget
+{
+    // Q_OBJECT宏用于提供Qt信号槽和元对象系统服务
+    // 它必须限定为私有访问权限
+    Q_OBJECT
+
+public:
+    Widget(QWidget *parent = nullptr);
+    ~Widget();
+
+private:
+    // 创建Ui::Widget类型的指针，用于操作ui界面及其控件
+    Ui::Widget *ui;
+};
+#endif // WIDGET_H
+```
+
+
+
+#### 1.3.1.4 ui_widget.h文件内容解释
 
 
 
@@ -1567,6 +1662,70 @@ QVBoxLayout::QVBoxLayout() : QBoxLayout(TopToBottom){}
 Direction direction() const;
 void setDirection(Direction);
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
