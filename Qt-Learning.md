@@ -91,7 +91,7 @@ QDialog 是对话框窗口，没有最小化按钮，类似这样：
 
 ### 1.3.1 认识工程
 
-新建的工程目录有如下几个文件：
+以`Widget`窗口部件项目为例，新建的工程目录有如下几个文件：
 
 ![20220720223533](img/20220720223533.png)
 
@@ -231,7 +231,7 @@ widget.cpp
 #include "ui_widget.h" // 窗口ui头文件，用于初始化ui及拖拽控件对象
 
 // Widget构造函数
-// 其中将ui初始化为Ui::Widget，该类位于ui_widget.h中
+// 其中将ui初始化为Ui::Widget，该类位于ui_widget.h中，用于初始化ui及拖拽控件对象
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -287,6 +287,141 @@ private:
 
 
 #### 1.3.1.4 ui_widget.h文件内容解释
+
+该文件初始化了ui及拖拽控件对象，由`widget.ui`文件生成，所以不能手动修改，即使修改也会在下次编译被覆盖。
+
+```c++
+#pragma once // 避免头文件被重复引用
+// Qt头部声明
+/********************************************************************************
+** Form generated from reading UI file ''
+**
+** Created by: Qt User Interface Compiler version 6.3.0
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#include <QtCore/QVariant>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+// 该类用于初始化ui及拖拽控件对象
+class Ui_Widget
+{
+public:
+
+    // 该函数用于初始化窗口及创建窗口中的控件对象
+    void setupUi(QWidget *Widget)
+    {
+        if (Widget->objectName().isEmpty())
+            Widget->setObjectName(QString::fromUtf8("Widget"));
+        Widget->resize(800, 600);
+
+        retranslateUi(Widget);
+
+        // Qt元对象系统生成信号与槽的连接
+        // 递归搜索给定对象的所有子对象，并将来自这些子对象的匹配信号连接到对象插槽
+        // 所连接的槽函数要按特定形式的定义，如下：
+        // void on_<object name>_<signal name>(<signal parameters>);
+        QMetaObject::connectSlotsByName(Widget);
+    } // setupUi
+
+    // 动态翻译Ui界面的文字，用于国际化
+    void retranslateUi(QWidget *Widget)
+    {
+        Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    // 声明Ui对应的类继承于该Ui类
+    class Widget: public Ui_Widget {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+```
+
+
+
+#### 1.3.1.5 widget.ui文件内容解释
+
+该文件为xml格式，类似于HTML，用于表示ui界面，Qt根据该文件生成ui_widget.h文件，Qt Creator可将其解析为图形界面，文件内容如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
+```
+
+对应的图形界面如下：
+
+![20200203112218288](img/20200203112218288.png)
+
+
+
+添加一个按钮，文件内容如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>140</y>
+     <width>231</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
+
+```
+
+对应的图形界面如下：
+
+![20221120235105](img/20221120235105.png)
 
 
 
