@@ -1800,13 +1800,25 @@ void setDirection(Direction);
 
 
 
+##### 2. 不可拉伸空间
+
+```c++
+void addSpacing(int size);
+void insertSpacing(int index, int size);
+void setSpacing(int spacing) override;
+int spacing() const override;
+```
 
 
 
+##### 3. 可拉伸空间
 
-
-
-
+```c++
+void addStretch(int stretch = 0);
+void insertStretch(int index, int stretch = 0);
+void setStretch(int index, int stretch);
+int stretch(int index) const;
+```
 
 
 
