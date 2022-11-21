@@ -6,6 +6,9 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    ui->verticalLayout->addSpacing(200);
+    ui->horizontalLayout->addSpacing(100);
 }
 
 Widget::~Widget()
