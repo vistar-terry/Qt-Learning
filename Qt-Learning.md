@@ -1794,30 +1794,41 @@ QVBoxLayout::QVBoxLayout() : QBoxLayout(TopToBottom){}
 ##### 1. 布局排列方向
 
 ```c++
-Direction direction() const;
-void setDirection(Direction);
+Direction direction() const; // 获取当前排列方向
+void setDirection(Direction); // 设置排列方向
+```
+
+从`QHBoxLayout`和`QVBoxLayout`的构造函数可以看出，他们只是对`QBoxLayout`设置了不同的排列方向。
+
+对于从`QHBoxLayout`和`QVBoxLayout`，还可重新设置排列方向。
+
+
+
+##### 2. 控件间距
+
+```c++
+void setSpacing(int spacing) override; // 设置控件间距
+int spacing() const override; // 获取控件当前间距
 ```
 
 
 
-##### 2. 不可拉伸空间
+##### 3. 添加不可拉伸空间
 
 ```c++
-void addSpacing(int size);
-void insertSpacing(int index, int size);
-void setSpacing(int spacing) override;
-int spacing() const override;
+void addSpacing(int size); // 在控件队列最后面添加一个固定大小的间隙
+void insertSpacing(int index, int size); // 在指定位置插入一个固定大小的间隙
 ```
 
 
 
-##### 3. 可拉伸空间
+##### 4. 可拉伸空间（弹簧）
 
 ```c++
-void addStretch(int stretch = 0);
-void insertStretch(int index, int stretch = 0);
-void setStretch(int index, int stretch);
-int stretch(int index) const;
+void addStretch(int stretch = 0); // 在控件队列最后面添加一个弹簧
+void insertStretch(int index, int stretch = 0); // 在指定位置插入一个弹簧
+void setStretch(int index, int stretch); // 设置指定位置的弹簧系数
+int stretch(int index) const; // 获取指定位置的弹簧系数
 ```
 
 
