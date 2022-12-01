@@ -1802,7 +1802,7 @@ void setDirection(Direction); // 设置排列方向
 
 对于从`QHBoxLayout`和`QVBoxLayout`，还可重新设置排列方向。
 
-
+![2022-12-01-21-58-00](img/2022-12-01-21-58-00.png)
 
 ##### 2. 控件间距
 
@@ -1811,7 +1811,7 @@ void setSpacing(int spacing) override; // 设置控件间距
 int spacing() const override; // 获取控件当前间距
 ```
 
-
+控件默认是均布在盒模型中的，没有设置该间距时，该值默认为`6`，但控件均布时的间距大于6就以均布的间距为准，当均布的间距
 
 ##### 3. 添加不可拉伸空间
 
