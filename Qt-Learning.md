@@ -1,10 +1,10 @@
 # 一、开始的开始
 
-## 1.1 安装软件
+## 1. 安装软件
 
 
 
-## 1.2 新建工程-HelloWorld
+## 2. 新建工程-HelloWorld
 
 万事开头 hello world，Qt 的 hello world 就是创建一个项目并运行显示窗口。
 
@@ -87,9 +87,9 @@ QDialog 是对话框窗口，没有最小化按钮，类似这样：
 
 
 
-## 1.3 认识工程与软件
+## 3. 认识工程与软件
 
-### 1.3.1 认识工程
+### 3.1 认识工程
 
 以`Widget`窗口部件项目为例，新建的工程目录有如下几个文件：
 
@@ -111,7 +111,7 @@ QtCreator软件将他们做了如下分组，包含三个文件夹和一个.pro�
 
 
 
-#### 1.3.1.1 .pro文件内容解释
+#### 3.1.1 .pro文件内容解释
 
 新建简单Qt工程，默认生成的 .pro文件内容如下，解释见注释：
 
@@ -191,7 +191,7 @@ TEMPLATE = lib
 
 
 
-#### 1.3.1.2 main文件内容解释
+#### 3.1.2 main文件内容解释
 
 以`Widget`窗口部件项目为例，解释一下main函数内容：
 
@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
 
 
 
-#### 1.3.1.3 widget.cpp/widget.h文件内容解释
+#### 3.1.3 widget.cpp/widget.h文件内容解释
 
 在main函数中实例化了`Widget`窗口对象，这里介绍一下`widget.cpp`和`widget.h`中的代码：
 
@@ -286,7 +286,7 @@ private:
 
 
 
-#### 1.3.1.4 ui_widget.h文件内容解释
+#### 3.1.4 ui_widget.h文件内容解释
 
 该文件初始化了ui及拖拽控件对象，由`widget.ui`文件生成，所以不能手动修改，即使修改也会在下次编译被覆盖。
 
@@ -346,7 +346,7 @@ QT_END_NAMESPACE
 
 
 
-#### 1.3.1.5 widget.ui文件内容解释
+#### 3.1.5 widget.ui文件内容解释
 
 该文件为xml格式，类似于HTML，用于表示ui界面，Qt根据该文件生成ui_widget.h文件，Qt Creator可将其解析为图形界面，文件内容如下：
 
@@ -427,7 +427,7 @@ QT_END_NAMESPACE
 
 
 
-#### 1.3.1.2 资源文件介绍与使用
+#### 3.1.6 资源文件介绍与使用
 
 Qt工程分组中，除了`Headers`、`Sources`、`Forms`外，还有一个文件夹`Resources`，只有当工程中有图片、音频等资源文件时才会用到。
 
@@ -511,7 +511,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-### 1.3.2 认识Qt Creator
+### 3.2 认识Qt Creator
 
 打开Qt Creator默认界面如下
 
@@ -529,7 +529,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-#### 1.3.2.1 模式选择
+#### 3.2.1 模式选择
 
 ![qtcreator-mode-selector](img/qtcreator-mode-selector.png)
 
@@ -633,7 +633,7 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-#### 1.3.2.2 构建套件选择
+#### 3.2.2 构建套件选择
 
 ![20220723222807](img/20220723222807.png)
 
@@ -647,13 +647,13 @@ toolBtn->setIcon(QIcon(":/res/icon.png"));
 
 
 
-### 1.3.3 qmake生成makefile过程
+### 3.3 qmake生成makefile过程
 
 
 
 
 
-## 1.4 Qt 模块简介
+## 4. Qt模块与控件
 
 Qt由许多模块组成，分别支持不同领域的功能，主要分为 `Essentials` 和 `Add-On`。
 
@@ -661,7 +661,11 @@ Qt由许多模块组成，分别支持不同领域的功能，主要分为 `Esse
 
 `Qt Add-On` 是附加模块/扩展模块，用于特殊目的开发。这些模块可能仅在某些开发平台上可用。许多附加模块要么功能完整，存在是为了向后兼容，要么仅适用于某些平台。每个附加模块分别指定其兼容性。
 
-### 1.4.1 Qt基本模块
+Qt支持拖拽控件创建UI界面，每个控件都对应的类，主要是`Qt Widgets`模块的图形界面类。
+
+### 4.1 Qt模块
+
+#### 4.1.1 Qt基本模块
 
 Qt 基本模块如下表：
 
@@ -682,7 +686,7 @@ Qt 基本模块如下表：
 
 
 
-### 1.4.2 Qt扩展模块
+#### 4.1.2 Qt扩展模块
 
 Qt扩展模块如下表：
 
@@ -740,30 +744,30 @@ Qt扩展模块如下表：
 
 
 
-# 二、控件
+### 4.2 Qt控件
 
-## 2.1 控件组介绍
+像模块一样，控件根据功能分为8组，如下：
 
 <img src="img/2022-07-27_22-08.png" alt="2022-07-27_22-08" style="zoom:150%;" />
 
-控件分8个组，分别为：
+每个控件组对应不同的功能，分别为：
 
-|           控件组            |              描述              |
-| :-------------------------: | :----------------------------: |
-|           Layouts           |   布局：控制控件在窗口的布局   |
-|           Spacers           | 间隔：辅助控制控件在窗口的布局 |
-|           Buttons           |       按钮：按钮相关控件       |
-|  Item Views（Model-Based）  |            项目视图            |
-| Item Widgets（Model-Based） |            项目组件            |
-|         Containers          |    容器：可以存放控件的控件    |
-|        Input Widgets        |     输入组件：输入相关控件     |
-|       Display Widgets       |     显示组件：显示相关控件     |
-
-
-
-## 2.2 按钮组件(Buttons)
+|           控件组           |              描述              |
+| :------------------------: | :----------------------------: |
+|          Layouts           |   布局：控制控件在窗口的布局   |
+|          Spacers           | 间隔：辅助控制控件在窗口的布局 |
+|          Buttons           |       按钮：按钮相关控件       |
+| Item Views（Model-Based）  |            项目视图            |
+| Item Widgets（Item-Based） |            项目组件            |
+|         Containers         |    容器：可以存放控件的控件    |
+|       Input Widgets        |     输入组件：输入相关控件     |
+|      Display Widgets       |     显示组件：显示相关控件     |
 
 
+
+# 二、Qt Widgets模块
+
+## 1. 按钮组件(Buttons)
 
 ![Battons](img/Battons.png)
 
@@ -786,13 +790,13 @@ Qt扩展模块如下表：
 
 
 
-### 2.2.1 QPushButton
+### 1.1 QPushButton
 
 QPushButton按钮，是Qt常用的控件之一，提供普通的按钮功能。
 
 通过信号槽机制接收触发信号并执行对应动作。
 
-#### 2.2.1.1 创建QPushButton
+#### 1.1.1 创建QPushButton
 
 它有三个构造函数：
 
@@ -809,7 +813,7 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.1.2 信号
+#### 1.1.2 信号
 
 它通过信号来接收特定的操作，信号包括：
 
@@ -826,7 +830,7 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.1.3 使用
+#### 1.1.3 使用
 
 最常用的点击触发某个行为：
 
@@ -854,7 +858,7 @@ QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.1.4 按钮样式
+#### 1.1.4 按钮样式
 
 ##### 1.按钮文字
 
@@ -931,7 +935,7 @@ ui->pushButton->setStyleSheet("QPushButton {"
 
 
 
-### 2.2.2 QToolButton
+### 1.2 QToolButton
 
 QToolButton按钮常用作工具栏的快捷工具，
 
@@ -961,7 +965,7 @@ QToolButton按钮常用作工具栏的快捷工具，
 
 
 
-#### 2.2.2.1 创建QToolButton
+#### 1.2.1 创建QToolButton
 
 和QPushButton不同，QToolButton只有一个构造函数
 
@@ -1029,7 +1033,7 @@ QToolButton* toolBtn = new QToolButton(this);
 
 
 
-#### 2.2.2.2 为QToolButton添加图标
+#### 1.2.2 为QToolButton添加图标
 
 这里涉及到Qt资源，软件使用的声音文件、图片文件等，都以资源的形式加载，使用前需要为工程添加资源文件，具体添加方法见[qrc资源文件介绍与使用](https://blog.csdn.net/maizousidemao/article/details/127033800?spm=1001.2014.3001.5502)
 
@@ -1051,7 +1055,7 @@ toolBtn->setIconSize(QSize(30, 30));
 
 
 
-#### 2.2.2.3 为QToolButton添加文字
+#### 1.2.3 为QToolButton添加文字
 
 函数`setText`可以设置QToolButton的文字：
 
@@ -1063,7 +1067,7 @@ toolBtn->setText("小飞机");
 
 
 
-#### 2.2.2.4 设置按钮风格
+#### 1.2.4 设置按钮风格
 
 可以通过`setToolButtonStyle(Qt::ToolButtonStyle style)`函数设置按钮风格，入参为枚举值：
 
@@ -1097,7 +1101,7 @@ toolBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
 
 
-#### 2.2.2.5 设置按钮扁平化
+#### 1.2.5 设置按钮扁平化
 
 `autoRaise`属性可以控制`toolButton`的扁平化，即按钮和界面齐平，不显示按钮的边框。
 
@@ -1113,11 +1117,11 @@ toolBtn->setAutoRaise(true);
 
 
 
-#### 2.2.2.6 设置按钮菜单
+#### 1.2.6 设置按钮菜单
 
 
 
-### 2.2.3 QRadioButton
+### 1.3 QRadioButton
 
 `QRadioButton`既单选框，常用作表单互斥选择选项，在“多选一”的场景中使用。
 
@@ -1131,7 +1135,7 @@ office word和PhotoShop中都有使用单选框，如下：
 
 
 
-#### 2.2.3.1 创建QRadioButton
+#### 1.3.1 创建QRadioButton
 
 `QRadioButton`有两个构造函数，都要指定父对象，其中一个可以设置单选框的文本。
 
@@ -1148,7 +1152,7 @@ explicit QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.3.2 修改QRadioButton文本
+#### 1.3.2 修改QRadioButton文本
 
 不仅在构造时指定按钮的文本，构造后也可以修改，使用函数`void setText(const QString &text);`
 
@@ -1156,7 +1160,7 @@ explicit QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.3.3 QRadioButton分组
+#### 1.3.3 QRadioButton分组
 
 `QRadioButton`默认属于同一父组件的所有单选框都互斥，如果同一界面需要有多组“多选一”的单选按钮，可以使用`QButtonGroup`为单选框分组，则每个分组内部的按钮都默认互斥。
 
@@ -1166,7 +1170,7 @@ explicit QRadioButton(const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.3.4 QRadioButton的信号
+#### 1.3.4 QRadioButton的信号
 
 `QRadioButton` 没有自己独有的信号，它继承于 `QAbstractButton` ，可以使用`pressed`、`released`、`clicked`、`toggled`等信号。
 
@@ -1227,7 +1231,7 @@ void Widget::btnToggled(int btn, bool checked)
 
 
 
-### 2.2.4 QCheckBox
+### 1.4 QCheckBox
 
 `QCheckBox`即复选框，常用作表单非互斥选择，，在“多选多”的场景中使用。
 
@@ -1239,7 +1243,7 @@ office word和PhotoShop中都有使用复选框，如下：
 
 
 
-#### 2.2.4.1 创建QCheckBox
+#### 1.4.1 创建QCheckBox
 
 `QCheckBox`有两个构造函数，都要指定父对象，其中一个可以设置复选框的文本。
 
@@ -1256,7 +1260,7 @@ explicit QCheckBox(const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.4.2 成员函数与信号
+#### 1.4.2 成员函数与信号
 
 `QCheckBox`除了继承于`QAbstractButton`的信号外，还有一个自己的信号`void stateChanged(int);`，当复选框状态改变，会发出该信号，并返回复选框的状态，其中复选框的状态有三种：
 
@@ -1279,7 +1283,7 @@ explicit QCheckBox(const QString &text, QWidget *parent = nullptr);
 
 
 
-#### 2.2.4.3 示例
+#### 1.4.3 示例
 
 ##### 1.设置复选框是否可为三种状态
 
@@ -1430,9 +1434,9 @@ void Widget::btnGroupCallBack(int btn)
 
 
 
-### 2.2.5 QCommandLinkButton
+### 1.5 QCommandLinkButton
 
-#### 2.2.5.1 简介
+#### 1.5.1 简介
 
 `QCommandLinkButton`是`Windows Vista`引入的一个新控件。它的预期用途类似于单选按钮，它用于在一组互斥选项之间进行选择。`QCommandLinkButton`不应单独使用，而应作为向导和对话框中单选按钮的替代。外观通常类似于平面按钮，但它允许在普通按钮文本之外添加描述性文本。默认情况下，它还将带有一个箭头图标，表示按下该控件将打开另一个窗口或页面。
 
@@ -1446,7 +1450,7 @@ void Widget::btnGroupCallBack(int btn)
 
 
 
-#### 2.2.5.2 创建QCommandLinkButton
+#### 1.5.2 创建QCommandLinkButton
 
 `QCommandLinkButton`有三个构造函数，都要指定父对象，可以选择设置按钮文本和描述文本。
 
@@ -1464,7 +1468,7 @@ explicit QCommandLinkButton(const QString &text, const QString &description, QWi
 
 
 
-#### 2.2.5.3 成员函数与信号
+#### 1.5.3 成员函数与信号
 
 `QCommandLinkButton`公有继承了`QPushButton`类，所以`QPushButton`的公有成员函数`QCommandLinkButton`都能使用。
 
@@ -1481,7 +1485,7 @@ void setDescription(const QString &description);
 
 
 
-#### 2.2.5.4 示例
+#### 1.5.4 示例
 
 这里模仿Qt Creator的历史项目写一个小例子。
 
@@ -1491,9 +1495,9 @@ void setDescription(const QString &description);
 
 
 
-### 2.2.6 QDialogButtonBox
+### 1.6 QDialogButtonBox
 
-#### 2.2.6.1 简介
+#### 1.6.1 简介
 
 `QDialogButtongBox`是一个包含很多按钮的控件，对话框中有多个需要分组排列的按钮时，可以使用QDialogButtongBox类。
 开发人员可以向`QDialogButtonBox`添加按钮，`QDialogButtonBox`会根据平台自动使用合适的布局。
@@ -1508,7 +1512,7 @@ Qt Creator 添加新文件的对话框和Photoshop调整曲线的对话框都可
 
 
 
-#### 2.2.6.2 创建QDialogButtongBox
+#### 1.6.2 创建QDialogButtongBox
 
 `QDialogButtongBox`有4个构造函数，
 
@@ -1529,7 +1533,7 @@ QDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget *
 
 
 
-#### 2.2.6.2 枚举
+#### 1.6.3 枚举
 
 `QDialogButtonBox`有用到一些枚举变量，详见下方：
 
@@ -1650,7 +1654,7 @@ enum StandardButton {
 
 
 
-#### 2.2.6.3 成员函数与信号
+#### 1.6.4 成员函数与信号
 
 `QDialogButtonBox` 公有继承与`QWidget`，所以`QWidget`的公有成员函数`QDialogButtonBox`都能使用。
 
@@ -1706,7 +1710,7 @@ enum StandardButton {
 
 
 
-## 2.3 布局组件(Layouts)
+## 2. 布局组件(Layouts)
 
 
 
@@ -1727,7 +1731,7 @@ enum StandardButton {
 
 ![20221113221456](img/20221113221456.png)
 
-### 2.3.1 QBoxLayout
+### 2.1 QBoxLayout
 
 `QBoxLayout`可以在水平方向或垂直方向上排列控件，由`QHBoxLayout`和`QVBoxLayout`继承。
 
@@ -1740,9 +1744,21 @@ QVBoxLayout：垂直布局，在垂直方向上排列控件，即：上下排列
 
 `QHBoxLayout`和`QVBoxLayout`都公有继承于`QBoxLayout`，没有自己的成员函数。
 
+#### 2.1.1 QBoxLayout布局规则
+
+QBoxLayout布局主要是控制控件在盒模型中的排列与尺寸
+
+控件在盒模型中的尺寸，会在控件最小尺寸和最大尺寸之间变化，变化规则如下：
+
+宽度方向上，默认会填满盒模型，如上图。
+
+关于间距，横向排列，默认间距为`6`，
 
 
-#### 2.3.1.1. 创建QBoxLayout
+
+
+
+#### 2.1.2. 创建QBoxLayout
 
 QBoxLayout只有一个构造函数如下：
 
@@ -1787,7 +1803,7 @@ QVBoxLayout::QVBoxLayout() : QBoxLayout(TopToBottom){}
 
 
 
-#### 2.3.1.2. 成员函数
+#### 2.1.3 成员函数
 
 `QBoxLayout`的常用函数如下：
 
@@ -1810,6 +1826,10 @@ void setDirection(Direction); // 设置排列方向
 void setSpacing(int spacing) override; // 设置控件间距
 int spacing() const override; // 获取控件当前间距
 ```
+
+
+
+
 
 控件默认是均布在盒模型中的，没有设置该间距时，该值默认为`6`，但控件均布时的间距大于6就以均布的间距为准，当均布的间距
 
@@ -1881,7 +1901,13 @@ int stretch(int index) const; // 获取指定位置的弹簧系数
 
 
 
+## 3. 输入组件(Input Widgets)
 
+## 4. 显示组件(Display Widgets)
+
+## 5. 容器组件(Containers)
+
+## 6. 单元视图(Item Views)和单元部件(Item Widgets)
 
 
 
