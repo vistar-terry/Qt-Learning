@@ -1744,15 +1744,57 @@ QVBoxLayout：垂直布局，在垂直方向上排列控件，即：上下排列
 
 `QHBoxLayout`和`QVBoxLayout`都公有继承于`QBoxLayout`，没有自己的成员函数。
 
+
+
 #### 2.1.1 QBoxLayout布局规则
 
-QBoxLayout布局主要是控制控件在盒模型中的排列与尺寸
+QBoxLayout布局主要是控制控件在盒模型中的排列与尺寸，有如下规则：
 
-控件在盒模型中的尺寸，会在控件最小尺寸和最大尺寸之间变化，变化规则如下：
+**控件的sizePolicy：**
 
-宽度方向上，默认会填满盒模型，如上图。
+-   控件sizePolicy的优先级最高，其次才会考虑布局的规则。
+-   `QSizePolicy`是`Qt Widgets`模块下一个单独的类，没有父类也没有子类，只供其他类调用。
+-   `QSizePolicy`有两个枚举，`QSizePolicy::PolicyFlag`和`QSizePolicy::Policy`，用于表示控件的sizePolicy。
+-   `QSizePolicy::PolicyFlag`枚举如下：
 
-关于间距，横向排列，默认间距为`6`，
+|        Constant         | Value |                        Description                         |
+| :---------------------: | :---: | :--------------------------------------------------------: |
+|  QSizePolicy::GrowFlag  |   1   |        如有必要，控件大小可以超过系统推荐的最大尺寸        |
+| QSizePolicy::ExpandFlag |   2   | 在父布局允许的范围内，控件要尽可能的大，获得尽可能多的空间 |
+| QSizePolicy::ShrinkFlag |   4   |        如有必要，控件大小可以小于系统推荐的最小尺寸        |
+| QSizePolicy::IgnoreFlag |   8   |          忽略系统推荐尺寸，控件获得尽可能多的空间          |
+
+-   `QSizePolicy::Policy`枚举如下：
+
+|                           Constant                           |      Value      |                         Description                          |
+| :----------------------------------------------------------: | :-------------: | :----------------------------------------------------------: |
+|                      QSizePolicy::Fixed                      |        0        | 将控件默认尺寸设置为` QWidget::sizeHint()`系统推荐尺寸，不可拉伸与缩放 |
+|       QSizePolicy::Minimum<br>(QSizePolicy::GrowFlag)        |        1        | 控件最小尺寸设置为` QWidget::sizeHint()`系统推荐最小尺寸，最大尺寸不限制，可拉伸与缩放，但最小不能小于最小尺寸 |
+|      QSizePolicy::Maximum<br>(QSizePolicy::ShrinkFlag)       |        4        | 控件最大尺寸设置为` QWidget::sizeHint()`系统推荐最大尺寸，最小尺寸不限制，可拉伸与缩放，但最大不能大于最大尺寸 |
+|       QSizePolicy::Preferred<br>(GrowFlag\|ShrinkFlag)       |   5<br>(1\|4)   | 将控件默认尺寸设置为` QWidget::sizeHint()`系统推荐尺寸，可拉伸与缩放，可以超过系统推荐的最大最小尺寸 |
+|   QSizePolicy::MinimumExpanding<br>(GrowFlag\|ExpandFlag)    |   3<br>(1\|2)   | 控件要获得尽可能多的空间，最小不能小于` QWidget::sizeHint()`系统推荐的最小尺寸，最大尺寸不限制，可拉伸与缩放 |
+| QSizePolicy::Expanding<br>(GrowFlag\|ExpandFlag\|ShrinkFlag) | 7<br>(1\|2\|4)  |   控件要获得尽可能多的空间，可以超过系统推荐的最大最小尺寸   |
+|  QSizePolicy::Ignored<br>(GrowFlag\|ShrinkFlag\|IgnoreFlag)  | 13<br>(1\|4\|8) |           忽略系统推荐尺寸，控件获得尽可能多的空间           |
+
+**布局规则，控件尺寸：**
+
+-   基本没有规则，主要以控件的sizePolicy为准。
+
+-   如果布局中多个控件的sizePolicy不同，不同sizePolicy会产生空间竞争，他们的竞争等级如下，等级越高获取的空间越大：
+
+    `MinimumExpanding` = `Expanding` > `Preferred` = `Minimum` = `Ignored` > `Maximum` = `Fixed` 
+
+    其中，
+
+    -   由于`Ignored`忽略了系统推荐尺寸（没有强大后台了，哈哈），所以比他等级高的都有绝对竞争力，结果就是等级为`Ignored`的控件被挤没了，如下图。
+    -   由于 `Maximum` 和 `Fixed` 一个最大不超过系统推荐尺寸，一个最大尺寸被固定为系统推荐尺寸，所以两者都不去竞争多余空间，如下图。
+
+![2022-12-04-19-41-19](img/2022-12-04-19-41-19.png)
+
+**布局规则，控件间距：**
+
+-   如不设置控件间距，则默认控件间距为`6`，控件自动调整宽度在水平方向填满布局盒模型，如果设置的宽度不足以填满布局盒模型，会自动调整间距以填满布局盒模型，如下图。
+-   垂直布局，
 
 
 
