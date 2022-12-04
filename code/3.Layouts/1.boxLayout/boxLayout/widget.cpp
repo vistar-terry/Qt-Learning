@@ -7,8 +7,12 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->verticalLayout->addSpacing(200);
-    ui->horizontalLayout->addSpacing(100);
+    qDebug() << ui->verticalLayout->spacing();
+//    ui->verticalLayout->addSpacing(200);
+//    ui->horizontalLayout->addSpacing(100);
+//    ui->horizontalLayout->insertSpacing(0, 100);
+    qDebug() << ui->horizontalLayout->spacing();
+//    ui->horizontalLayout->setSpacing(20);
 }
 
 Widget::~Widget()
