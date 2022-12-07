@@ -1782,21 +1782,28 @@ QBoxLayout布局主要是控制控件在盒模型中的排列与尺寸，有如�
 
 -   如果布局中多个控件的sizePolicy不同，不同sizePolicy会产生空间竞争，他们的竞争等级如下，等级越高获取的空间越大：
 
-    `MinimumExpanding` = `Expanding` > `Preferred` = `Minimum` = `Ignored` > `Maximum` = `Fixed` 
+    `MinimumExpanding` = `Expanding` > `Preferred` = `Minimum` = `Ignored` > `Maximum` = `Fixed`
 
-    其中，
+- 如下图：
 
-    -   由于`Ignored`忽略了系统推荐尺寸（没有强大后台了，哈哈），所以比他等级高的都有绝对竞争力，结果就是等级为`Ignored`的控件被挤没了，如下图。
-    -   由于 `Maximum` 和 `Fixed` 一个最大不超过系统推荐尺寸，一个最大尺寸被固定为系统推荐尺寸，所以两者都不去竞争多余空间，如下图。
+    -   布局`(A)`，由于`Ignored`忽略了系统推荐尺寸（没有强大后台了，哈哈），所以比他等级高的都有绝对竞争力，结果就是等级为`Ignored`的控件被挤没了，如下图。
+    -   布局`(B)`，由于 `Maximum` 和 `Fixed` 一个最大不超过系统推荐尺寸，一个最大尺寸被固定为系统推荐尺寸，所以两者都不去竞争多余空间，如下图。
+    -   布局`(C)`，`PushButton1`和`PushButton2`的`Vertical Policy`设置为`Minimum`，所以可以调整高度以填满布局，`PushButton3`的 `Vertical Policy`为`Fixed`，无法调整高度。
+    -   布局`(C)`，`PushButton1`和`PushButton2`的`Horizontal Policy`设置为`Minimum`，`PushButton3`的 `Horizontal Policy`为`Fixed`，所以`PushButton3`的宽度为固定值，布局水平方向的剩余空间由`PushButton1`和`PushButton2`调整宽度来填充。
 
 ![2022-12-04-19-41-19](img/2022-12-04-19-41-19.png)
 
 **布局规则，控件间距：**
 
--   如不设置控件间距，则默认控件间距为`6`，控件自动调整宽度在水平方向填满布局盒模型，如果设置的宽度不足以填满布局盒模型，会自动调整间距以填满布局盒模型，如下图。
--   垂直布局，
+-   规则一：控件sizePolicy的设置，如布局中有可以自由调整尺寸的控件，不设置控件间距，则默认控件间距为`6`，控件自动调整尺寸以填满布局盒模型。
+-   规则二：控件sizePolicy的设置，如布局中没有可以自由调整尺寸的控件，则控件间距将被拉伸，以满足sizePolicy，但此时控件间距的值仍为默认值或所设置的值。
+-   如下图：
+    -   布局`(A)`，`PushButton1`和`PushButton4`的`Vertical Policy`设置为`Fixed`，不能自由调整高度，但`PushButton2`和`PushButton3`的`Vertical Policy`设置为`Minimum`，可以自由调整高度，根据规则一，控件间距为默认值`6`。
+    -   布局`(B)`，`PushButton1`和`PushButton3`的`Horizontal Policy`都为`Minimum`，`PushButton2`的`Horizontal Policy`都为`Fixed`，根据规则一，控件间距为默认值`6`。
+    -   布局`(C)`，`PushButton1`和`PushButton2`的`Horizontal Policy`都为`Fixed`，都不能自由调整宽度，根据规则二，控件间距被拉伸，但此时控件间距的值仍为默认值`6`。
 
 
+![2022-12-05-22-54-23](img/2022-12-05-22-54-23.png)
 
 
 
