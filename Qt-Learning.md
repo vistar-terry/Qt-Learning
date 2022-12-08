@@ -1872,17 +1872,13 @@ void setDirection(Direction); // 设置排列方向
 ##### 2. 控件间距
 
 ```c++
-void setSpacing(int spacing) override; // 设置控件间距
+void setSpacing(int spacing) override; // 设置控件间距大小
 int spacing() const override; // 获取控件当前间距
 ```
 
 
 
-
-
-控件默认是均布在盒模型中的，没有设置该间距时，该值默认为`6`，但控件均布时的间距大于6就以均布的间距为准，当均布的间距
-
-##### 3. 添加不可拉伸空间
+##### 3. 添加间隙
 
 ```c++
 void addSpacing(int size); // 在控件队列最后面添加一个固定大小的间隙
@@ -1900,9 +1896,15 @@ void setStretch(int index, int stretch); // 设置指定位置的弹簧系数
 int stretch(int index) const; // 获取指定位置的弹簧系数
 ```
 
+其中，index需要注意：
+
+-   index从0开始；
+-   弹簧和控件都占用一个index；
+-   插入后弹簧后，插入位置后面的index都会加 1，如下图
 
 
 
+![2022-12-08-23-21-06](img/2022-12-08-23-21-06.png)
 
 
 
