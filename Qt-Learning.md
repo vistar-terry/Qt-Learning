@@ -1887,13 +1887,14 @@ void insertSpacing(int index, int size); // 在指定位置插入一个固定大
 
 
 
-##### 4. 可拉伸空间（弹簧）
+##### 4. 可拉伸控件（弹簧）
 
 ```c++
 void addStretch(int stretch = 0); // 在控件队列最后面添加一个弹簧
 void insertStretch(int index, int stretch = 0); // 在指定位置插入一个弹簧
-void setStretch(int index, int stretch); // 设置指定位置的弹簧系数
-int stretch(int index) const; // 获取指定位置的弹簧系数
+// 一下函数不仅用于弹簧，也可用于其他控件
+void setStretch(int index, int stretch); // 设置指定位置控件的拉伸系数
+int stretch(int index) const; // 获取指定位置的拉伸系数
 ```
 
 其中，index需要注意：
@@ -1913,6 +1914,33 @@ int stretch(int index) const; // 获取指定位置的弹簧系数
 ![2022-12-08-23-21-06](img/2022-12-08-23-21-06.png)
 
 
+
+对于拉伸系数`stretch`，即在`sizePolicy`的前提下，可拉伸控件按照什么样的比例分配空间，
+
+- 如果`stretch`为`0`，该控件只保留自己最小的空间，不参与空间争夺
+- 如果`sizePolicy`为`Fixed`，该控件保持`Fixed`大小，也不参与空间争夺
+- 如果控件达到了`sizePolicy`或其他限制的大小，仍无法满足`stretch`所设置的比例，则控件以限制大小为准，不再按`stretch`所设置比例拉伸。
+- 如下图，
+    - 布局`(A)`，布局空间可以满足控件比例`1:2:1`，`PushButton1`、`PushButton2`和`PushButton3`的大小分别为`98:197:98`。
+    - 布局`(B)`，布局空间不足以满足控件比例`1:2:3`，`PushButton1`和`PushButton2`的比例明显不满足`1:2`。
+    - 如果布局空间不足以满足控件比例，这里还有个规律，就是**先剥夺占比小的控件的空间**，优先保证占比大的控件的比例。比如布局`(B)`中，先剥夺`PushButton1`的空间，不管他是不是满足控件比例，他们的大小分别为`97:118:178`，可以发现`PushButton2`和`PushButton3`仍然满足`2:3`的比例。
+
+![qlayoutbox-stretch](img/qlayoutbox-stretch.png)
+
+
+
+##### 5. 添加控件
+
+```c++
+// 在控件队列最后面添加一个新控件
+// 其中可以指定控件的拉伸系数和对齐方式
+void addWidget(QWidget *, int stretch = 0, Qt::Alignment alignment = Qt::Alignment());
+// 在指定位置插入一个控件
+void insertWidget(int index, QWidget *widget, int stretch = 0, 
+                  Qt::Alignment alignment = Qt::Alignment());
+```
+
+其中，
 
 
 
@@ -2123,7 +2151,7 @@ void btnClicked(int btnId)
 
 
 
-
+## 3.2 QFlags![20221218220933](img/20221218220933.png)
 
 
 
