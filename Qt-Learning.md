@@ -1940,15 +1940,13 @@ void insertWidget(int index, QWidget *widget, int stretch = 0,
                   Qt::Alignment alignment = Qt::Alignment());
 ```
 
-其中，
 
 
 
 
+### 2.2 QGridLayout
 
-
-
-
+与`QBoxLayout`只能在一个方向布局不同，`QGridLayout`可以在网格中布局（垂直和水平两个方向）。
 
 
 
