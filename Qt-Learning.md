@@ -1742,6 +1742,8 @@ QVBoxLayout：垂直布局，在垂直方向上排列控件，即：上下排列
 
 ![20221118223526](img/20221118223526.png)
 
+这里仅以按钮为例，布局也可用于其他控件。
+
 `QHBoxLayout`和`QVBoxLayout`都公有继承于`QBoxLayout`，没有自己的成员函数。
 
 
@@ -1850,6 +1852,21 @@ QVBoxLayout::QVBoxLayout() : QBoxLayout(TopToBottom){}
 
 他们构造的初始方向分别为：水平方向从左到右（QHBoxLayout）与垂直方向从上到下（QVBoxLayout）。
 
+由于布局是默认铺满父级`Widget`的，为了方便控制布局的整体大小，一般不是将最外层的`Widget`窗口传给`QHBoxLayout`或`QVBoxLayout`，而是再新建一个`Widget`，如下，以`QVBoxLayout`为例：
+
+```c++
+// 创建指针
+QWidget *verticalLayoutWidget;
+QVBoxLayout *verticalLayout;
+
+// 创建新Widget
+verticalLayoutWidget = new QWidget(Widget);
+// 为新Widget设置大小
+verticalLayoutWidget->setGeometry(QRect(70, 33, 591, 271));
+// 实例化布局对象，并将新Widget传入
+verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+```
+
 
 
 #### 2.1.3 成员函数
@@ -1948,17 +1965,40 @@ void insertWidget(int index, QWidget *widget, int stretch = 0,
 
 与`QBoxLayout`只能在一个方向布局不同，`QGridLayout`可以在网格中布局（垂直和水平两个方向）。
 
+![2023-02-07-23-23-40](img/2023-02-07-23-23-40.png)
+
+这里仅以按钮为例，布局也可用于其他控件。
 
 
 
+#### 2.2.1 创建QGridLayout
+
+`QGridLayout`只有一个构造函数
+
+```c+++
+explicit QGridLayout(QWidget *parent = nullptr);
+```
+
+可以通过拖动控件创建，也可以使用代码直接创建
+
+由于布局是默认铺满父级`Widget`的，为了方便控制布局的整体大小，一般不是将最外层的`Widget`窗口传给`QGridLayout`，而是再新建一个`Widget`，如下：
+
+```c++
+// 创建指针
+QWidget *gridLayoutWidget;
+QGridLayout *gridLayout;
+
+// 创建新Widget
+gridLayoutWidget = new QWidget(Widget);
+// 为新Widget设置大小
+gridLayoutWidget->setGeometry(QRect(149, 80, 321, 191));
+// 实例化布局对象，并将新Widget传入
+gridLayout = new QGridLayout(gridLayoutWidget);
+```
 
 
 
-
-
-
-
-
+#### 2.2.3 成员函数
 
 
 
