@@ -1971,7 +1971,13 @@ void insertWidget(int index, QWidget *widget, int stretch = 0,
 
 
 
-#### 2.2.1 创建QGridLayout
+#### 2.2.1 QGridLayout布局规则
+
+与`QBoxLayout`类似，详见 [2.1.1](# 2.1.1 QBoxLayout布局规则)
+
+
+
+#### 2.2.2 创建QGridLayout
 
 `QGridLayout`只有一个构造函数
 
@@ -2000,15 +2006,51 @@ gridLayout = new QGridLayout(gridLayoutWidget);
 
 #### 2.2.3 成员函数
 
+##### 1. 控件间距
+
+和`QBoxLayout`类似，`QGridLayout`也有间距的概念，不同是`QGridLayout`可以设置两个方向的间距，如下：
+
+```c++
+void setHorizontalSpacing(int spacing); // 设置水平方向的间距
+int horizontalSpacing() const; // 获取水平方向的间距
+void setVerticalSpacing(int spacing); // 设置垂直方向的间距
+int verticalSpacing() const; // 获取处置方向的间距
+void setSpacing(int spacing) override; // 设置两个方向的间距
+int spacing() const override; // 获取两个方向的间距
+```
 
 
 
+##### 2. 可拉伸控件（弹簧）
+
+同样和`QBoxLayout`类似，参考 [可拉伸控件](# 4. 可拉伸控件（弹簧）) ，相关函数如下：
+
+```c++
+void setRowStretch(int row, int stretch); // 设置指定行的弹簧系数
+void setColumnStretch(int column, int stretch); // 设置指定列的弹簧系数
+int rowStretch(int row) const; // 获取指定行的弹簧系数
+int columnStretch(int column) const; // 获取指定列的弹簧系数
+```
 
 
 
+##### 3. 最小行高/列宽
+
+```c++
+void setRowMinimumHeight(int row, int minSize); // 设置最小行高
+void setColumnMinimumWidth(int column, int minSize); // 设置最小列宽
+int rowMinimumHeight(int row) const; // 获取最小行高
+int columnMinimumWidth(int column) const; // 获取最小列宽
+```
 
 
 
+##### 4. 行数和列数
+
+```c++
+int columnCount() const; // 获取列数
+int rowCount() const; // 获取行数
+```
 
 
 
