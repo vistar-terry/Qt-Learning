@@ -2054,7 +2054,59 @@ int rowCount() const; // 获取行数
 
 
 
+##### 5. 锁定纵横比
 
+根据宽度计算高度
+
+```c++
+bool hasHeightForWidth() const override; 
+int heightForWidth(int) const override;
+int minimumHeightForWidth(int) const override;
+```
+
+这三个函数默认是没有实际功能的，如要使用，需要自己重载实现，他们的源码如下：
+
+```c++
+bool QLayoutItem::hasHeightForWidth() const
+{
+    return false;
+}
+
+int QLayoutItem::heightForWidth(int /* w */) const
+{
+    return -1;
+}
+
+int QLayoutItem::minimumHeightForWidth(int w) const
+{
+    return heightForWidth(w);
+}
+```
+
+官方给出了重载的例子，如下：
+
+```c++
+ int MyLayout::heightForWidth(int w) const
+ {
+     if (cache_dirty || cached_width != w) {
+         MyLayout *that = const_cast<MyLayout *>(this);
+         int h = calculateHeightForWidth(w);
+         that->cached_hfw = h;
+         return h;
+     }
+     return cached_hfw;
+ }
+```
+
+
+
+##### 6. 添加控件
+
+```c++
+inline void addWidget(QWidget *w) { QLayout::addWidget(w); }
+void addWidget(QWidget *, int row, int column, Qt::Alignment = Qt::Alignment());
+void addWidget(QWidget *, int row, int column, int rowSpan, int columnSpan, Qt::Alignment = Qt::Alignment());
+```
 
 
 
