@@ -1742,6 +1742,8 @@ QVBoxLayout：垂直布局，在垂直方向上排列控件，即：上下排列
 
 ![20221118223526](img/20221118223526.png)
 
+这里仅以按钮为例，布局也可用于其他控件。
+
 `QHBoxLayout`和`QVBoxLayout`都公有继承于`QBoxLayout`，没有自己的成员函数。
 
 
@@ -1850,6 +1852,21 @@ QVBoxLayout::QVBoxLayout() : QBoxLayout(TopToBottom){}
 
 他们构造的初始方向分别为：水平方向从左到右（QHBoxLayout）与垂直方向从上到下（QVBoxLayout）。
 
+由于布局是默认铺满父级`Widget`的，为了方便控制布局的整体大小，一般不是将最外层的`Widget`窗口传给`QHBoxLayout`或`QVBoxLayout`，而是再新建一个`Widget`，如下，以`QVBoxLayout`为例：
+
+```c++
+// 创建指针
+QWidget *verticalLayoutWidget;
+QVBoxLayout *verticalLayout;
+
+// 创建新Widget
+verticalLayoutWidget = new QWidget(Widget);
+// 为新Widget设置大小
+verticalLayoutWidget->setGeometry(QRect(70, 33, 591, 271));
+// 实例化布局对象，并将新Widget传入
+verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+```
+
 
 
 #### 2.1.3 成员函数
@@ -1948,27 +1965,92 @@ void insertWidget(int index, QWidget *widget, int stretch = 0,
 
 与`QBoxLayout`只能在一个方向布局不同，`QGridLayout`可以在网格中布局（垂直和水平两个方向）。
 
+![2023-02-07-23-23-40](img/2023-02-07-23-23-40.png)
+
+这里仅以按钮为例，布局也可用于其他控件。
 
 
 
+#### 2.2.1 QGridLayout布局规则
+
+与`QBoxLayout`类似，详见 [2.1.1](# 2.1.1 QBoxLayout布局规则)
 
 
 
+#### 2.2.2 创建QGridLayout
+
+`QGridLayout`只有一个构造函数
+
+```c+++
+explicit QGridLayout(QWidget *parent = nullptr);
+```
+
+可以通过拖动控件创建，也可以使用代码直接创建
+
+由于布局是默认铺满父级`Widget`的，为了方便控制布局的整体大小，一般不是将最外层的`Widget`窗口传给`QGridLayout`，而是再新建一个`Widget`，如下：
+
+```c++
+// 创建指针
+QWidget *gridLayoutWidget;
+QGridLayout *gridLayout;
+
+// 创建新Widget
+gridLayoutWidget = new QWidget(Widget);
+// 为新Widget设置大小
+gridLayoutWidget->setGeometry(QRect(149, 80, 321, 191));
+// 实例化布局对象，并将新Widget传入
+gridLayout = new QGridLayout(gridLayoutWidget);
+```
 
 
 
+#### 2.2.3 成员函数
+
+##### 1. 控件间距
+
+和`QBoxLayout`类似，`QGridLayout`也有间距的概念，不同是`QGridLayout`可以设置两个方向的间距，如下：
+
+```c++
+void setHorizontalSpacing(int spacing); // 设置水平方向的间距
+int horizontalSpacing() const; // 获取水平方向的间距
+void setVerticalSpacing(int spacing); // 设置垂直方向的间距
+int verticalSpacing() const; // 获取处置方向的间距
+void setSpacing(int spacing) override; // 设置两个方向的间距
+int spacing() const override; // 获取两个方向的间距
+```
 
 
 
+##### 2. 可拉伸控件（弹簧）
+
+同样和`QBoxLayout`类似，参考 [可拉伸控件](# 4. 可拉伸控件（弹簧）) ，相关函数如下：
+
+```c++
+void setRowStretch(int row, int stretch); // 设置指定行的弹簧系数
+void setColumnStretch(int column, int stretch); // 设置指定列的弹簧系数
+int rowStretch(int row) const; // 获取指定行的弹簧系数
+int columnStretch(int column) const; // 获取指定列的弹簧系数
+```
 
 
 
+##### 3. 最小行高/列宽
+
+```c++
+void setRowMinimumHeight(int row, int minSize); // 设置最小行高
+void setColumnMinimumWidth(int column, int minSize); // 设置最小列宽
+int rowMinimumHeight(int row) const; // 获取最小行高
+int columnMinimumWidth(int column) const; // 获取最小列宽
+```
 
 
 
+##### 4. 行数和列数
 
-
-
+```c++
+int columnCount() const; // 获取列数
+int rowCount() const; // 获取行数
+```
 
 
 
