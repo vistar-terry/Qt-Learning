@@ -2103,10 +2103,109 @@ int QLayoutItem::minimumHeightForWidth(int w) const
 ##### 6. 添加控件
 
 ```c++
+// 在控件队列最后面添加一个新控件
 inline void addWidget(QWidget *w) { QLayout::addWidget(w); }
+// 在布局的指定位置添加一个新控件
 void addWidget(QWidget *, int row, int column, Qt::Alignment = Qt::Alignment());
+// 在布局的指定位置添加一个新控件，并可指定跨行/列
 void addWidget(QWidget *, int row, int column, int rowSpan, int columnSpan, Qt::Alignment = Qt::Alignment());
 ```
+
+其中，`inline void addWidget(QWidget *w) { QLayout::addWidget(w); }` 如果队列中间有空的位置，也会忽略过，只会在队列最后添加新控件，如下：
+
+![2023-02-11-23-39-29](img/2023-02-11-23-39-29.png)
+
+第三行第二列空出一个位置，添加控件后，跳过了该位置，如下：
+
+![2023-02-11-23-43-47](img/2023-02-11-23-43-47.png)
+
+如果想一个控件占多行/列，可以使用函数`void addWidget(QWidget *, int row, int column, int rowSpan, int columnSpan, Qt::Alignment = Qt::Alignment());` ，其中，参数`row`和`column`用以指定控件的位置，从`0`开始计数，`rowSpan`和`columnSpan` 指定从当前位置向右或向下所占的行和列数，如下：
+
+原始布局，为了方便显示控件所占空间，将控件的`sizePolicy`设置为`Expanding`，使其充满布局单元格（关于`sizePolicy`详见[QGridLayout布局规则](#2.2.1 QGridLayout布局规则)）：
+
+![2023-02-12-00-24-15](img/2023-02-12-00-24-15.png)
+
+示例1：
+
+在`(2, 0)`的位置添加行控件，所占空间为1行1列，如下：
+
+```c++
+ui->gridLayout->addWidget(btn, 2, 0, 1, 1);
+```
+
+![2023-02-12-00-31-28](img/2023-02-12-00-31-28.png)
+
+示例2：
+
+在`(2, 0)`的位置添加行控件，所占空间为2行1列，如下：
+
+```c++
+ui->gridLayout->addWidget(btn, 2, 0, 2, 1);
+```
+
+![2023-02-12-00-38-43](img/2023-02-12-00-38-43.png)
+
+示例3：
+
+如果`rowSpan`和`columnSpan` 为`-1`，则控件所占控件一直延申到最右和最底部边界，如下：
+
+![2023-02-12-00-42-26](img/2023-02-12-00-42-26.png)
+
+
+
+##### 7. 添加布局
+
+```c++
+void addLayout(QLayout *, int row, int column, Qt::Alignment = Qt::Alignment());
+void addLayout(QLayout *, int row, int column, int rowSpan, int columnSpan, Qt::Alignment = Qt::Alignment());
+```
+
+布局中还能嵌套布局，函数入参与使用方法和`addWidget`类似，这里不再赘述。
+
+
+
+##### 8. 设置栅格布局原点位置
+
+```c++
+void setOriginCorner(Qt::Corner);
+Qt::Corner originCorner() const;
+```
+
+和`QBoxLayout`的`Direction`类似，设置布局中控件的排列方向。
+
+其中，`Qt::Corner`是一个枚举如下：
+
+```c++
+enum Corner {
+    TopLeftCorner = 0x00000,
+    TopRightCorner = 0x00001,
+    BottomLeftCorner = 0x00002,
+    BottomRightCorner = 0x00003
+};
+```
+
+|         枚举          |   值    |     描述     |
+| :-------------------: | :-----: | :----------: |
+|   Qt::TopLeftCorner   | 0x00000 | 矩形的左上角 |
+|  Qt::TopRightCorner   | 0x00001 | 矩形的右上角 |
+| Qt::BottomLeftCorner  | 0x00002 | 矩形的左下角 |
+| Qt::BottomRightCorner | 0x00003 | 矩形的右上角 |
+
+布局原点默认为`Qt::TopLeftCorner`左上角，如下图：
+
+![2023-02-12-01-09-39](img/2023-02-12-01-09-39.png)
+
+右上角如下图，其他方向同理：
+
+![2023-02-12-01-09-39](img/2023-02-12-01-08-22.png)
+
+
+
+
+
+
+
+
 
 
 
