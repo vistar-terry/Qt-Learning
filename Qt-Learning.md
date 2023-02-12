@@ -2201,9 +2201,62 @@ enum Corner {
 
 
 
+##### 9. 操作布局项
+
+Qt提供了一个布局项的抽象类`QLayoutItem `，提供了对布局中单元格的操作。
+
+这里仅介绍`QGridLayout`直接涉及到的几个方法，关于`QLayoutItem `更详细的描述见
+
+**访问布局项：**
+
+```c++
+QLayoutItem *itemAt(int index) const override; 
+QLayoutItem *itemAtPosition(int row, int column) const;
+```
+
+可以通过索引访问，也可以通过所在行列位置访问。
+
+默认计数都是从0开始，需要注意的是，`index`的方式是从远离原点的位置开始计数，行列定位的则是从靠近原点的位置开始计数，如下：
+
+`index`方式：（测试发现的，不知道为什么要这么设计，和习惯用法不同，如果你知道原因欢迎评论区留言）
+
+![2023-02-12-15-27-41](img/2023-02-12-15-27-41.png)
+
+行列方式：
+
+![2023-02-12-15-26-29](img/2023-02-12-15-26-29.png)
 
 
 
+**删除布局项：**
+
+```c++
+QLayoutItem *takeAt(int index) override;
+```
+
+这个只能通过索引定位，索引计数方法同上。
+
+![2023-02-12-15-42-52](img/2023-02-12-15-42-52.png)
+
+
+
+**通过索引获取布局项位置信息：**
+
+```c++
+void getItemPosition(int idx, int *row, int *column, int *rowSpan, int *columnSpan) const;
+```
+
+![2023-02-12-16-23-06](img/2023-02-12-16-23-06.png)
+
+
+
+**获取布局项数量：**
+
+```c++
+int count() const override;
+```
+
+![2023-02-12-15-51-36](img/2023-02-12-15-51-36.png)
 
 
 
