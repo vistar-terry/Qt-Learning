@@ -2260,6 +2260,49 @@ int count() const override;
 
 
 
+### 2.3 QFormLayout
+
+`QFormLayout` 以两列形式布局其子项。左列由标签组成，右列由小部件（行编辑器、数字调整框等）组成。
+
+如下图，左侧为标签，右侧为行编辑框或下拉列表，就可以用`QFormLayout`实现。
+
+![2023-02-17-22-00-31](img/2023-02-17-22-00-31.png)
+
+
+
+#### 2.3.1 创建QFormLayout
+
+和 `QGridLayout`一样，`QFormLayout`也只有一个构造函数
+
+```c+++
+explicit QFormLayout(QWidget *parent = nullptr);
+```
+
+可以通过拖动控件创建，也可以使用代码直接创建
+
+由于布局是默认铺满父级`Widget`的，为了方便控制布局的整体大小，一般不是将最外层的`Widget`窗口传给`QFormLayout`，而是再新建一个`Widget`，如下：
+
+```c++
+// 创建指针
+QWidget *formLayoutWidget;
+QFormLayout *formLayout;
+
+// 创建新Widget
+formLayoutWidget = new QWidget(Widget);
+// 为新Widget设置大小
+formLayoutWidget->setGeometry(QRect(60, 60, 531, 291));
+// 实例化布局对象，并将新Widget传入
+formLayout = new QFormLayout(formLayoutWidget);
+```
+
+
+
+#### 2.3.2 成员函数
+
+
+
+
+
 
 
 
