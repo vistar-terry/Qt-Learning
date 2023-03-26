@@ -2262,9 +2262,9 @@ int count() const override;
 
 ### 2.3 QFormLayout
 
-`QFormLayout` 以两列形式布局其子项。左列由标签组成，右列由小部件（行编辑器、数字调整框等）组成。
+表单布局 `QFormLayout` 以两列形式布局其子项。左列由标签组成，右列由小部件（行编辑器、数字调整框等）组成。
 
-如下图，左侧为标签，右侧为行编辑框或下拉列表，就可以用`QFormLayout`实现。
+如下图，有两列布局，左侧为标签，右侧为行编辑框或下拉列表，就可以用`QFormLayout`实现。
 
 ![2023-02-17-22-00-31](img/2023-02-17-22-00-31.png)
 
@@ -2272,13 +2272,13 @@ int count() const override;
 
 #### 2.3.1 创建QFormLayout
 
-和 `QGridLayout`一样，`QFormLayout`也只有一个构造函数
+和 `QGridLayout`一样，`QFormLayout`也只有一个构造函数：
 
 ```c+++
 explicit QFormLayout(QWidget *parent = nullptr);
 ```
 
-可以通过拖动控件创建，也可以使用代码直接创建
+可以通过拖动控件创建，也可以使用代码直接创建。
 
 由于布局是默认铺满父级`Widget`的，为了方便控制布局的整体大小，一般不是将最外层的`Widget`窗口传给`QFormLayout`，而是再新建一个`Widget`，如下：
 
@@ -2299,15 +2299,51 @@ formLayout = new QFormLayout(formLayoutWidget);
 
 #### 2.3.2 成员函数
 
+##### 1. 对行操作
 
+表单布局以行为单位作为一个成员，一行即表单的一个成员。
 
+**添加行：**
 
+```c++
+void addRow(QWidget *label, QWidget *field); // 使用指定的标签和小部件在表单末尾添加一行
+void addRow(QWidget *label, QLayout *field);
+void addRow(const QString &labelText, QWidget *field);
+void addRow(const QString &labelText, QLayout *field);
+void addRow(QWidget *widget); // 直接在表单末尾添加小部件，此时小部件占两列
+void addRow(QLayout *layout);
+```
 
+**插入行：**
 
+参数同`addRow`，不同的是可以通过`row`指定新行的位置。
 
+```c++
+void insertRow(int row, QWidget *label, QWidget *field);
+void insertRow(int row, QWidget *label, QLayout *field);
+void insertRow(int row, const QString &labelText, QWidget *field);
+void insertRow(int row, const QString &labelText, QLayout *field);
+void insertRow(int row, QWidget *widget);
+void insertRow(int row, QLayout *layout);
+```
 
+**删除行：**
 
+删除行的同时删除该行所有小部件及嵌套布局，所有后续行都向上移动一行。
 
+```c++
+void removeRow(int row); // 指定行索引
+void removeRow(QWidget *widget); // 指定行小部件对象
+void removeRow(QLayout *layout); // 指定行布局对象
+```
+
+只从布局中删除行，不删除小部件，其余同`removeRow`
+
+```c++
+TakeRowResult takeRow(int row);
+TakeRowResult takeRow(QWidget *widget);
+TakeRowResult takeRow(QLayout *layout);
+```
 
 
 
