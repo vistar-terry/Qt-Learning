@@ -2301,7 +2301,7 @@ formLayout = new QFormLayout(formLayoutWidget);
 
 ##### 1. 对行操作
 
-表单布局以行为单位作为一个成员，一行即表单的一个成员。
+对于表单布局，可以以行为单位作为一个成员，并对其进行操作。
 
 **添加行：**
 
@@ -2344,6 +2344,51 @@ TakeRowResult takeRow(int row);
 TakeRowResult takeRow(QWidget *widget);
 TakeRowResult takeRow(QLayout *layout);
 ```
+
+
+
+##### 2. 操作布局项
+
+当然也可以操作每一个子项，如下：
+
+```c++
+void setItem(int row, ItemRole role, QLayoutItem *item);
+void setWidget(int row, ItemRole role, QWidget *widget);
+void setLayout(int row, ItemRole role, QLayout *layout);
+
+QLayoutItem *itemAt(int row, ItemRole role) const;
+void getItemPosition(int index, int *rowPtr, ItemRole *rolePtr) const;
+void getWidgetPosition(QWidget *widget, int *rowPtr, ItemRole *rolePtr) const;
+void getLayoutPosition(QLayout *layout, int *rowPtr, ItemRole *rolePtr) const;
+QWidget *labelForField(QWidget *field) const;
+QWidget *labelForField(QLayout *field) const;
+
+// reimplemented from QLayout
+void addItem(QLayoutItem *item) override;
+QLayoutItem *itemAt(int index) const override;
+QLayoutItem *takeAt(int index) override;
+```
+
+
+
+##### 3. 间距
+
+```c++
+void setHorizontalSpacing(int spacing);	// 设置水平间距
+int horizontalSpacing() const;			// 获取水平间距
+
+void setVerticalSpacing(int spacing);   // 设置垂直间距
+int verticalSpacing() const;     		// 获取垂直间距
+
+void setSpacing(int) override;  // 同时设置水平和垂直间距
+int spacing() const override;	// 同时获取水平和垂直间距（水平和垂直间距不相等，则返回-1）
+```
+
+
+
+
+
+
 
 
 
