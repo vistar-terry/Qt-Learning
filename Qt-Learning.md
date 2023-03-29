@@ -2303,7 +2303,7 @@ formLayout = new QFormLayout(formLayoutWidget);
 
 对于表单布局，可以以行为单位作为一个成员，并对其进行操作。
 
-**添加行：**
+**a. 添加行：**
 
 ```c++
 void addRow(QWidget *label, QWidget *field); // 使用指定的标签和小部件在表单末尾添加一行
@@ -2314,7 +2314,7 @@ void addRow(QWidget *widget); // 直接在表单末尾添加小部件，此时�
 void addRow(QLayout *layout);
 ```
 
-**插入行：**
+**b. 插入行：**
 
 参数同`addRow`，不同的是可以通过`row`指定新行的位置。
 
@@ -2327,7 +2327,7 @@ void insertRow(int row, QWidget *widget);
 void insertRow(int row, QLayout *layout);
 ```
 
-**删除行：**
+**c. 删除行：**
 
 删除行的同时删除该行所有小部件及嵌套布局，所有后续行都向上移动一行。
 
@@ -2351,21 +2351,76 @@ TakeRowResult takeRow(QLayout *layout);
 
 当然也可以操作每一个子项，如下：
 
+**a. 将给定行的布局项设置为`item`、`widget`、`layout`**
+
 ```c++
 void setItem(int row, ItemRole role, QLayoutItem *item);
 void setWidget(int row, ItemRole role, QWidget *widget);
 void setLayout(int row, ItemRole role, QLayout *layout);
+```
 
-QLayoutItem *itemAt(int row, ItemRole role) const;
+请勿使用`setItem()`添加子布局或子小部件项目，请使用 `setLayout()` 或 `setWidget()`。
+
+其中布局项通过`role`指定，`ItemRole`是一个枚举：
+
+```c++
+enum ItemRole {
+    LabelRole = 0,
+    FieldRole = 1,
+    SpanningRole = 2
+};
+```
+
+描述如下：
+
+|           常量            |  值  |     描述     |
+| :-----------------------: | :--: | :----------: |
+|  QFormLayout::LabelRole   |  0   | 左列的标签项 |
+|  QFormLayout::FieldRole   |  1   | 右列的小部件 |
+| QFormLayout::SpanningRole |  2   | 横跨左右两列 |
+
+示例如下：
+
+![20230329214531413](img/20230329214531413.png)
+
+
+
+**b. 获取`item`、`widget`、`layout`的位置**
+
+```c++
 void getItemPosition(int index, int *rowPtr, ItemRole *rolePtr) const;
 void getWidgetPosition(QWidget *widget, int *rowPtr, ItemRole *rolePtr) const;
 void getLayoutPosition(QLayout *layout, int *rowPtr, ItemRole *rolePtr) const;
+```
+
+通过给定的`index`、`widget`、`layout`获取项所在的行（\*rowPtr）和列（\*rolePtr），如果给定的项不存在，则`*rowPtr`为`-1`，`*rolePtr`保持原来的值不变，其中`index`是布局项在队列中的索引（从0开始）。
+
+
+
+**c. 获取右列小部件对应的label对象**
+
+```c++
 QWidget *labelForField(QWidget *field) const;
 QWidget *labelForField(QLayout *field) const;
+```
 
+
+
+**d. 通过索引与位置访问布局项**
+
+```c++
+QLayoutItem *itemAt(int row, ItemRole role) const;
+// reimplemented from QLayout
+QLayoutItem *itemAt(int index) const override;
+```
+
+
+
+**e. 添加/删除布局项**
+
+```c++
 // reimplemented from QLayout
 void addItem(QLayoutItem *item) override;
-QLayoutItem *itemAt(int index) const override;
 QLayoutItem *takeAt(int index) override;
 ```
 
@@ -2381,10 +2436,66 @@ void setVerticalSpacing(int spacing);   // 设置垂直间距
 int verticalSpacing() const;     		// 获取垂直间距
 
 void setSpacing(int) override;  // 同时设置水平和垂直间距
-int spacing() const override;	// 同时获取水平和垂直间距（水平和垂直间距不相等，则返回-1）
+int spacing() const override;	// 同时获取水平和垂直间距（若水平和垂直间距不相等，则返回-1）
 ```
 
 
+
+##### 4. 设置布局规则
+
+```c++
+void setFieldGrowthPolicy(FieldGrowthPolicy policy);
+FieldGrowthPolicy fieldGrowthPolicy() const;
+void setRowWrapPolicy(RowWrapPolicy policy);
+RowWrapPolicy rowWrapPolicy() const;
+```
+
+其中`FieldGrowthPolicy`定义右列小部件的布局规则，枚举如下：
+
+```c++
+enum FieldGrowthPolicy {
+    FieldsStayAtSizeHint,
+    ExpandingFieldsGrow,
+    AllNonFixedFieldsGrow
+};
+```
+
+描述如下：
+
+|                常量                |  值  |                             描述                             |
+| :--------------------------------: | :--: | :----------------------------------------------------------: |
+| QFormLayout::FieldsStayAtSizeHint  |  0   |  大小永远不会超出其有效大小提示（QWidgetItem::sizeHint()）   |
+|  QFormLayout::ExpandingFieldsGrow  |  1   | 小部件的水平大小策略为 Expanding 或 MinimumExpanding 时，其被拉伸以填充可用空间。其他小部件不会超出其有效大小提示。 |
+| QFormLayout::AllNonFixedFieldsGrow |  2   | 只要小部件的大小策略允许拉伸，都将被拉伸以填充可用空间。 这是大多数样式的默认策略。 |
+
+`RowWrapPolicy`定义换行策略，枚举如下：
+
+```c++
+enum RowWrapPolicy {
+    DontWrapRows,
+    WrapLongRows,
+    WrapAllRows
+};
+```
+
+描述如下：
+
+|           常量            |  值  |                             描述                             |
+| :-----------------------: | :--: | :----------------------------------------------------------: |
+| QFormLayout::DontWrapRows |  0   |              右列小部件总是排列在对应的标签旁边              |
+| QFormLayout::WrapLongRows |  1   | 空间优先分配给标签，其余的空间被分配给右列小部件。 如果最小的小部件的大小大于可用空间，则该小部件将换行到下一行。 |
+| QFormLayout::WrapAllRows  |  2   |              右列小部件总是排列在对应的标签下方              |
+
+
+
+**5. 对齐方式**
+
+```c++
+void setLabelAlignment(Qt::Alignment alignment);
+Qt::Alignment labelAlignment() const;
+void setFormAlignment(Qt::Alignment alignment);
+Qt::Alignment formAlignment() const;
+```
 
 
 
