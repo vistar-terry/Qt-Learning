@@ -9,23 +9,26 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QPushButton *pushButton_1 = new QPushButton(ui->formLayoutWidget);
-    QPushButton *pushButton_2 = new QPushButton(ui->formLayoutWidget);
-    QPushButton *pushButton_3 = new QPushButton(ui->formLayoutWidget);
+//    QPushButton *pushButton_1 = new QPushButton(ui->formLayoutWidget);
+//    QPushButton *pushButton_2 = new QPushButton(ui->formLayoutWidget);
+//    QPushButton *pushButton_3 = new QPushButton(ui->formLayoutWidget);
 
-    pushButton_1->setText("QFormLayout::LabelRole");
-    pushButton_2->setText("QFormLayout::FieldRole");
-    pushButton_3->setText("QFormLayout::SpanningRole");
+//    pushButton_1->setText("QFormLayout::LabelRole");
+//    pushButton_2->setText("QFormLayout::FieldRole");
+//    pushButton_3->setText("QFormLayout::SpanningRole");
 
-    ui->formLayout->setWidget(1, QFormLayout::ItemRole::LabelRole, pushButton_1);
-    ui->formLayout->setWidget(4, QFormLayout::ItemRole::FieldRole, pushButton_2);
-    ui->formLayout->setWidget(3, QFormLayout::ItemRole::SpanningRole, pushButton_3);
+//    ui->formLayout->setWidget(1, QFormLayout::ItemRole::LabelRole, pushButton_1);
+//    ui->formLayout->setWidget(4, QFormLayout::ItemRole::FieldRole, pushButton_2);
+//    ui->formLayout->setWidget(3, QFormLayout::ItemRole::SpanningRole, pushButton_3);
 
-    ui->formLayout->setFieldGrowthPolicy(QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow);
-    int row = 0;
-    QFormLayout::ItemRole role = QFormLayout::ItemRole::SpanningRole;
-    ui->formLayout->getItemPosition(0, &row, &role);
-    qDebug("row: %d, role: %d", row, (int)role);
+    ui->formLayout->setLabelAlignment(Qt::AlignmentFlag::AlignBottom);
+    qDebug("labelAlignment: %d\n", (int)ui->formLayout->labelAlignment());
+
+//    ui->formLayout->setFieldGrowthPolicy(QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow);
+//    int row = 0;
+//    QFormLayout::ItemRole role = QFormLayout::ItemRole::SpanningRole;
+//    ui->formLayout->getItemPosition(0, &row, &role);
+//    qDebug("row: %d, role: %d", row, (int)role);
 
 //    ui->formLayout->setHorizontalSpacing(30);
 //    ui->formLayout->setVerticalSpacing(20);
