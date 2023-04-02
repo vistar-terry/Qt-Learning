@@ -1959,8 +1959,6 @@ void insertWidget(int index, QWidget *widget, int stretch = 0,
 
 
 
-
-
 ### 2.2 QGridLayout
 
 与`QBoxLayout`只能在一个方向布局不同，`QGridLayout`可以在网格中布局（垂直和水平两个方向）。
@@ -2491,9 +2489,9 @@ enum RowWrapPolicy {
 **5. 对齐方式**
 
 ```c++
-void setLabelAlignment(Qt::Alignment alignment);
+void setLabelAlignment(Qt::Alignment alignment); // 设置标签列的水平对齐方式
 Qt::Alignment labelAlignment() const;
-void setFormAlignment(Qt::Alignment alignment);
+void setFormAlignment(Qt::Alignment alignment); // 设置布局的对齐方式
 Qt::Alignment formAlignment() const;
 ```
 
