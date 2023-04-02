@@ -2495,15 +2495,43 @@ void setFormAlignment(Qt::Alignment alignment); // 设置布局的对齐方式
 Qt::Alignment formAlignment() const;
 ```
 
-
-
-
+？？？对齐方式不生效的问题？？？
 
 
 
 
 
 ## 3. 输入组件(Input Widgets)
+
+### 3.1 QComboBox
+
+`QComboBox`即我们常用的下拉列表，
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 4. 显示组件(Display Widgets)
 
