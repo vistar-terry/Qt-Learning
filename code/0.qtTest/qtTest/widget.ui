@@ -113,6 +113,26 @@
    </property>
    <layout class="QFormLayout" name="formLayout"/>
   </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>180</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QFontComboBox" name="fontComboBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>226</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
