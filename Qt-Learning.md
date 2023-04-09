@@ -219,7 +219,7 @@ license协议，勾选，Next
 
 万事开头 hello world，Qt 的 hello world 就是创建一个项目并运行显示窗口。
 
-使用 Qt Creator 4.11.0，新版本可能界面不一样，但流程大同小异。
+当前使用 Qt Creator 4.11.0，新版本可能界面不一样，但流程大同小异。
 
 打开 Qt Creator，默认界面如下：
 ![20200203095004937](img/20200203095004937.png)
@@ -976,7 +976,7 @@ Qt扩展模块如下表：
 
 
 
-# 二、Qt Widgets模块
+# 二、Qt Widgets模块（控件类）
 
 ## 1. 按钮组件(Buttons)
 
@@ -2752,11 +2752,7 @@ Qt::Alignment formAlignment() const;
 
 
 
-
-
-
-
-# 三、其他
+# 三、Qt Widgets模块（非控件类）
 
 
 
@@ -2904,6 +2900,12 @@ void btnClicked(int btnId)
 ```
 
 
+
+
+
+
+
+# 四、其他
 
 
 
