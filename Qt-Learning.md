@@ -96,7 +96,7 @@ chmod +x qt-opensource-linux-x64-5.14.1.run
 
 
 
-#### 三、卸载
+#### 1.1.3 卸载
 
 到 Qt Creator 的安装目录下，找到 MaintenanceTool，双击打开。
 
@@ -116,17 +116,102 @@ chmod +x qt-opensource-linux-x64-5.14.1.run
 
 ### 1.2 Qt 5.15 之后版本的在线安装与卸载
 
+> 5.15（包括5.15）之后，官方不再提供单独安装包，需要在线安装。
+
+#### 1.2.1 下载在线安装工具
+
+点击下面链接下载 Qt 在线安装工具
+[https://download.qt.io/official_releases/online_installers/](https://download.qt.io/official_releases/online_installers/)
+包含各个版本的 Qt 在线安装工具如下图：
+![在这里插入图片描述](img/b10a48b9389a4854b5fefd0bb103ac0b.png)
+
+由于是Linux系统，选择 qt-unified-linux-x64-online.run 安装，点击即可下载。（Windows 选择 .exe 格式的)
+
+#### 1.2.2 开始安装
+
+**1. 运行安装程序**
+有两种方法，一种通过命令行操作，一种通过界面操作。
+**方法一： 命令行操作**
+在安装工具所在目录打开 terminal，输入如下命令为其添加可执行权限（安装工具的名称根据你自己的修改）：
+
+```bash
+chmod +x qt-unified-linux-x64-online.run
+```
+
+然后再输入命令运行安装程序：
+
+```bash
+./qt-unified-linux-x64-online.run
+```
+
+**方法二： 界面操作**
+右键安装工具，选属性，权限，勾选”允许作为程序执行文件“，然后关闭对话框。
+(这一步相当于`方法一`中的第1条命令)
+
+![在这里插入图片描述](img/ea7cb7fd4a5a414f8220056a5815b0b4.png)
+
+然后双击安装工具(这一步相当于`方法一`中的第2条命令)，即可打开安装程序，如下：
+如果有账户，填写然后点击Next。
+如果没有账户，点击 Sign up 申请。
+
+![在这里插入图片描述](img/d5bc6c228a9b4351b48ecfd11e49cef1.png)
+
+输入邮箱并设置密码，勾选 `I accept the service terms.`，然后点 Next 即可创建账户
+
+![在这里插入图片描述](img/38be698401634314bd5489e1e75aadef.png)
+
+点击Next之后，界面如下：
+勾选 `I have read and approve the obligations of using Open Source Qt`，
+如果是公司用户，填写公司名称，如果是个人，勾选 `I am an individual person not using Qt for any company`，然后点击Next。
+
+![在这里插入图片描述](img/8ae530bf8cc64de385743fe065491025.png)
+
+接下来是欢迎界面，如下图，点击Next
+
+![在这里插入图片描述](img/b14106e4a1294339a21e56ce494c4385.png)
+
+是否加入用户提升计划，选第二个，Next
+
+![在这里插入图片描述](img/663200e904b145be983c0d08b3743fac.png)
+
+指定 Qt 安装目录，我在用户目录下新建了一个Software，安装在Software下的Qt目录里，
+然后是安装方式，我选择了用户自定义安装，Next
+
+![在这里插入图片描述](img/8e46b68b3f364f75b6e422c21d7ccc56.png)
+
+然后是选择要安装的组件，我选择了我需要的，如果是新手入门，在默认的基础上加一个Qt组件就可以了，比如Qt 6.2.0，其他组件随着学习的深入可以后期添加，添加方法同上述步骤，Next
+
+![在这里插入图片描述](img/9d19446bb23d4245b53dcc93fee50569.png)
+
+license协议，勾选，Next
+
+![在这里插入图片描述](img/83df4cb1b6864e6da9aa08fd472a5d36.png)
+
+开始安装，点击Install
+
+![在这里插入图片描述](img/85e4053276f042c593b0fb86f84e41bf.png)
+
+安装过程，这个根据你选择的组件不同，时间不同，反正时间挺长的，去泡杯咖啡耐心等待。
+
+![在这里插入图片描述](img/1b89140431d041cc9723eb3ca3cc9f7e.png)
 
 
 
+#### 1.2.3 卸载
 
+到 Qt Creator 的安装目录下，找到 MaintenanceTool，双击打开。
 
+![在这里插入图片描述](img/3740a13f0c2c4a58934a7e9ff8274d38.png)
 
+勾选左下角的Uninstall only，点击Next，然后点击Uninstall即可卸载。
 
+![在这里插入图片描述](img/9026b625cb1f4f96af2409713a71caaa.png)
 
+卸载过程：
 
+![在这里插入图片描述](img/5ffc3b1d930d4f69b286fb61ab97d3aa.png)
 
-
+进度条结束即卸载完成。
 
 
 
