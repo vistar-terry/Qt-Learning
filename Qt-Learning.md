@@ -2732,6 +2732,86 @@ office word 中的字体字号设置、段落设置等，很普遍的使用了�
 
 #### 3.1.1 创建QComboBox
 
+ 他只有一个构造函数
+
+```cpp
+QComboBox(QWidget *parent = nullptr);
+```
+
+使用时一般传入父级窗口对象指针。
+
+
+
+#### 3.1.2 数据结构
+
+`QComboBox` 可以看做是一个类似列表的容器，列表每一项是一个`item`对象，该对象有类似 `Map` 的成员，`Map`包含类似`text`、`icon`等`key`，并在`value`域存储对应的数据。
+
+
+
+
+
+
+
+#### 3.1.3 成员函数
+
+##### 1. 添加选项
+
+```cpp
+void addItem(const QString &text, const QVariant &userData = QVariant());
+void addItem(const QIcon &icon, const QString &text,
+             const QVariant &userData = QVariant());
+void addItems(const QStringList &texts){ insertItems(count(), texts); }
+```
+
+其中`userData`是用户数据，即 `QComboBox` 可以作为选择列表，也可以看作是类似 `Map` 的存储容器，
+
+
+
+##### 2. 插入选项
+
+```cpp
+void insertItem(int index, const QString &text, const QVariant &userData = QVariant());
+void insertItem(int index, const QIcon &icon, const QString &text,
+                const QVariant &userData = QVariant());
+void insertItems(int index, const QStringList &texts);
+```
+
+
+
+##### 3. 删除选项
+
+```cpp
+void removeItem(int index);
+```
+
+
+
+##### 4. 选项属性
+
+```cpp
+void setItemText(int index, const QString &text);
+void setItemIcon(int index, const QIcon &icon);
+void setItemData(int index, const QVariant &value, int role = Qt::UserRole);
+
+QString itemText(int index) const;
+QIcon itemIcon(int index) const;
+QVariant itemData(int index, int role = Qt::UserRole) const;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
