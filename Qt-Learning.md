@@ -2748,6 +2748,65 @@ QComboBox(QWidget *parent = nullptr);
 
 ![2023-06-05 234253](img/2023-06-05 234253.png)
 
+对于 `key` ，Qt有自己的枚举定义，如下：
+
+```cpp
+enum ItemDataRole {
+    DisplayRole = 0,
+    DecorationRole = 1,
+    EditRole = 2,
+    ToolTipRole = 3,
+    StatusTipRole = 4,
+    WhatsThisRole = 5,
+    // Metadata
+    FontRole = 6,
+    TextAlignmentRole = 7,
+    BackgroundRole = 8,
+    ForegroundRole = 9,
+    CheckStateRole = 10,
+    // Accessibility
+    AccessibleTextRole = 11,
+    AccessibleDescriptionRole = 12,
+    // More general purpose
+    SizeHintRole = 13,
+    InitialSortOrderRole = 14,
+    // Internal UiLib roles. Start worrying when public roles go that high.
+    DisplayPropertyRole = 27,
+    DecorationPropertyRole = 28,
+    ToolTipPropertyRole = 29,
+    StatusTipPropertyRole = 30,
+    WhatsThisPropertyRole = 31,
+    // Reserved
+    UserRole = 0x0100
+};
+```
+
+枚举说明如下：
+
+| 常量                          | 值     | 描述                                           | value的数据类型                                              |
+| :---------------------------- | :----- | :--------------------------------------------- | ------------------------------------------------------------ |
+| Qt::DisplayRole               | 0      | 要以文本形式呈现的数据                         | QString                                                      |
+| Qt::DecorationRole            | 1      | 要以图标形式呈现的数据                         | QColor/QIcon/QPixmap                                         |
+| Qt::EditRole                  | 2      | 适合在编辑器中编辑的数据                       | QString                                                      |
+| Qt::ToolTipRole               | 3      | 显示在item的工具提示中的数据                   | QString                                                      |
+| Qt::StatusTipRole             | 4      | 状态栏中显示的数据                             | QString                                                      |
+| Qt::WhatsThisRole             | 5      | 显示在项目的“what is this?”模式下的数据        | QString                                                      |
+| Qt::FontRole                  | 6      | item的默认字体                                 | QFont                                                        |
+| Qt::TextAlignmentRole         | 7      | item的文本对齐方式                             | Qt::Alignment                                                |
+| Qt::BackgroundRole            | 8      | item的背景笔刷                                 | QBrush                                                       |
+| Qt::ForegroundRole            | 9      | item的前景笔刷（通常为文本颜色）               | QBrush                                                       |
+| Qt::CheckStateRole            | 10     | 用于获取item的已检查状态                       | Qt::CheckState                                               |
+| Qt::AccessibleTextRole        | 11     | 可访问性扩展和插件（如屏幕阅读器）要使用的文本 | QString                                                      |
+| Qt::AccessibleDescriptionRole | 12     | 出于可访问性目的对item的描述                   | QString                                                      |
+| Qt::SizeHintRole              | 13     | 提供给视图的项目的建议尺寸                     | QSize                                                        |
+| Qt::InitialSortOrderRole      | 14     | 获取页眉视图部分的初始排序顺序（Qt 4.8引入）   | Qt::SortOrder                                                |
+| Qt::DisplayPropertyRole       | 27     | Qt内部使用                                     | -                                                            |
+| Qt::DecorationPropertyRole    | 28     | Qt内部使用                                     | -                                                            |
+| Qt::ToolTipPropertyRole       | 29     | Qt内部使用                                     | -                                                            |
+| Qt::StatusTipPropertyRole     | 30     | Qt内部使用                                     | -                                                            |
+| Qt::WhatsThisPropertyRole     | 31     | Qt内部使用                                     | -                                                            |
+| Qt::UserRole                  | 0x0100 | 存储用户数据                                   | 由用户决定使用哪些类型，并确保组件在访问和设置数据时使用正确的类型 |
+
 
 
 #### 3.1.3 成员函数
@@ -2761,7 +2820,7 @@ void addItem(const QIcon &icon, const QString &text,
 void addItems(const QStringList &texts){ insertItems(count(), texts); }
 ```
 
-其中`userData`是用户数据，即 `QComboBox` 可以作为选择列表，也可以看作是类似 `Map` 的存储容器，
+其中`userData`是用户数据，用户可以把 `QComboBox` 作为选择列表使用，也可以看作是类似 `Map` 的存储容器，在选择时操作用户自定义数据。
 
 
 
@@ -2774,6 +2833,8 @@ void insertItem(int index, const QIcon &icon, const QString &text,
 void insertItems(int index, const QStringList &texts);
 ```
 
+通过指定索引插入 `item`。
+
 
 
 ##### 3. 删除选项
@@ -2781,6 +2842,8 @@ void insertItems(int index, const QStringList &texts);
 ```cpp
 void removeItem(int index);
 ```
+
+通过指定索引删除 `item` 。
 
 
 
@@ -2796,11 +2859,19 @@ QIcon itemIcon(int index) const;
 QVariant itemData(int index, int role = Qt::UserRole) const;
 ```
 
+设置和获取 `item` 的文本、图标和用户数据。
 
 
 
+##### 5.当前选择的item
 
+```cpp
+int currentIndex() const;
+QString currentText() const;
+QVariant currentData(int role = Qt::UserRole) const;
+```
 
+获取当前选择的 `item` 的文本、图标和用户数据。
 
 
 
