@@ -2746,9 +2746,7 @@ QComboBox(QWidget *parent = nullptr);
 
 `QComboBox` 可以看做是一个类似列表的容器，列表每一项是一个`item`对象，该对象有类似 `Map` 的成员，`Map`包含类似`text`、`icon`等`key`，并在`value`域存储对应的数据。
 
-
-
-
+![2023-06-05 234253](img/2023-06-05 234253.png)
 
 
 
