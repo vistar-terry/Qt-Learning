@@ -23,16 +23,17 @@ Widget::Widget(QWidget *parent)
 //    qDebug() << 256 << ": " << ui->comboBox->itemData(0,256);
 
 //    qDebug() << "before maxVisibleItems: " << ui->comboBox->maxVisibleItems();
-//    ui->comboBox->setMaxVisibleItems(3);
+    ui->comboBox->setMaxVisibleItems(3);
 //    qDebug() << "after maxVisibleItems: " << ui->comboBox->maxVisibleItems();
 //    setStyleSheet("QComboBox{combobox-popup:0;}");
-    ui->comboBox->setEditable(true);
+//    ui->comboBox->setEditable(true);
 
-//    qDebug() << "count: " << ui->comboBox->count();
-//    qDebug() << "maxCount: " << ui->comboBox->maxCount();
+    qDebug() << "count: " << ui->comboBox->count();
+    qDebug() << "maxCount: " << ui->comboBox->maxCount();
+//    ui->comboBox->style()->styleHint(QStyle::SH_ComboBox_Popup);
 //    ui->comboBox->setMaxCount(3);
-//    qDebug() << "count: " << ui->comboBox->count();
-//    qDebug() << "maxCount: " << ui->comboBox->maxCount();
+    qDebug() << "count: " << ui->comboBox->count();
+    qDebug() << "maxCount: " << ui->comboBox->maxCount();
 
     qDebug() << "duplicatesEnabled: " << ui->comboBox->duplicatesEnabled();
 
