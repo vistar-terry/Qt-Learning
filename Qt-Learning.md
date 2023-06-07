@@ -2716,7 +2716,7 @@ Qt::Alignment formAlignment() const;
 
 ### 3.1 QComboBox
 
-`QComboBox`即我们常用的下拉列表，如下是一些使用示例：
+组合框 `QComboBox`即我们常用的下拉列表，如下是一些使用示例：
 
 office word 中的字体字号设置、段落设置等，很普遍的使用了类似 `QComboBox` 的下拉列表。
 
@@ -2850,20 +2850,24 @@ void removeItem(int index);
 ##### 4. 选项属性
 
 ```cpp
-void setItemText(int index, const QString &text);
-void setItemIcon(int index, const QIcon &icon);
+void setItemText(int index, const QString &text); // 设置item的文本
+void setItemIcon(int index, const QIcon &icon); // 设置item的图标
+void setIconSize(const QSize &size); // 设置item的图标尺寸
+// 设置item的用户数据
 void setItemData(int index, const QVariant &value, int role = Qt::UserRole);
+void setMaxCount(int max); // 设置item的允许最大数量
 
-QString itemText(int index) const;
-QIcon itemIcon(int index) const;
-QVariant itemData(int index, int role = Qt::UserRole) const;
+QString itemText(int index) const; // 获取item的文本
+QIcon itemIcon(int index) const; // 获取item的图标
+QSize iconSize() const; // 获取item的图标尺寸
+QVariant itemData(int index, int role = Qt::UserRole) const; // 获取item的用户数据
+int count() const; // 获取item的数量
+int maxCount() const; // 获取item的允许最大数量
 ```
 
-设置和获取 `item` 的文本、图标和用户数据。
 
 
-
-##### 5.当前选择的item
+##### 5. 当前选择的item
 
 ```cpp
 int currentIndex() const;
@@ -2875,15 +2879,31 @@ QVariant currentData(int role = Qt::UserRole) const;
 
 
 
+##### 6. 用户是否可编辑组合框
+
+```cpp
+bool isEditable() const;
+void setEditable(bool editable);
+```
+
+下拉列表不仅可供选择，也可以让用户输入列表中没有的选项（默认不可编辑），如下图：
+
+![image-20230607230339421](img/image-20230607230339421.png)
 
 
 
+另外还有一个函数也可以实现组合框可编辑：
+
+```cpp
+void setLineEdit(QLineEdit *edit);
+QLineEdit *lineEdit() const;
+```
+
+他将行编辑框的编辑权赋予组合框，
 
 
 
-
-
-
+##### 7.
 
 
 
