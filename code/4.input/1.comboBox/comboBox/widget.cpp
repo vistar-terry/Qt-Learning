@@ -23,26 +23,27 @@ Widget::Widget(QWidget *parent)
 //    qDebug() << 256 << ": " << ui->comboBox->itemData(0,256);
 
 //    qDebug() << "before maxVisibleItems: " << ui->comboBox->maxVisibleItems();
+    qDebug() << ui->comboBox->style()->styleHint(QStyle::SH_ComboBox_Popup);
     ui->comboBox->setMaxVisibleItems(3);
 //    qDebug() << "after maxVisibleItems: " << ui->comboBox->maxVisibleItems();
-//    setStyleSheet("QComboBox{combobox-popup:0;}");
+    setStyleSheet("QComboBox{combobox-popup:0;}");
+    qDebug() << ui->comboBox->style()->styleHint(QStyle::SH_ComboBox_Popup);
 //    ui->comboBox->setEditable(true);
 
     qDebug() << "count: " << ui->comboBox->count();
     qDebug() << "maxCount: " << ui->comboBox->maxCount();
-//    ui->comboBox->style()->styleHint(QStyle::SH_ComboBox_Popup);
 //    ui->comboBox->setMaxCount(3);
-    qDebug() << "count: " << ui->comboBox->count();
-    qDebug() << "maxCount: " << ui->comboBox->maxCount();
+//    qDebug() << "count: " << ui->comboBox->count();
+//    qDebug() << "maxCount: " << ui->comboBox->maxCount();
 
-    qDebug() << "duplicatesEnabled: " << ui->comboBox->duplicatesEnabled();
+//    qDebug() << "duplicatesEnabled: " << ui->comboBox->duplicatesEnabled();
 
-//    ui->comboBox_2->setLineEdit(ui->lineEdit);
-    qDebug() << ui->lineEdit->isVisible();
-    ui->comboBox_2->setVisible(true);
-    qDebug() << ui->comboBox_2->isVisible();
-    ui->lineEdit->setVisible(true);
-    qDebug() << ui->lineEdit->isVisible();
+////    ui->comboBox_2->setLineEdit(ui->lineEdit);
+//    qDebug() << ui->lineEdit->isVisible();
+//    ui->comboBox_2->setVisible(true);
+//    qDebug() << ui->comboBox_2->isVisible();
+//    ui->lineEdit->setVisible(true);
+//    qDebug() << ui->lineEdit->isVisible();
 
 }
 

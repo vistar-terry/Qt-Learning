@@ -2899,11 +2899,18 @@ void setLineEdit(QLineEdit *edit);
 QLineEdit *lineEdit() const;
 ```
 
-他将行编辑框的编辑权赋予组合框，
+他将行编辑框的编辑权赋予组合框，实际上在函数`setEditable` 内部也调用了 `setLineEdit`，如下：
+
+![image-20230609194226465](img/image-20230609194226465.png)
 
 
 
-##### 7.
+##### 7. 设置显示item的个数
+
+```cpp
+int maxVisibleItems() const;
+void setMaxVisibleItems(int maxItems);
+```
 
 
 
