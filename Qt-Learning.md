@@ -2912,11 +2912,25 @@ int maxVisibleItems() const;
 void setMaxVisibleItems(int maxItems);
 ```
 
+一般情况下，下拉列表有多少 `item` 就会显示多少，如下：
+
+![image-20230610224613939](img/image-20230610224613939.png)
+
+如 `item` 过多，会显得不美观，可以通过该函数设置显示item的个数，如下设置最大显示个数为 `5`，其余会隐藏在滚动条中：
+
+![image-20230610225103148](img/image-20230610225103148.png)
 
 
 
+关于这个函数有一个很迷的现象，官方文档有如下描述：
 
+![image-20230610225349082](img/image-20230610225349082.png)
 
+对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回`true`，该属性将被忽略，例如 `Mac style` 或 `Gtk+ Style`。
+
+然而，在 `ubuntu` 系统下，对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回 `0`，该属性仍然未生效；在`windows` 系统下，对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回 `0`，该属性生效。
+
+![image-20230610230645258](img/image-20230610230645258.png)
 
 
 
