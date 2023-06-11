@@ -2996,11 +2996,54 @@ bool hasFrame() const;
 
 
 
+##### 11. 查找item
 
+```cpp
+// 通过text查找
+inline int findText(const QString &text, Qt::MatchFlags flags = static_cast<Qt::MatchFlags>(Qt::MatchExactly|Qt::MatchCaseSensitive)) const
+{ return findData(text, Qt::DisplayRole, flags); }
 
+// 通过data查找
+int findData(const QVariant &data, int role = Qt::UserRole, Qt::MatchFlags flags = static_cast<Qt::MatchFlags>(Qt::MatchExactly|Qt::MatchCaseSensitive)) const;
+```
 
+可以发现 `findText` 也是通过 `findData` 实现的，所以对于其他属性的搜索，我们也可以通过 `findData` 实现，因为 `findData` 的 `data` 参数是通用类型，使用时只需指定相应的 `role` 即可（role枚举见`ItemDataRole`）。
 
+第三个参数 `flags` 定义了匹配方式，`Qt::MatchFlags` 枚举如下：
 
+```cpp
+enum MatchFlag {
+    MatchExactly = 0,
+    MatchContains = 1,
+    MatchStartsWith = 2,
+    MatchEndsWith = 3,
+    MatchRegularExpression = 4,
+    MatchWildcard = 5,
+    MatchFixedString = 8,
+    MatchTypeMask = 0x0F,
+    MatchCaseSensitive = 16,
+    MatchWrap = 32,
+    MatchRecursive = 64
+};
+```
+
+枚举成员描述如下：
+
+|            常量            |  值  |                             描述                             |
+| :------------------------: | :--: | :----------------------------------------------------------: |
+|      Qt::MatchExactly      |  0   |                                                              |
+|     Qt::MatchContains      |  1   |                      搜索词包含在item中                      |
+|    Qt::MatchStartsWith     |  2   |                    搜索词与item的开头匹配                    |
+|     Qt::MatchEndsWith      |  3   |                    搜索词与item的结尾匹配                    |
+| Qt::MatchRegularExpression |  4   |        使用正则表达式作为搜索项执行基于字符串的匹配。        |
+|     Qt::MatchWildcard      |  5   |   使用带有通配符的字符串作为搜索词，执行基于字符串的匹配。   |
+|    Qt::MatchFixedString    |  8   | 执行基于字符串的匹配。除非同时指定MatchCaseSensitive标志，否则基于字符串的比较不区分大小写。 |
+|       MatchTypeMask        | 0x0F |                                                              |
+|   Qt::MatchCaseSensitive   |  16  |                       搜索区分大小写。                       |
+|         MatchWrap          |  32  | 执行一个环绕的搜索，这样，当搜索到达模型中的最后一个项目时，它会从第一个项目开始，并一直持续到检查完所有项目为止。 |
+|       MatchRecursive       |  64  |                      搜索整个层次结构。                      |
+
+注意：`Qt::MatchExamplete`、`Qt::MatchContains`、`Qt::MatchStartsWith`、`Qt::MatchEndsWith`，`Qt::MatchRegularExpression`、`Qt::MatchWildcard` 和 `Qt::MatchFixedString` 是互斥的，Qt还不支持通过 `Qt::MatchFlags` 参数同时设置多个。
 
 
 
