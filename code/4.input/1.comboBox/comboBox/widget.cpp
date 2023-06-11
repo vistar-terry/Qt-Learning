@@ -20,7 +20,22 @@ Widget::Widget(QWidget *parent)
     qDebug() << "styles that returns for QStyle::SH_ComboBox_Popup: "
              << ui->comboBox->style()->styleHint(QStyle::SH_ComboBox_Popup);
     ui->comboBox->setMaxVisibleItems(5);
-//    setStyleSheet("QComboBox{combobox-popup:0;}");
+    setStyleSheet("QComboBox{combobox-popup:0;}");
+//    ui->comboBox->setMaxCount(10);
+//    ui->comboBox->setItemText(11, "fdsdsd");
+//    qDebug() << ui->comboBox->itemText(11);
+
+    ui->comboBox_2->addItem("item1");
+    ui->comboBox_2->addItem("item2");
+    ui->comboBox_2->addItem("item3");
+    ui->comboBox_2->addItem("item4");
+    ui->comboBox_2->addItem("item4");
+    ui->comboBox_2->setEditable(true);
+//    ui->comboBox_2->setDuplicatesEnabled(true);
+    ui->comboBox_2->setFrame(false);
+    qDebug() << ui->comboBox_2->hasFrame();
+    qDebug() << ui->comboBox->hasFrame();
+
 }
 
 Widget::~Widget()

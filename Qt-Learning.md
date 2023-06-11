@@ -2942,6 +2942,58 @@ void setMaxVisibleItems(int maxItems);
 > 
 > ![image-20230610232313093](img/image-20230610232313093.png)
 
+该问题可以通过以下方法规避，即使该属性在 `Ubuntu` 系统中生效：
+
+方法一：设置组合框可编辑，`setEditable(true);`
+
+方法二：设置`setStyleSheet("QComboBox{combobox-popup:0;}");`
+
+
+
+##### 8. 组合框的item个数
+
+```cpp
+int count() const;	// 当前存储的item个数
+void setMaxCount(int max);  // 设置允许存储的item最大个数
+int maxCount() const; // 获取允许存储的item最大个数
+```
+
+如果设置的最大个数小于当前存储的个数，多余的item会被删除。
+
+
+
+##### 9. 添加重复的item
+
+有时会在组合框中添加重复的项，如下：
+
+![image-20230611213306770](img/image-20230611213306770.png)
+
+有两种方式添加重复项，一种是通过代码（Qt总是允许通过代码添加重复项），如下：
+
+```cpp
+ui->comboBox->addItem("item1");
+ui->comboBox->addItem("item2");
+ui->comboBox->addItem("item3");
+ui->comboBox->addItem("item4");
+ui->comboBox->addItem("item4");
+```
+
+第二种是用户编辑输入，但Qt默认不允许这种方式，需要设置属性：
+
+```cpp
+bool duplicatesEnabled() const;
+void setDuplicatesEnabled(bool enable);
+```
+
+
+
+##### 10. 是否绘制边框
+
+```cpp
+void setFrame(bool);
+bool hasFrame() const;
+```
+
 
 
 
