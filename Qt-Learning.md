@@ -2922,19 +2922,25 @@ void setMaxVisibleItems(int maxItems);
 
 
 
-关于这个函数有一个很迷的现象，官方文档有如下描述：
-
-![image-20230610225349082](img/image-20230610225349082.png)
-
-对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回`true`，该属性将被忽略，例如 `Mac style` 或 `Gtk+ Style`。
-
-然而，在 `ubuntu` 系统下，对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回 `0`，该属性仍然未生效；在`windows` 系统下，对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回 `0`，该属性生效。
-
-![image-20230610230645258](img/image-20230610230645258.png)
-
-
-
-
+> 关于这个函数有一个很迷的现象，官方文档有如下描述：
+> 
+> ![image-20230610225349082](img/image-20230610225349082.png)
+> 
+> 对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回`true`，该属性将被忽略，例如 `Mac style` 或 `Gtk+ Style`。
+> 
+> 然而，在 `ubuntu` 系统下，对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回 `0`，该属性仍然未生效；在`windows` 系统下，对于不可编辑的组合框，`QStyle::SH_ComboBox_Popup`返回 `0`，该属性生效。
+> 
+> **如你知道原因欢迎评论区留言。**
+> 
+> 有图有真相：
+> 
+> Ubuntu下：
+> 
+> ![image-20230610230645258](img/image-20230610230645258.png)
+> 
+> Windows下：
+> 
+> ![image-20230610232313093](img/image-20230610232313093.png)
 
 
 
