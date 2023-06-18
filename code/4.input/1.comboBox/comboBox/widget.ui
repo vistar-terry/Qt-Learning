@@ -16,8 +16,8 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>60</y>
+     <x>570</x>
+     <y>80</y>
      <width>86</width>
      <height>25</height>
     </rect>
@@ -42,7 +42,7 @@
   <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>70</x>
      <y>60</y>
      <width>86</width>
      <height>25</height>
@@ -66,6 +66,25 @@
      <width>113</width>
      <height>25</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_3">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>60</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentText">
+    <string/>
+   </property>
+   <property name="frame">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

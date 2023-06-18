@@ -25,16 +25,20 @@ Widget::Widget(QWidget *parent)
 //    ui->comboBox->setItemText(11, "fdsdsd");
 //    qDebug() << ui->comboBox->itemText(11);
 
-    ui->comboBox_2->addItem("item1");
-    ui->comboBox_2->addItem("item2");
-    ui->comboBox_2->addItem("item3");
-    ui->comboBox_2->addItem("item4");
-    ui->comboBox_2->addItem("item4");
-    ui->comboBox_2->setEditable(true);
+//    ui->comboBox_2->addItem("item1");
+//    ui->comboBox_2->addItem("item2");
+//    ui->comboBox_2->addItem("item3");
+//    ui->comboBox_2->addItem("item4");
+//    ui->comboBox_2->addItem("item4");
+//    ui->comboBox_2->setEditable(true);
 //    ui->comboBox_2->setDuplicatesEnabled(true);
+    ui->comboBox_2->setPlaceholderText("占位符");
+//    ui->comboBox_2->setCurrentIndex(-1);
     ui->comboBox_2->setFrame(false);
-    qDebug() << ui->comboBox_2->hasFrame();
+    qDebug() << ui->comboBox_2->sizeAdjustPolicy();
     qDebug() << ui->comboBox->hasFrame();
+    ui->comboBox_2->setInsertPolicy(QComboBox::InsertAtTop);
+
 
 }
 

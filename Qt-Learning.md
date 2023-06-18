@@ -2820,7 +2820,7 @@ void addItem(const QIcon &icon, const QString &text,
 void addItems(const QStringList &texts){ insertItems(count(), texts); }
 ```
 
-其中`userData`是用户数据，用户可以把 `QComboBox` 作为选择列表使用，也可以看作是类似 `Map` 的存储容器，在选择时操作用户自定义数据。
+该函数在列表的末尾添加`item`，其中`userData`是用户数据，用户可以把 `QComboBox` 作为选择列表使用，也可以看作是类似 `Map` 的存储容器，在选择时操作用户自定义数据。
 
 
 
@@ -3031,19 +3031,142 @@ enum MatchFlag {
 
 |            常量            |  值  |                             描述                             |
 | :------------------------: | :--: | :----------------------------------------------------------: |
-|      Qt::MatchExactly      |  0   |                                                              |
+|      Qt::MatchExactly      |  0   |                    搜索词与item的完全匹配                    |
 |     Qt::MatchContains      |  1   |                      搜索词包含在item中                      |
 |    Qt::MatchStartsWith     |  2   |                    搜索词与item的开头匹配                    |
 |     Qt::MatchEndsWith      |  3   |                    搜索词与item的结尾匹配                    |
 | Qt::MatchRegularExpression |  4   |        使用正则表达式作为搜索项执行基于字符串的匹配。        |
 |     Qt::MatchWildcard      |  5   |   使用带有通配符的字符串作为搜索词，执行基于字符串的匹配。   |
 |    Qt::MatchFixedString    |  8   | 执行基于字符串的匹配。除非同时指定MatchCaseSensitive标志，否则基于字符串的比较不区分大小写。 |
-|       MatchTypeMask        | 0x0F |                                                              |
 |   Qt::MatchCaseSensitive   |  16  |                       搜索区分大小写。                       |
-|         MatchWrap          |  32  | 执行一个环绕的搜索，这样，当搜索到达模型中的最后一个项目时，它会从第一个项目开始，并一直持续到检查完所有项目为止。 |
+|       Qt::MatchWrap        |  32  | 执行一个环绕的搜索，这样，当搜索到达模型中的最后一个项目时，它会从第一个项目开始，并一直持续到检查完所有项目为止。 |
 |       MatchRecursive       |  64  |                      搜索整个层次结构。                      |
 
 注意：`Qt::MatchExamplete`、`Qt::MatchContains`、`Qt::MatchStartsWith`、`Qt::MatchEndsWith`，`Qt::MatchRegularExpression`、`Qt::MatchWildcard` 和 `Qt::MatchFixedString` 是互斥的，Qt还不支持通过 `Qt::MatchFlags` 参数同时设置多个。
+
+
+
+##### 12. 插入策略
+
+当组合框可编辑，用户可以通过手动输入来添加`item`，这时新的`item` 插入到哪里，由枚举 `InsertPolicy`指定，默认为 `InsertAtBottom`在下方新增，使用如下方法设置插入策略：
+
+```cpp
+InsertPolicy insertPolicy() const;
+void setInsertPolicy(InsertPolicy policy);
+```
+
+`InsertPolicy`枚举如下：
+
+```cpp
+enum InsertPolicy {
+    NoInsert,
+    InsertAtTop,
+    InsertAtCurrent,
+    InsertAtBottom,
+    InsertAfterCurrent,
+    InsertBeforeCurrent,
+    InsertAlphabetically
+};
+```
+
+说明如下：
+
+|              常量               |  值  |                 描述                 |
+| :-----------------------------: | :--: | :----------------------------------: |
+|       QComboBox::NoInsert       |  0   |       字符串不会插入到组合框中       |
+|     QComboBox::InsertAtTop      |  1   |  字符串会被插入到组合框的第一个位置  |
+|   QComboBox::InsertAtCurrent    |  2   |   当前选择的item会被新的字符串覆盖   |
+|    QComboBox::InsertAtBottom    |  3   | 字符串会被插入到组合框的最后一个位置 |
+|  QComboBox::InsertAfterCurrent  |  4   | 字符串会被插入到当前选择的后一个位置 |
+| QComboBox::InsertBeforeCurrent  |  5   | 字符串会被插入到当前选择的前一个位置 |
+| QComboBox::InsertAlphabetically |  6   |     字符串按字母顺序插入组合框中     |
+
+
+
+##### 13. 大小调整策略
+
+由于不同`item`的内容长度不同，组合框的大小调整会有一定策略，默认 `AdjustToContentsOnFirstShow`，使用如下函数设置该策略：
+
+```cpp
+SizeAdjustPolicy sizeAdjustPolicy() const;
+void setSizeAdjustPolicy(SizeAdjustPolicy policy);
+```
+
+策略枚举如下：
+
+```cpp
+enum SizeAdjustPolicy {
+    AdjustToContents,
+    AdjustToContentsOnFirstShow,
+    AdjustToMinimumContentsLengthWithIcon
+};
+```
+
+说明如下：
+
+|                       常量                       |  值  |                             描述                             |
+| :----------------------------------------------: | :--: | :----------------------------------------------------------: |
+|           QComboBox::AdjustToContents            |  0   |           始终根据item内容进行调整，以使其全部显示           |
+|      QComboBox::AdjustToContentsOnFirstShow      |  1   |          组合框将在第一次显示时根据item内容进行调整          |
+| QComboBox::AdjustToMinimumContentsLengthWithIcon |  2   | 组合框将调整为最小内容长度加上图标空间。使用该策略，需要考虑性能问题 |
+
+其中`MinimumContentsLength`和`iconSize`都可以另外设置，方法如下：
+
+```cpp
+int minimumContentsLength() const; // 默认为0
+void setMinimumContentsLength(int characters);
+QSize iconSize() const;
+void setIconSize(const QSize &size);
+```
+
+
+
+##### 14. 占位符文本
+
+当组合框没有任何 `item` 时，可以添加占位符文本，以使组合框显示不为空，如下：
+
+![image-20230618215612483](img/image-20230618215612483.png)
+
+当然，占位符是灰色的不可被选择的。
+
+方法接口如下：
+
+```cpp
+void setPlaceholderText(const QString &placeholderText);
+QString placeholderText() const;
+```
+
+
+
+##### 15. 自定义数据模型
+
+组合框除了显示为下拉列表，也可以显示自定义的数据模型，比如树或表格，相关方法如下：
+
+```cpp
+QAbstractItemModel *model() const;
+virtual void setModel(QAbstractItemModel *model); // 将自定义的数据模型添加到组合框
+
+QModelIndex rootModelIndex() const;
+void setRootModelIndex(const QModelIndex &index); // 设置项目的根模型项目索引
+
+int modelColumn() const;
+// 设置模型可见列。如果在填充组合框之前设置，则视图不受影响，将显示第一列（使用此属性的默认值0）。
+void setModelColumn(int visibleColumn);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
