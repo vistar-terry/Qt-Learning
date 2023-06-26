@@ -3156,9 +3156,7 @@ void setModelColumn(int visibleColumn);
 
 
 
-
-
-
+### 3.2 QFontComboBox
 
 
 
