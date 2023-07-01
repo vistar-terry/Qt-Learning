@@ -9,7 +9,7 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
 
     qDebug() << ui->fontComboBox->currentFont();
-    ui->label->setText("编辑器");
+    ui->label->setText("字体选择器");
     QFont labelFont("Suruma");
     labelFont.setPointSize(20);
     ui->label->setFont(labelFont);
