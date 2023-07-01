@@ -6,6 +6,8 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    QLineEdit* lineEdit2 = new QLineEdit("test", this);
 }
 
 Widget::~Widget()

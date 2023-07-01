@@ -3360,9 +3360,17 @@ void onFontChanged(const QFont &font)
 
 ### 3.3 QLineEdit
 
+`QLineEdit`是一个用于输入单行文本的控件，常用于获取用户名、密码、搜索关键词、文件选取对话框中的文件路径输入框、特定格式的文本(IP、掩码、密钥)等。
 
 
 
+#### 3.3.1 构造函数
+
+```cpp
+explicit QLineEdit(QWidget *parent = nullptr);
+explicit QLineEdit(const QString &, QWidget *parent = nullptr);
+~QLineEdit();
+```
 
 
 
