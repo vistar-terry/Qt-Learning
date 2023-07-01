@@ -15,6 +15,9 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+public Q_SLOTS:
+    void onFontChanged(QFont);
+
 private:
     Ui::Widget *ui;
 };

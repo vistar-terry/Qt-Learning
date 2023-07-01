@@ -3083,7 +3083,7 @@ enum InsertPolicy {
 
 
 
-##### 13. 大小调整策略
+##### 13. 尺寸调整策略
 
 由于不同`item`的内容长度不同，组合框的大小调整会有一定策略，默认 `AdjustToContentsOnFirstShow`，使用如下函数设置该策略：
 
@@ -3157,6 +3157,212 @@ void setModelColumn(int visibleColumn);
 
 
 ### 3.2 QFontComboBox
+
+该控件用于选择字体，在一些软件中经常有类似控件，如下：
+
+Microsoft Office：
+
+![屏幕截图 2023-07-01 164711](img/屏幕截图 2023-07-01 164711.png)
+
+Photoshop：
+
+![屏幕截图 2023-07-01 165042](img/屏幕截图 2023-07-01 165042.png)
+
+`QFontComboBox` 继承于 `QComboBox` ，所以他有 `QComboBox` 大部分属性与成员，但也有自己特有的。
+
+**注意：**
+
+> 这里虽然说是 `Font` 选择器，实际上每次选择只对 `Font` 中的 `family` 进行了修改，不会改变其他字体属性。 但每次选择 `QFontComboBox` 会返回一个同时包含其他字体属性的 `Font` 对象，如果直接将该对象设置给文本，那么文本当前其他的字体属性会被覆盖。所以，这里注意做好处理，只将`QFontComboBox` 返回的 `family` 属性设置给文本。
+
+
+
+#### 3.2.1 创建 QFontComboBox
+
+同样，他也支持通过拖拽控件创建，也可以在自定义代码中创建。
+
+他只有一个构造函数：
+
+```cpp
+QFontComboBox(QWidget *parent = nullptr);
+~QFontComboBox();
+```
+
+默认构造函数`QFontComboBox()`创建一个空的字体选择器。
+
+也可以传入一个`QWidget`对象指针，`QFontComboBox(QWidget *parent)`，它允许将字体选择器嵌入到另一个`QWidget`中。
+
+
+
+#### 3.2.2 成员函数
+
+##### 1. 书写系统
+
+```cpp
+void setWritingSystem(QFontDatabase::WritingSystem);
+QFontDatabase::WritingSystem writingSystem() const;
+```
+
+`setWritingSystem()`成员函数用于设置字体选择器所使用的书写系统。它接受一个`QFontDatabase::WritingSystem`参数，指定Qt应该使用哪种书写系统。
+
+> 书写系统（writingSystem） ：书写系统包括一个或多个文字集和一系列规则，一个书写系统至少对应一种语言，可以用书写系统的符号集合和规则比如拼写规则、大小写等来表达对应的语言，如汉字、日文、罗马字等。
+
+以下是一个示例使用`setWritingSystem`方法的代码片段：
+
+```cpp
+QFontComboBox *fontCombo = new QFontComboBox(this);
+fontCombo->setWritingSystem(QFontDatabase::SimplifiedChinese);
+```
+
+其中，`QFontDatabase::WritingSystem` 枚举了Qt支持的书写系统：
+
+```cpp
+enum WritingSystem {
+    Any,
+
+    Latin,
+    Greek,
+    Cyrillic,
+    Armenian,
+    Hebrew,
+    Arabic,
+    Syriac,
+    Thaana,
+    Devanagari,
+    Bengali,
+    Gurmukhi,
+    Gujarati,
+    Oriya,
+    Tamil,
+    Telugu,
+    Kannada,
+    Malayalam,
+    Sinhala,
+    Thai,
+    Lao,
+    Tibetan,
+    Myanmar,
+    Georgian,
+    Khmer,
+    SimplifiedChinese,
+    TraditionalChinese,
+    Japanese,
+    Korean,
+    Vietnamese,
+
+    Symbol,
+    Other = Symbol,
+
+    Ogham,
+    Runic,
+    Nko,
+
+    WritingSystemsCount
+};
+```
+
+默认值为`QFontDatabase::Any` ，表示支持平台系统所有的书写系统。
+
+
+
+##### 2. 字体过滤器
+
+```cpp
+void setFontFilters(FontFilters filters);
+FontFilters fontFilters() const;
+```
+
+`setFontFilters`成员函数允许开发人员指定字体选择器可以显示的字体。它接受一个`QFontComboBox::FontFilters`参数，该参数允许开发人员选择要允许的字体类型。例如，可以仅允许选择等宽字体，或仅允许选择粗体或斜体字体。
+
+以下是一个示例使用`setFontFilters`方法的代码片段：
+
+```cpp
+QFontComboBox *fontCombo = new QFontComboBox(this);
+fontCombo->setFontFilters(QFontComboBox::MonospacedFonts);
+```
+
+其中，`QFontComboBox::FontFilters` 枚举了可选择的字体类型：
+
+```cpp
+enum FontFilter {
+    AllFonts = 0,
+    ScalableFonts = 0x1,
+    NonScalableFonts = 0x2,
+    MonospacedFonts = 0x4,
+    ProportionalFonts = 0x8
+};
+```
+
+说明如下：
+
+| 枚举                             | 值   | 描述             |
+| -------------------------------- | ---- | ---------------- |
+| QFontComboBox::AllFonts          | 0    | 显示所有字体     |
+| QFontComboBox::ScalableFonts     | 0x1  | 显示可缩放字体   |
+| QFontComboBox::NonScalableFonts  | 0x2  | 显示不可缩放字体 |
+| QFontComboBox::MonospacedFonts   | 0x4  | 显示等宽字体     |
+| QFontComboBox::ProportionalFonts | 0x8  | 显示比例字体     |
+
+> 缩放字体(ScalableFonts)：是指可以按比例缩放而不会失去质量的字体。与点阵字体（BitmapFonts）相比，缩放字体可以在任何尺寸下保持线条的清晰度和平滑度，而不会像点阵字体一样在放大时变得模糊和失真。缩放字体通常用于显示需要在不同大小的显示器和不同分辨率的屏幕上按比例扩展的文本。它们的另一个优点是它们可以用来创建真正的平滑曲线，尤其是在大的字体尺寸下，这对于设计师和艺术家来说非常重要。
+>
+> 比例字体(ProportionalFonts)：是指每一个字符都有不同的宽度。例如，在比例字体中，大写字母"O"的宽度比小写字母"i"的宽度要宽得多。比例字体通常用于文本编辑和排版，因为它可以更好地适应不同字母的宽度，从而提高文本的可读性。
+>
+> 等宽字体(MonospacedFonts)：是指每一个字符都有相同的宽度。例如，在等宽字体中，大写字母"O"和小写字母"i"的宽度是相同的。等宽字体通常用于编程和数据展示，因为字符对于编程和数据处理来说是等价的，这种字体使得代码和表格更易于阅读和理解。
+
+
+
+##### 3. 当前字体
+
+既然是和`QComboBox` 类似的选择器，就会有当前所选择的`item`这一属性。
+
+```cpp
+void setCurrentFont(const QFont &f);
+QFont currentFont() const;
+```
+
+`setCurrentFont`函数用于设置当前选中的字体。它接受一个`QFont`类型的参数，该参数指定要设置为当前字体的字体。例如：
+
+```cpp
+QFont font("Arial", 12);
+fontComboBox->setCurrentFont(font);
+```
+
+`currentFont`函数返回当前选中的字体。例如：
+
+```cpp
+QFont font = fontComboBox->currentFont();
+```
+
+
+
+##### 4.  信号
+
+当字体被选择，列表当前值发生改变时，`QFontComboBox`会发出 `currentFontChanged` 信号。
+
+```cpp
+void currentFontChanged(const QFont &f);
+```
+
+它包含一个QFont类型的参数，指定用户选择的新字体。
+
+以下是一个示例使用`currentFontChanged`信号的代码片段：
+
+```cpp
+QFontComboBox *fontCombo = new QFontComboBox(this);
+connect(fontCombo, SIGNAL(currentFontChanged(const QFont &)), this, SLOT(onFontChanged(const QFont &)));
+
+void onFontChanged(const QFont &font)
+{
+    // do something
+}
+```
+
+
+
+
+
+
+
+
 
 
 
