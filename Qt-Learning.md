@@ -3372,6 +3372,66 @@ explicit QLineEdit(const QString &, QWidget *parent = nullptr);
 ~QLineEdit();
 ```
 
+其中可以在构造时为其设置初始文本。
+
+
+
+#### 3.3.2 成员函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
